@@ -1,6 +1,27 @@
 <template>
-	<view class="page">
-		首页
+	<view>
+		<!-- 导航栏 -->
+		<view class="bg-light">
+			<!-- 状态栏 -->
+			<view :style="'height:'+statusBarHeight+'px'"></view>
+			<!-- 导航 -->
+			<view class="w-100 flex align-center justify-between border" style="height: 90rpx">
+				<!-- 左边标题部分 -->
+				<view class="flex align-center">
+					<text class="font-md ml-3">叮咚(10)</text>
+				</view>
+				<!-- 右边图标部分 -->
+				<view class="flex align-center">
+					<view class="flex align-center justify-center border" style="height: 90rpx;width: 90rpx;">
+						<text class="iconfont font-md">&#xe6e3;</text>
+					</view>
+					
+					<view class="flex align-center justify-center border" style="height: 90rpx;width: 90rpx;">
+						<text class="iconfont font-md">&#xe682;</text>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -8,11 +29,11 @@
 	export default {
 		data() {
 			return {
-				
+				statusBarHeight: 0		// 状态栏高度
 			}
 		},
 		onLoad() {
-			
+			this.statusBarHeight = plus.navigator.getStatusbarHeight()
 		},
 		methods: {
 
@@ -20,6 +41,5 @@
 	}
 </script>
 
-<style>
-	
+<style lang="less">
 </style>
