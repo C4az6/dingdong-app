@@ -1,43 +1,26 @@
 <template>
 	<view>
 		<!-- 导航栏 -->
-		<view class="bg-light">
-			<!-- 状态栏 -->
-			<view :style="'height:'+statusBarHeight+'px'"></view>
-			<!-- 导航 -->
-			<view class="w-100 flex align-center justify-between border" style="height: 90rpx">
-				<!-- 左边标题部分 -->
-				<view class="flex align-center">
-					<text class="font-md ml-3">叮咚(10)</text>
-				</view>
-				<!-- 右边图标部分 -->
-				<view class="flex align-center">
-					<view class="flex align-center justify-center border" style="height: 90rpx;width: 90rpx;">
-						<text class="iconfont font-md">&#xe6e3;</text>
-					</view>
-					
-					<view class="flex align-center justify-center border" style="height: 90rpx;width: 90rpx;">
-						<text class="iconfont font-md">&#xe682;</text>
-					</view>
-				</view>
-			</view>
+		<free-nav-bar title titleValue="叮咚(99+)" fixed />
+		
+		<!-- 列表 -->
+		<view style="height: 2000rpx;">
+			<text>好好学习，天天向上！</text>
 		</view>
 	</view>
 </template>
 
 <script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 	export default {
+		name: "IndexPage",
+		components: {
+			FreeNavBar
+		},
 		data() {
-			return {
-				statusBarHeight: 0		// 状态栏高度
-			}
+			return {}
 		},
-		onLoad() {
-			this.statusBarHeight = plus.navigator.getStatusbarHeight()
-		},
-		methods: {
-
-		}
+		methods: {}
 	}
 </script>
 
