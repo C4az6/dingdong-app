@@ -1,0 +1,22 @@
+/* 页面背景色 */
+.page {
+	background-color: #EDEDED;
+	/* #ifndef APP-NVUE */
+	min-height: 100%;
+	height: auto;
+	/* #endif */
+	
+	/* #ifdef APP-PLUS */
+	flex: 1;
+	/* #endif */
+}
+
+/* 主背景色 */
+.main-bg-color {
+	background-color: #08c060;
+}
+
+/* 主文字色 */
+.main-text-color {
+	color: #08C060;
+}

@@ -1,16 +1,21 @@
 <template>
-	<view class="content">
-		hello weixin
+	<view class="page">
+		<view class="pt-5">
+			<text class="iconfont" style="font-size: 200rpx;">&#xe6dc;</text>
+		</view>
+		
 	</view>
 </template>
 
 <script>
 	export default {
 		data() {
-			return {}
+			return {
+				
+			}
 		},
 		onLoad() {
-
+			
 		},
 		methods: {
 
@@ -19,5 +24,5 @@
 </script>
 
 <style>
-
+	
 </style>
