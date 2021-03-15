@@ -1,9 +1,6 @@
 <template>
 	<view class="page">
-		<view class="pt-5">
-			<text class="iconfont" style="font-size: 200rpx;">&#xe6dc;</text>
-		</view>
-		
+		通信录
 	</view>
 </template>
 
