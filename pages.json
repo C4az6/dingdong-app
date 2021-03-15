@@ -21,7 +21,11 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "叮咚",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"app-plus":{
+			"titleNView":false,
+			"scrollIndicator":"none"
+		}
 	},
 	"tabBar": {
 		"color": "#000000",
