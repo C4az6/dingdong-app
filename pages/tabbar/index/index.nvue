@@ -12,9 +12,11 @@
 			>
 				<free-avatar :src="item.avatar" size="92"/>
 				<!-- 角标 -->
-				<text 
-				class="bg-danger text-white rounded-circle font-sm badge"
-				>9</text>
+				<free-badge
+					value="1"
+					badgeClass="position-absolute"
+					badgeStyle="top: 15rpx;right:15rpx"
+			  />
 			</view>
 			<!-- 右侧 -->
 			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
@@ -22,7 +24,7 @@
 					<text class="font-md">{{item.nickname}}</text>
 					<text class="font-sm text-light-muted">{{item.update_time | formatTime}}</text>
 				</view>
-				<text class="font text-ellipsis text-light-muted">{{item.data}}</text>
+				<text class="font-sm text-ellipsis text-light-muted">{{item.data}}</text>
 			</view>
 		</view>
 	</view>
@@ -31,12 +33,14 @@
 <script>
 	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreeBadge from '@/components/free-ui/free-badge.vue'
 	import $Time from '@/common/free-lib/time.js'
 	export default {
 		name: "IndexPage",
 		components: {
 			FreeNavBar,
-			FreeAvatar
+			FreeAvatar,
+			FreeBadge
 		},
 		data() {
 			return {
@@ -125,13 +129,5 @@
 </script>
 
 <style lang="less">
-	.badge {
-		padding-left: 14rpx;
-		padding-right: 14rpx;
-		padding-bottom: 6rpx;
-		padding-top: 6rpx;
-		position: absolute;
-		right: 15rpx;
-		top: 15rpx;
-	}
+
 </style>
