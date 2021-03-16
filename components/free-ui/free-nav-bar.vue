@@ -60,7 +60,7 @@ export default {
   watch: {},
   created () {},
   mounted () {
-		console.log("API获取：", uni.getSystemInfoSync().statusBarHeight)
+		console.log("API获取状态栏高度：", uni.getSystemInfoSync().statusBarHeight)
 		// NVUE环境下获取系统状态栏的高度
 		// #ifdef APP-NVUE
 			this.statusBarHeight = plus.navigator.getStatusbarHeight()

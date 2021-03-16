@@ -104,6 +104,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.list, function(item, index) {
+    var $orig = _vm.__get_orig(item)
+
+    var f0 = _vm._f("formatTime")(item.update_time)
+
+    return {
+      $orig: $orig,
+      f0: f0
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -135,7 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -178,15 +197,75 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   name: "IndexPage",
   components: {
     FreeNavBar: FreeNavBar },
 
   data: function data() {
-    return {};
+    return {
+      list: [
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆2',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆3',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆4',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' }] };
+
+
+
   },
-  methods: {} };exports.default = _default;
+  methods: {},
+  filters: {
+    formatTime: function formatTime(value) {
+      return _time.default.gettime(value);
+    } } };exports.default = _default;
 
 /***/ }),
 /* 17 */
