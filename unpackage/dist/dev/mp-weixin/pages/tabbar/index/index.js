@@ -209,26 +209,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
-
-
-var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 59));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   name: "IndexPage",
   components: {
-    FreeNavBar: FreeNavBar },
+    FreeNavBar: FreeNavBar,
+    FreeAvatar: FreeAvatar },
 
   data: function data() {
     return {
-      list: [
-      {
+      list: [{
         avatar: "/static/avatar.jpg",
         nickname: '老婆',
         update_time: Date.now(),
@@ -249,6 +239,48 @@ var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/tim
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆4',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
+        update_time: Date.now(),
+        data: '今晚想吃什么都可以...' },
+
+      {
+        avatar: "/static/avatar.jpg",
+        nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...' },
 

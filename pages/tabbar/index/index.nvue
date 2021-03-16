@@ -4,24 +4,13 @@
 		<free-nav-bar title titleValue="叮咚(99+)" fixed />
 
 		<!-- 列表 -->
-		<view
-	  class="flex align-center"
-		v-for="(item, index) in list"
-		:key="index"
-		>
+		<view class="flex align-center" v-for="(item, index) in list" :key="index">
 			<!-- 左侧 -->
 			<view class="flex align-center justify-center" style="width: 145rpx;">
-				<image 
-				:src="item.avatar" 
-				style="width: 92rpx;height:92rpx;"
-				mode="widthFix"
-				class="rounded"
-				></image>
+				<free-avatar :src="item.avatar" size="92"/>
 			</view>
 			<!-- 右侧 -->
-			<view 
-				class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary" 
-			>
+			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
 				<view class="flex align-center justify-between mb-1">
 					<text class="font-md">{{item.nickname}}</text>
 					<text class="font-sm text-light-muted">{{item.update_time | formatTime}}</text>
@@ -34,16 +23,17 @@
 
 <script>
 	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
 	import $Time from '@/common/free-lib/time.js'
 	export default {
 		name: "IndexPage",
 		components: {
-			FreeNavBar
+			FreeNavBar,
+			FreeAvatar
 		},
 		data() {
 			return {
-				list: [
-					{
+				list: [{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆',
 						update_time: Date.now(),
@@ -64,6 +54,48 @@
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆4',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
+						update_time: Date.now(),
+						data: '今晚想吃什么都可以...'
+					},
+					{
+						avatar: "/static/avatar.jpg",
+						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...'
 					},
