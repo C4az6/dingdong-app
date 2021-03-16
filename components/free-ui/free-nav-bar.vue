@@ -5,7 +5,7 @@
 			<!-- 状态栏 -->
 			<view :style="'height:'+statusBarHeight+'px'"></view>
 			<!-- 导航 -->
-			<view class="w-100 flex align-center justify-between border" style="height: 90rpx">
+			<view class="w-100 flex align-center justify-between" style="height: 90rpx">
 				<!-- 左边标题部分 -->
 				<view class="flex align-center">
 					<text v-if="title" class="font-md ml-3">{{titleValue}}</text>
