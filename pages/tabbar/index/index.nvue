@@ -4,10 +4,17 @@
 		<free-nav-bar title titleValue="叮咚(99+)" fixed />
 
 		<!-- 列表 -->
-		<view class="flex align-center" v-for="(item, index) in list" :key="index">
+		<view class="flex" v-for="(item, index) in list" :key="index">
 			<!-- 左侧 -->
-			<view class="flex align-center justify-center" style="width: 145rpx;">
+			<view 
+			class="flex align-center justify-center position-relative" 
+			style="width: 145rpx"			
+			>
 				<free-avatar :src="item.avatar" size="92"/>
+				<!-- 角标 -->
+				<text 
+				class="bg-danger text-white rounded-circle font-sm badge"
+				>9</text>
 			</view>
 			<!-- 右侧 -->
 			<view class="flex flex-column border-bottom flex-1 py-3 pr-3 border-light-secondary">
@@ -118,4 +125,13 @@
 </script>
 
 <style lang="less">
+	.badge {
+		padding-left: 14rpx;
+		padding-right: 14rpx;
+		padding-bottom: 6rpx;
+		padding-top: 6rpx;
+		position: absolute;
+		right: 15rpx;
+		top: 15rpx;
+	}
 </style>

@@ -40,3 +40,13 @@ swiper-item {
   position: absolute;
 }
 
+.badge {
+  padding-left: 14rpx;
+  padding-right: 14rpx;
+  padding-bottom: 6rpx;
+  padding-top: 6rpx;
+  position: absolute;
+  right: 15rpx;
+  top: 15rpx;
+}
+
