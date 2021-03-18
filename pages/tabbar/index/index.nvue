@@ -126,7 +126,7 @@
 			},
 			// 监听弹出层开启事件
 			handleOpenPopup() {
-				this.$refs.popupRef.show()
+				this.$refs.popupRef.show(100,100)
 			}
 		}
 	}

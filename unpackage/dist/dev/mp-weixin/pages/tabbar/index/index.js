@@ -292,7 +292,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     },
     // 监听弹出层开启事件
     handleOpenPopup: function handleOpenPopup() {
-      this.$refs.popupRef.show();
+      this.$refs.popupRef.show(100, 100);
     } } };exports.default = _default;
 
 /***/ }),

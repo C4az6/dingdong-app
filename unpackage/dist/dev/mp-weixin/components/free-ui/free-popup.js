@@ -149,6 +149,8 @@ var _default =
 
   data: function data() {
     return {
+      x: -1, // popup x轴的显示位置
+      y: -1, // popup y轴的显示位置
       status: false // 弹出层是否显示
     };
   },
@@ -158,17 +160,27 @@ var _default =
       var opacity = this.maskColor ? 0.5 : 0;
       return "background-color: rgba(0,0,0,".concat(opacity, ")");
     },
-    // 设置蒙版层样式的计算属性
-    getBodyClass: function getBodyClass() {
-      var bottom = this.bottom ? 'left-0 right-0 bottom-0' : '';
+    // 设置蒙版层是否底部显示的计算属性
+    setBodyClass: function setBodyClass() {
+      var bottom = this.bottom ? 'left-0 right-0 bottom-0' : 'rounded border';
       return bottom;
+    },
+    // 设置蒙版层自定义位置的计算属性
+    setBodyStyle: function setBodyStyle() {
+      if (!this.bottom) {
+        var top = this.x > -1 ? "top:".concat(this.x, "rpx;") : '';
+        var left = this.y > -1 ? "left:".concat(this.y, "rpx;") : '';
+        return top + left;
+      }
     } },
 
   watch: {},
   created: function created() {},
   mounted: function mounted() {},
   methods: {
-    show: function show() {
+    show: function show() {var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+      this.x = x;
+      this.y = y;
       this.status = true;
     },
     hide: function hide() {
