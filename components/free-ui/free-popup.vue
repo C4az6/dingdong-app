@@ -6,13 +6,16 @@
 		</div>
 
 		<!-- 弹出框内容 -->
-		<div class="position-fixed bg-white" :class="setBodyClass" :style="setBodyStyle">
+		<div ref="popup" class="position-fixed bg-white free-animated" :class="setBodyClass" :style="setBodyStyle">
 			<slot></slot>
 		</div>
 	</div>
 </template>
 
 <script>
+	// #ifdef APP-NVUE
+		const animation = weex.requireModule('animation')
+	// #endif
 	export default {
 		name: 'FreePopup',
 		components: {},
@@ -81,17 +84,50 @@
 		},
 		methods: {
 			show(x = -1, y = -1) {
-				console.log(this.maxX, this.maxY)
-				console.log("----------", x, y)
 				this.x = (x > this.maxX) ? this.maxX : x
 				this.y = (y > this.maxY) ? this.maxY : y
 				this.status = true
+				// #ifdef APP-NVUE
+				this.$nextTick(_=>{
+					animation.transition(this.$refs.popup, {
+						styles: {
+							transform: 'scale(1,1)',
+							transformOrigin: 'left top',
+							opacity: 1
+						},
+						duration: 200,	// 单位：ms
+						timingFunction: 'ease'
+					})
+				})
+				// #endif
 			},
 			hide() {
+				// #ifdef APP-NVUE
+				animation.transition(this.$refs.popup, {
+					styles: {
+						transform: 'scale(0,0)',
+						transformOrigin: 'left top',
+						opacity: 0
+					},
+					duration: 200,	// 单位：ms
+					timingFunction: 'ease'
+				}, _=>{
+					this.status = false
+				})
+				// #endif
+				// #ifndef APP-NVUE
 				this.status = false
+				// #endif
 			}
 		}
 	}
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+	/* #ifdef APP-NVUE */
+	.free-animated {
+		transform: scale(0,0);
+		opacity: 0;
+	}
+	/* #endif */
+</style>
