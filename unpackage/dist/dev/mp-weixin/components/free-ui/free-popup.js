@@ -130,13 +130,40 @@ var _default =
 {
   name: 'FreePopup',
   components: {},
-  props: {},
+  props: {
+    // 是否开启蒙版层颜色
+    maskColor: {
+      type: Boolean,
+      default: false },
+
+    // 是否开启蒙版
+    mask: {
+      type: Boolean,
+      default: true },
+
+    // 是否处于底部
+    bottom: {
+      type: Boolean,
+      default: false } },
+
+
   data: function data() {
     return {
       status: false // 弹出层是否显示
     };
   },
-  computed: {},
+  computed: {
+    // 设置蒙版层透明度的计算属性
+    setMaskColor: function setMaskColor() {
+      var opacity = this.maskColor ? 0.5 : 0;
+      return "background-color: rgba(0,0,0,".concat(opacity, ")");
+    },
+    // 设置蒙版层样式的计算属性
+    getBodyClass: function getBodyClass() {
+      var bottom = this.bottom ? 'left-0 right-0 bottom-0' : '';
+      return bottom;
+    } },
+
   watch: {},
   created: function created() {},
   mounted: function mounted() {},
