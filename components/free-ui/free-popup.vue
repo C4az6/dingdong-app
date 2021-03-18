@@ -1,6 +1,6 @@
 <template>
 	<!-- 弹出层 -->
-	<div style="z-index: 9999;overflow:hidden;" v-if="status">
+	<div style="z-index: 9999; overflow: hidden;" v-if="status">
 		<!-- 蒙版层 -->
 		<div v-if="mask" class="position-fixed top-0 left-0 right-0 bottom-0" :style="setMaskColor" @click="hide">
 		</div>
@@ -76,8 +76,8 @@
 		mounted() {
 			// 获取系统信息
 			let info = uni.getSystemInfoSync()
-			this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth)
-			this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight)
+			this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 30
+			this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 30
 		},
 		methods: {
 			show(x = -1, y = -1) {

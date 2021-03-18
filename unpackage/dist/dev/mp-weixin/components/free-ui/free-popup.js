@@ -190,8 +190,8 @@ var _default =
   mounted: function mounted() {
     // 获取系统信息
     var info = uni.getSystemInfoSync();
-    this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth);
-    this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight);
+    this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 30;
+    this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 30;
   },
   methods: {
     show: function show() {var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;

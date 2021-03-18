@@ -7,16 +7,26 @@
 		<!-- 列表 -->
 		<block v-for="(item, index) in list" :key="index">
 			<free-media-list
-			:item="item"
-			:index="index"
-			@click="handleListClick"
-			@long="longPress"
+				:item="item"
+				:index="index"
+				@click="handleListClick"
+				@long="longPress"
 			/>
 		</block>
 		
 		<!-- 弹出层 -->
-		<free-popup ref="popupRef" maskColor :bodyWidth="200" :bodyHeight="300">
-			<view style="width:200rpx; height: 300rpx;" @click="handleContentClick">Conetent</view>
+		<free-popup ref="popupRef" maskColor :bodyWidth="200" :bodyHeight="getMenusHeight">
+			<view class="flex flex-column" style="width: 240rpx;" :style="setMenusStyle">
+				<view
+					class="flex-1 flex align-center"
+					hover-class="bg-light"
+					v-for="(item,index) in menus"
+					:key="index"
+					@click="handleMenuItemClick(item.event)"
+					>
+					<text class="font-md p-3">{{item.name}}</text>
+				</view>
+			</view>
 		</free-popup>
 	</view>
 </template>
@@ -34,7 +44,21 @@
 		},
 		data() {
 			return {
-				clickList: [],
+				// 长按的弹出层菜单
+				menus: [
+					{
+						name: '设为置顶',
+						event: "setTop"
+					},
+					{
+						name: '标记未读',
+						event: "setNoRead"
+					},
+					{
+						name: '删除改聊天',
+						event: "removeChat"
+					}
+				],
 				list: [{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆',
@@ -123,6 +147,22 @@
 			}
 		},
 		methods: {
+			// 监听菜单点击事件
+			handleMenuItemClick(event) {
+				switch(event) {
+					case "setTop":
+						console.log("设为置顶")
+						break
+					case "setNoRead":
+						console.log("标记未读")
+						break
+					case "removeChat":
+						console.log("删除改聊天")
+						break												
+				}
+				
+			},
+			
 			// 列表长按事件
 			longPress({x,y}) {
 				this.$refs.popupRef.show(x,y)
@@ -137,6 +177,18 @@
 			// 监听弹出层开启事件
 			handleOpenPopup() {
 				this.$refs.popupRef.show(100,100)
+			}
+		},
+		computed: {
+			// 设置菜单样式的计算属性
+			setMenusStyle() {
+				return `height: ${this.getMenusHeight}rpx`
+			},
+			
+			// 动态获取菜单高度
+			getMenusHeight() {
+				let h = 110
+				return this.menus.length * h
 			}
 		}
 	}

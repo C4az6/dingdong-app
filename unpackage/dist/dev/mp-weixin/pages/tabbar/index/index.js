@@ -191,6 +191,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
 {
   name: "IndexPage",
   components: {
@@ -200,7 +210,21 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      clickList: [],
+      // 长按的弹出层菜单
+      menus: [
+      {
+        name: '设为置顶',
+        event: "setTop" },
+
+      {
+        name: '标记未读',
+        event: "setNoRead" },
+
+      {
+        name: '删除改聊天',
+        event: "removeChat" }],
+
+
       list: [{
         avatar: "/static/avatar.jpg",
         nickname: '老婆',
@@ -289,6 +313,22 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   },
   methods: {
+    // 监听菜单点击事件
+    handleMenuItemClick: function handleMenuItemClick(event) {
+      switch (event) {
+        case "setTop":
+          console.log("设为置顶");
+          break;
+        case "setNoRead":
+          console.log("标记未读");
+          break;
+        case "removeChat":
+          console.log("删除改聊天");
+          break;}
+
+
+    },
+
     // 列表长按事件
     longPress: function longPress(_ref) {var x = _ref.x,y = _ref.y;
       this.$refs.popupRef.show(x, y);
@@ -303,6 +343,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 监听弹出层开启事件
     handleOpenPopup: function handleOpenPopup() {
       this.$refs.popupRef.show(100, 100);
+    } },
+
+  computed: {
+    // 设置菜单样式的计算属性
+    setMenusStyle: function setMenusStyle() {
+      return "height: ".concat(this.getMenusHeight, "rpx");
+    },
+
+    // 动态获取菜单高度
+    getMenusHeight: function getMenusHeight() {
+      var h = 110;
+      return this.menus.length * h;
     } } };exports.default = _default;
 
 /***/ }),
