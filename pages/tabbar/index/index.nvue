@@ -11,6 +11,24 @@
 			:index="index"
 			/>
 		</block>
+		
+		<!-- 弹出层 -->
+		<div style="z-index: 9999;overflow:hidden;">
+			<!-- 蒙版层 -->
+			<div 
+				class="position-fixed top-0 left-0 right-0 bottom-0"
+				style="background-color: rgba(0,0,0,.5);"
+				>
+			</div>
+			
+			<!-- 弹出框内容 -->
+			<div
+		  class="position-fixed bg-white"
+			style="left: 100rpx;top: 100rpx;"
+			>
+				<view style="height: 300rpx;width: 200rpx;">Conetent</view>
+			</div>
+		</div>
 	</view>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<view hover-class="bg-hover-light" v-if="item">
+	<view class="bg-white" hover-class="bg-hover-light" v-if="item">
 		<!-- 列表 -->
 		<div class="flex" @click="onClick" @longpress="long">
 			<!-- 左侧 -->
@@ -21,10 +21,11 @@
 </template>
 
 <script>
+	import freeBase from '@/common/mixin/free-base.js'
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
 	import FreeBadge from '@/components/free-ui/free-badge.vue'
-	import $Time from '@/common/free-lib/time.js'
 	export default {
+		mixins: [freeBase],
 		name: 'FreeMediaList',
 		components: {
 			FreeAvatar,
@@ -48,14 +49,12 @@
 			long(e) {
 				console.log(e)
 			}
-		},
-		filters: {
-			formatTime(value) {
-				return $Time.gettime(value)
-			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
+	.bg-hover-light {
+		background-color: #f7f7f7;
+	}
 </style>
