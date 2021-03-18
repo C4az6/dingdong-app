@@ -13,7 +13,7 @@
 				<!-- 右边图标部分 -->
 				<view class="flex align-center">
 					<free-icon-button :iconValue="'\ue6e3'" />
-					<free-icon-button :iconValue="'\ue682'"/>
+					<free-icon-button @click="$emit('openPopup')" :iconValue="'\ue682'"/>
 				</view>
 			</view>
 		</view>

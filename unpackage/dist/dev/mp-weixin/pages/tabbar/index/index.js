@@ -135,19 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeMediaList = function FreeMediaList() {Promise.all(/*! require.ensure | components/free-ui/free-media-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-media-list")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-media-list.vue */ 48));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeMediaList = function FreeMediaList() {Promise.all(/*! require.ensure | components/free-ui/free-media-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-media-list")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-media-list.vue */ 48));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 81));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -205,7 +193,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   name: "IndexPage",
   components: {
     FreeNavBar: FreeNavBar,
-    FreeMediaList: FreeMediaList },
+    FreeMediaList: FreeMediaList,
+    FreePopup: FreePopup },
 
   data: function data() {
     return {
@@ -296,7 +285,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // 监听弹出层内容点击事件
+    handleContentClick: function handleContentClick() {
+      console.log(123);
+    },
+    // 监听弹出层开启事件
+    handleOpenPopup: function handleOpenPopup() {
+      this.$refs.popupRef.show();
+    } } };exports.default = _default;
 
 /***/ }),
 /* 17 */

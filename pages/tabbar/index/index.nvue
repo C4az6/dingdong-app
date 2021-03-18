@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 导航栏 -->
-		<free-nav-bar title titleValue="叮咚(99+)" fixed />
+		<free-nav-bar title titleValue="叮咚(99+)" fixed  @openPopup="handleOpenPopup"/>
 		<free-media-list />
 		
 		<!-- 列表 -->
@@ -13,33 +13,22 @@
 		</block>
 		
 		<!-- 弹出层 -->
-		<div style="z-index: 9999;overflow:hidden;">
-			<!-- 蒙版层 -->
-			<div 
-				class="position-fixed top-0 left-0 right-0 bottom-0"
-				style="background-color: rgba(0,0,0,.5);"
-				>
-			</div>
-			
-			<!-- 弹出框内容 -->
-			<div
-		  class="position-fixed bg-white"
-			style="left: 100rpx;top: 100rpx;"
-			>
-				<view style="height: 300rpx;width: 200rpx;">Conetent</view>
-			</div>
-		</div>
+		<free-popup ref="popupRef">
+			<view style="width:300rpx; height: 400rpx;" @click="handleContentClick">Conetent</view>
+		</free-popup>
 	</view>
 </template>
 
 <script>
 	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 	import FreeMediaList from '@/components/free-ui/free-media-list.vue'
+	import FreePopup from '@/components/free-ui/free-popup.vue'
 	export default {
 		name: "IndexPage",
 		components: {
 			FreeNavBar,
-			FreeMediaList
+			FreeMediaList,
+			FreePopup
 		},
 		data() {
 			return {
@@ -130,7 +119,16 @@
 				]
 			}
 		},
-		methods: {}
+		methods: {
+			// 监听弹出层内容点击事件
+			handleContentClick() {
+				console.log(123)
+			},
+			// 监听弹出层开启事件
+			handleOpenPopup() {
+				this.$refs.popupRef.show()
+			}
+		}
 	}
 </script>
 

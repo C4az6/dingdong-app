@@ -109,7 +109,7 @@
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/free-ui/free-media-list":"components/free-ui/free-media-list","components/free-ui/free-nav-bar":"components/free-ui/free-nav-bar","components/free-ui/free-avatar":"components/free-ui/free-avatar","components/free-ui/free-badge":"components/free-ui/free-badge","components/free-ui/free-icon-button":"components/free-ui/free-icon-button"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/free-ui/free-media-list":"components/free-ui/free-media-list","components/free-ui/free-nav-bar":"components/free-ui/free-nav-bar","components/free-ui/free-popup":"components/free-ui/free-popup","components/free-ui/free-avatar":"components/free-ui/free-avatar","components/free-ui/free-badge":"components/free-ui/free-badge","components/free-ui/free-icon-button":"components/free-ui/free-icon-button"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
