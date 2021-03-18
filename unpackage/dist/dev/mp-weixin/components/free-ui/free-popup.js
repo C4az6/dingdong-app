@@ -112,7 +112,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -144,11 +144,22 @@ var _default =
     // 是否处于底部
     bottom: {
       type: Boolean,
-      default: false } },
+      default: false },
+
+    // 弹出层内容宽度
+    bodyWidth: {
+      type: Number,
+      default: 0 },
+
+    bodyHeight: {
+      type: Number,
+      default: 0 } },
 
 
   data: function data() {
     return {
+      maxX: 0, // x轴的边界值
+      maxY: 0, // y轴的边界值
       x: -1, // popup x轴的显示位置
       y: -1, // popup y轴的显示位置
       status: false // 弹出层是否显示
@@ -168,24 +179,32 @@ var _default =
     // 设置蒙版层自定义位置的计算属性
     setBodyStyle: function setBodyStyle() {
       if (!this.bottom) {
-        var left = this.y > -1 ? "left:".concat(this.x, "px;") : '';
-        var top = this.x > -1 ? "top:".concat(this.y, "px;") : '';
+        var left = this.x > -1 ? "left:".concat(this.x, "px;") : '';
+        var top = this.y > -1 ? "top:".concat(this.y, "px;") : '';
         return top + left;
       }
     } },
 
   watch: {},
   created: function created() {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    // 获取系统信息
+    var info = uni.getSystemInfoSync();
+    this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth);
+    this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight);
+  },
   methods: {
     show: function show() {var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-      this.x = x;
-      this.y = y;
+      console.log(this.maxX, this.maxY);
+      console.log("----------", x, y);
+      this.x = x > this.maxX ? this.maxX : x;
+      this.y = y > this.maxY ? this.maxY : y;
       this.status = true;
     },
     hide: function hide() {
       this.status = false;
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

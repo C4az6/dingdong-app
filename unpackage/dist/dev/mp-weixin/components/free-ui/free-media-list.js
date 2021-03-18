@@ -174,7 +174,6 @@ var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure
     long: function long(e) {
       var x = 0;
       var y = 0;
-      console.log(e);
 
 
 

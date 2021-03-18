@@ -291,20 +291,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   methods: {
     // 列表长按事件
     longPress: function longPress(_ref) {var x = _ref.x,y = _ref.y;
-      console.log(x, y);
       this.$refs.popupRef.show(x, y);
     },
     // 监听列表的点击事件
     handleListClick: function handleListClick() {
-      // 与该产品无关，后续删除
-      /* 				console.log(this.clickList.length)
-      				this.clickList.push(Date.now())
-      				if(this.clickList.length > 2) {
-      					this.clickList.shift()
-      				}
-      				if(this.clickList.length===2 && (this.clickList[1] - this.clickList[0]) < 300) {
-      					return console.log("--------------------双击点赞成功!")
-      				} */
+      console.log("list item click...");
     },
     // 监听弹出层内容点击事件
     handleContentClick: function handleContentClick() {

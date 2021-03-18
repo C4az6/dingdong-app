@@ -138,99 +138,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default =\n{\n  onLaunch: function onLaunch() {\n\n    // 加载公共图标库 只有在NVUE环境下才加载\n    var domModule = weex.requireModule('dom');\n    domModule.addRule('fontFace', {\n      'fontFamily': \"iconfont\",\n      src: \"url('https://at.alicdn.com/t/font_1365296_2ijcbdrmsg.ttf')\" });\n\n\n  },\n  onShow: function onShow() {\n    __f__(\"log\", 'App Show', \" at App.vue:14\");\n  },\n  onHide: function onHide() {\n    __f__(\"log\", 'App Hide', \" at App.vue:17\");\n  } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 6)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vQXBwLnZ1ZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQSw4QkFEQTtBQUVBLHVFQUZBOzs7QUFLQSxHQVZBO0FBV0E7QUFDQTtBQUNBLEdBYkE7QUFjQTtBQUNBO0FBQ0EsR0FoQkEsRSIsImZpbGUiOiI1LmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHNjcmlwdD5cclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRvbkxhdW5jaDogZnVuY3Rpb24oKSB7XHJcblx0XHRcdC8vICNpZmRlZiBBUFAtTlZVRVxyXG5cdFx0XHQvLyDliqDovb3lhazlhbHlm77moIflupMg5Y+q5pyJ5ZyoTlZVReeOr+Wig+S4i+aJjeWKoOi9vVxyXG5cdFx0XHRjb25zdCBkb21Nb2R1bGUgPSB3ZWV4LnJlcXVpcmVNb2R1bGUoJ2RvbScpXHJcblx0XHRcdGRvbU1vZHVsZS5hZGRSdWxlKCdmb250RmFjZScsIHtcclxuXHRcdFx0XHQnZm9udEZhbWlseSc6IFwiaWNvbmZvbnRcIixcclxuXHRcdFx0XHRzcmM6IFwidXJsKCdodHRwczovL2F0LmFsaWNkbi5jb20vdC9mb250XzEzNjUyOTZfMmlqY2Jkcm1zZy50dGYnKVwiXHJcblx0XHRcdH0pO1xyXG5cdFx0XHQvLyAjZW5kaWZcclxuXHRcdH0sXHJcblx0XHRvblNob3c6IGZ1bmN0aW9uKCkge1xyXG5cdFx0XHRjb25zb2xlLmxvZygnQXBwIFNob3cnKVxyXG5cdFx0fSxcclxuXHRcdG9uSGlkZTogZnVuY3Rpb24oKSB7XHJcblx0XHRcdGNvbnNvbGUubG9nKCdBcHAgSGlkZScpXHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcbjxzdHlsZT5cclxuXHQvKuavj+S4qumhtemdouWFrOWFsWNzcyAqL1xyXG5cdEBpbXBvcnQgdXJsKFwiLi9jb21tb24vZnJlZS5jc3NcIik7XHJcblx0QGltcG9ydCB1cmwoXCIuL2NvbW1vbi9jb21tb24uY3NzXCIpO1xyXG5cdC8qICNpZm5kZWYgQVBQLVBMVVMgKi9cclxuXHRAaW1wb3J0IHVybChcIi4vY29tbW9uL2ZyZWUtaWNvbi5jc3NcIik7XHJcblx0LyogI2VuZGlmICovXHJcbjwvc3R5bGU+XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///5\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default =\n{\n  onLaunch: function onLaunch() {\n\n    // 加载公共图标库 只有在NVUE环境下才加载\n    var domModule = weex.requireModule('dom');\n    domModule.addRule('fontFace', {\n      'fontFamily': \"iconfont\",\n      src: \"url('https://at.alicdn.com/t/font_1365296_2ijcbdrmsg.ttf')\" });\n\n\n  },\n  onShow: function onShow() {\n  },\n  onHide: function onHide() {\n  } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vQXBwLnZ1ZSJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQSw4QkFEQTtBQUVBLHVFQUZBOzs7QUFLQSxHQVZBO0FBV0E7QUFDQSxHQVpBO0FBYUE7QUFDQSxHQWRBLEUiLCJmaWxlIjoiNS5qcyIsInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XHJcblx0ZXhwb3J0IGRlZmF1bHQge1xyXG5cdFx0b25MYXVuY2g6IGZ1bmN0aW9uKCkge1xyXG5cdFx0XHQvLyAjaWZkZWYgQVBQLU5WVUVcclxuXHRcdFx0Ly8g5Yqg6L295YWs5YWx5Zu+5qCH5bqTIOWPquacieWcqE5WVUXnjq/looPkuIvmiY3liqDovb1cclxuXHRcdFx0Y29uc3QgZG9tTW9kdWxlID0gd2VleC5yZXF1aXJlTW9kdWxlKCdkb20nKVxyXG5cdFx0XHRkb21Nb2R1bGUuYWRkUnVsZSgnZm9udEZhY2UnLCB7XHJcblx0XHRcdFx0J2ZvbnRGYW1pbHknOiBcImljb25mb250XCIsXHJcblx0XHRcdFx0c3JjOiBcInVybCgnaHR0cHM6Ly9hdC5hbGljZG4uY29tL3QvZm9udF8xMzY1Mjk2XzJpamNiZHJtc2cudHRmJylcIlxyXG5cdFx0XHR9KTtcclxuXHRcdFx0Ly8gI2VuZGlmXHJcblx0XHR9LFxyXG5cdFx0b25TaG93OiBmdW5jdGlvbigpIHtcclxuXHRcdH0sXHJcblx0XHRvbkhpZGU6IGZ1bmN0aW9uKCkge1xyXG5cdFx0fVxyXG5cdH1cclxuPC9zY3JpcHQ+XHJcblxyXG48c3R5bGU+XHJcblx0Lyrmr4/kuKrpobXpnaLlhazlhbFjc3MgKi9cclxuXHRAaW1wb3J0IHVybChcIi4vY29tbW9uL2ZyZWUuY3NzXCIpO1xyXG5cdEBpbXBvcnQgdXJsKFwiLi9jb21tb24vY29tbW9uLmNzc1wiKTtcclxuXHQvKiAjaWZuZGVmIEFQUC1QTFVTICovXHJcblx0QGltcG9ydCB1cmwoXCIuL2NvbW1vbi9mcmVlLWljb24uY3NzXCIpO1xyXG5cdC8qICNlbmRpZiAqL1xyXG48L3N0eWxlPlxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///5\n");
 
 /***/ }),
-/* 6 */
-/*!*********************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.log = log;exports.default = formatLog;function typof(v) {
-  var s = Object.prototype.toString.call(v);
-  return s.substring(8, s.length - 1);
-}
-
-function isDebugMode() {
-  /* eslint-disable no-undef */
-  return typeof __channelId__ === 'string' && __channelId__;
-}
-
-function jsonStringifyReplacer(k, p) {
-  switch (typof(p)) {
-    case 'Function':
-      return 'function() { [native code] }';
-    default:
-      return p;}
-
-}
-
-function log(type) {
-  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    args[_key - 1] = arguments[_key];
-  }
-  console[type].apply(console, args);
-}
-
-function formatLog() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-  var type = args.shift();
-  if (isDebugMode()) {
-    args.push(args.pop().replace('at ', 'uni-app:///'));
-    return console[type].apply(console, args);
-  }
-
-  var msgs = args.map(function (v) {
-    var type = Object.prototype.toString.call(v).toLowerCase();
-
-    if (type === '[object object]' || type === '[object array]') {
-      try {
-        v = '---BEGIN:JSON---' + JSON.stringify(v, jsonStringifyReplacer) + '---END:JSON---';
-      } catch (e) {
-        v = type;
-      }
-    } else {
-      if (v === null) {
-        v = '---NULL---';
-      } else if (v === undefined) {
-        v = '---UNDEFINED---';
-      } else {
-        var vType = typof(v).toUpperCase();
-
-        if (vType === 'NUMBER' || vType === 'BOOLEAN') {
-          v = '---BEGIN:' + vType + '---' + v + '---END:' + vType + '---';
-        } else {
-          v = String(v);
-        }
-      }
-    }
-
-    return v;
-  });
-  var msg = '';
-
-  if (msgs.length > 1) {
-    var lastMsg = msgs.pop();
-    msg = msgs.join('---COMMA---');
-
-    if (lastMsg.indexOf(' at ') === 0) {
-      msg += lastMsg;
-    } else {
-      msg += '---COMMA---' + lastMsg;
-    }
-  } else {
-    msg = msgs[0];
-  }
-
-  console[type](msg);
-}
-
-/***/ }),
+/* 6 */,
 /* 7 */
 /*!************************************************************************************!*\
   !*** C:/Users/replaceroot/Desktop/仿微信app/App.vue?vue&type=style&index=0&lang=css& ***!
