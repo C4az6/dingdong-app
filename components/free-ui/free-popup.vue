@@ -54,8 +54,8 @@
 			// 设置蒙版层自定义位置的计算属性
 			setBodyStyle() {
 				if(!this.bottom) {
-					let top = this.x > -1 ? `top:${this.x}rpx;` : ''
-					let left = this.y > -1 ? `left:${this.y}rpx;` : ''
+					let left = this.y > -1 ? `left:${this.x}px;` : ''
+					let top = this.x > -1 ? `top:${this.y}px;` : ''
 					return top+left
 				}
 			}

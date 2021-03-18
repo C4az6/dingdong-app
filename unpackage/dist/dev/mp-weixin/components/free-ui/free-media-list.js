@@ -172,7 +172,22 @@ var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure
       this.$emit('click');
     },
     long: function long(e) {
+      var x = 0;
+      var y = 0;
       console.log(e);
+
+
+
+
+
+
+
+
+      x = e.target.x;
+      y = e.target.y;
+
+
+      this.$emit('long', { x: x, y: y });
     } } };exports.default = _default;
 
 /***/ }),

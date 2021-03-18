@@ -168,8 +168,8 @@ var _default =
     // 设置蒙版层自定义位置的计算属性
     setBodyStyle: function setBodyStyle() {
       if (!this.bottom) {
-        var top = this.x > -1 ? "top:".concat(this.x, "rpx;") : '';
-        var left = this.y > -1 ? "left:".concat(this.y, "rpx;") : '';
+        var left = this.y > -1 ? "left:".concat(this.x, "px;") : '';
+        var top = this.x > -1 ? "top:".concat(this.y, "px;") : '';
         return top + left;
       }
     } },

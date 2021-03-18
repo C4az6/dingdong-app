@@ -9,6 +9,8 @@
 			<free-media-list
 			:item="item"
 			:index="index"
+			@click="handleListClick"
+			@long="longPress"
 			/>
 		</block>
 		
@@ -32,6 +34,7 @@
 		},
 		data() {
 			return {
+				clickList: [],
 				list: [{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆',
@@ -120,9 +123,25 @@
 			}
 		},
 		methods: {
+			// 列表长按事件
+			longPress({x,y}) {
+				console.log(x,y)
+				this.$refs.popupRef.show(x,y)
+			},
+			// 监听列表的点击事件
+			handleListClick() {
+				// 与该产品无关，后续删除
+/* 				console.log(this.clickList.length)
+				this.clickList.push(Date.now())
+				if(this.clickList.length > 2) {
+					this.clickList.shift()
+				}
+				if(this.clickList.length===2 && (this.clickList[1] - this.clickList[0]) < 300) {
+					return console.log("--------------------双击点赞成功!")
+				} */
+			},
 			// 监听弹出层内容点击事件
 			handleContentClick() {
-				console.log(123)
 			},
 			// 监听弹出层开启事件
 			handleOpenPopup() {

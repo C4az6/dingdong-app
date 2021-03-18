@@ -47,7 +47,22 @@
 				this.$emit('click')
 			},
 			long(e) {
+				let x = 0
+				let y = 0
 				console.log(e)
+				// #ifdef APP-NVUE
+				if(Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
+					x = e.changedTouches[0].screenX
+					y = e.changedTouches[0].screenY
+				}
+				// #endif
+				
+				// #ifdef MP-WEIXIN
+				x = e.target.x
+				y = e.target.y
+				// #endif
+				
+				this.$emit('long', {x,y})
 			}
 		}
 	}
