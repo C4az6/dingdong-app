@@ -130,17 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 43));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeListItem = function FreeListItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-list-item */ "components/free-ui/free-list-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -184,10 +174,27 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   components: {
-    FreeNavBar: FreeNavBar },
+    FreeNavBar: FreeNavBar,
+    FreeListItem: FreeListItem },
 
   data: function data() {
-    return {};
+    return {
+      list: [
+      {
+        title: "新的朋友",
+        cover: "/static/images/mail/friend.png",
+        event: "" },
+
+      {
+        title: "群聊",
+        cover: "/static/images/mail/group.png",
+        event: "" },
+
+      {
+        title: "标签",
+        cover: "/static/images/mail/tag.png",
+        event: "" }] };
+
 
 
   },
