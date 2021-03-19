@@ -1,18 +1,37 @@
 <template>
-	<view class="page">
-		通信录
+	<view>
+		<!-- 导航栏 -->
+		<free-nav-bar title titleValue="通讯录" fixed @openPopup="handleOpenPopup" />
+		<free-media-list />
+
+		<!-- 通讯录列表组件 -->
+		<view class="flex bg-white" v-for="item in 5">
+			<!-- 左侧图片 -->
+			<view class="flex justify-center align-center py-2 px-3" style="width: 132rpx; height: 104rpx;">
+				<image style="width: 76rpx; height: 76rpx;" src="/static/images/mail/friend.png" mode="widthFix"></image>
+			</view>
+
+			<!-- 右侧内容 -->
+			<view class="flex-1 flex align-center border-bottom">
+				<text class="font-md text-dark">新的朋友</text>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 	export default {
+		components: {
+			FreeNavBar
+		},
 		data() {
 			return {
-				
+
 			}
 		},
 		onLoad() {
-			
+
 		},
 		methods: {
 
@@ -21,5 +40,5 @@
 </script>
 
 <style>
-	
+
 </style>
