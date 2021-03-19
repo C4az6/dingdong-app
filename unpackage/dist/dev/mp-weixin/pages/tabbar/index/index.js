@@ -190,6 +190,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
 {
   name: "IndexPage",
   components: {
@@ -222,84 +227,96 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         nickname: '老婆',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆2',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 1 },
+        noreadnum: 1,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆3',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 1 },
+        noreadnum: 1,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆4',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 1 },
+        noreadnum: 1,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 },
+        noreadnum: 4,
+        isTop: false },
 
       {
         avatar: "/static/avatar.jpg",
         nickname: '老婆5',
         update_time: Date.now(),
         data: '今晚想吃什么都可以...',
-        noreadnum: 4 }] };
+        noreadnum: 4,
+        isTop: false }] };
 
 
 
@@ -309,7 +326,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     handleMenuItemClick: function handleMenuItemClick(event) {
       switch (event) {
         case "setTop":
-          console.log("设为置顶");
+          this.setTop();
           break;
         case "setNoRead":
           console.log("标记未读");
@@ -336,8 +353,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     {var x = _ref.x,y = _ref.y,item = _ref.item,index = _ref.index;
       this.deleteChartObj.item = item;
       this.deleteChartObj.index = index;
+      this.menus[0].name = this.list[this.deleteChartObj.index].isTop ? '取消置顶' : '设为置顶';
       this.$refs.popupRef.show(x, y);
     },
+    // 设置或取消置顶函数
+    setTop: function setTop() {
+      this.list[this.deleteChartObj.index].isTop = !this.list[this.deleteChartObj.index].isTop;
+      this.$refs.popupRef.hide();
+    },
+
     // 监听列表的点击事件
     handleListClick: function handleListClick() {
       console.log("list item click...");

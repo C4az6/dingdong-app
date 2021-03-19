@@ -4,9 +4,14 @@
 		<free-nav-bar title titleValue="叮咚(99+)" fixed @openPopup="handleOpenPopup" />
 		<free-media-list />
 
-		<!-- 列表 -->
+		<!-- 置顶列表 -->
 		<block v-for="(item, index) in list" :key="index">
-			<free-media-list :item="item" :index="index" @click="handleListClick" @long="longPress" />
+			<free-media-list v-if="item.isTop" :item="item" :index="index" @click="handleListClick" @long="longPress" />
+		</block>
+
+		<!-- 非置顶列表 -->
+		<block v-for="(item, index) in list" :key="index">
+			<free-media-list v-if="!item.isTop" :item="item" :index="index" @click="handleListClick" @long="longPress" />
 		</block>
 
 		<!-- 弹出层 -->
@@ -56,84 +61,96 @@
 						nickname: '老婆',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆2',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 1
+						noreadnum: 1,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆3',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 1
+						noreadnum: 1,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆4',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 1
+						noreadnum: 1,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					},
 					{
 						avatar: "/static/avatar.jpg",
 						nickname: '老婆5',
 						update_time: Date.now(),
 						data: '今晚想吃什么都可以...',
-						noreadnum: 4
+						noreadnum: 4,
+						isTop: false
 					}
 				]
 			}
@@ -143,7 +160,7 @@
 			handleMenuItemClick(event) {
 				switch (event) {
 					case "setTop":
-						console.log("设为置顶")
+						this.setTop()
 						break
 					case "setNoRead":
 						console.log("标记未读")
@@ -170,8 +187,15 @@
 			}) {
 				this.deleteChartObj.item = item
 				this.deleteChartObj.index = index
+				this.menus[0].name = this.list[this.deleteChartObj.index].isTop ? '取消置顶' : '设为置顶'
 				this.$refs.popupRef.show(x, y)
 			},
+			// 设置或取消置顶函数
+			setTop() {
+				this.list[this.deleteChartObj.index].isTop = !this.list[this.deleteChartObj.index].isTop
+				this.$refs.popupRef.hide()
+			},
+			
 			// 监听列表的点击事件
 			handleListClick() {
 				console.log("list item click...")

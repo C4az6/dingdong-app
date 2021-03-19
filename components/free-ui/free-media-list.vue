@@ -1,5 +1,5 @@
 <template>
-	<view class="bg-white" hover-class="bg-hover-light" v-if="item">
+	<view :class="item.isTop ? 'bg-light' : 'bg-white'" hover-class="bg-hover-light" v-if="item">
 		<!-- 列表 -->
 		<div class="flex" @click="onClick" @longpress="long(item,index,$event)">
 			<!-- 左侧 -->
