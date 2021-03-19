@@ -171,7 +171,7 @@ var _freeBase = _interopRequireDefault(__webpack_require__(/*! @/common/mixin/fr
 var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 69));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeBadge = function FreeBadge() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-badge */ "components/free-ui/free-badge").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-badge.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { mixins: [_freeBase.default], name: 'FreeMediaList', components: { FreeAvatar: FreeAvatar, FreeBadge: FreeBadge }, props: { item: Object, index: Number }, data: function data() {return {};}, computed: {}, watch: {}, created: function created() {}, mounted: function mounted() {}, methods: { onClick: function onClick() {
       this.$emit('click');
     },
-    long: function long(e) {
+    long: function long(item, index, e) {
       var x = 0;
       var y = 0;
 
@@ -186,7 +186,7 @@ var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure
       y = e.target.y;
 
 
-      this.$emit('long', { x: x, y: y });
+      this.$emit('long', { x: x, y: y, item: item, index: index });
     } } };exports.default = _default;
 
 /***/ }),

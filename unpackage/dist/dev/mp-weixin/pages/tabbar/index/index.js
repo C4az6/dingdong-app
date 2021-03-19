@@ -190,17 +190,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 {
   name: "IndexPage",
   components: {
@@ -210,9 +199,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
+      // 删除聊天对象
+      deleteChartObj: {},
+      // 置顶列表
+      topList: [],
       // 长按的弹出层菜单
-      menus: [
-      {
+      menus: [{
         name: '设为置顶',
         event: "setTop" },
 
@@ -221,7 +213,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         event: "setNoRead" },
 
       {
-        name: '删除改聊天',
+        name: '删除该聊天',
         event: "removeChat" }],
 
 
@@ -323,14 +315,27 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           console.log("标记未读");
           break;
         case "removeChat":
-          console.log("删除改聊天");
+          this.handleDeleteChart();
           break;}
-
 
     },
 
+    // 删除聊天函数
+    handleDeleteChart: function handleDeleteChart() {
+      this.list.splice(this.deleteChartObj.index, 1);
+      // 关闭弹出层
+      this.$refs.popupRef.hide();
+    },
+
     // 列表长按事件
-    longPress: function longPress(_ref) {var x = _ref.x,y = _ref.y;
+    longPress: function longPress(_ref)
+
+
+
+
+    {var x = _ref.x,y = _ref.y,item = _ref.item,index = _ref.index;
+      this.deleteChartObj.item = item;
+      this.deleteChartObj.index = index;
       this.$refs.popupRef.show(x, y);
     },
     // 监听列表的点击事件
@@ -338,8 +343,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       console.log("list item click...");
     },
     // 监听弹出层内容点击事件
-    handleContentClick: function handleContentClick() {
-    },
+    handleContentClick: function handleContentClick() {},
     // 监听弹出层开启事件
     handleOpenPopup: function handleOpenPopup() {
       this.$refs.popupRef.show(100, 100);

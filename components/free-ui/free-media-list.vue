@@ -1,7 +1,7 @@
 <template>
 	<view class="bg-white" hover-class="bg-hover-light" v-if="item">
 		<!-- 列表 -->
-		<div class="flex" @click="onClick" @longpress="long">
+		<div class="flex" @click="onClick" @longpress="long(item,index,$event)">
 			<!-- 左侧 -->
 			<view class="flex align-center justify-center position-relative" style="width: 145rpx">
 				<free-avatar :src="item.avatar" size="92" />
@@ -46,7 +46,7 @@
 			onClick() {
 				this.$emit('click')
 			},
-			long(e) {
+			long(item, index, e) {
 				let x = 0
 				let y = 0
 				// #ifdef APP-NVUE
@@ -61,7 +61,7 @@
 				y = e.target.y
 				// #endif
 				
-				this.$emit('long', {x,y})
+				this.$emit('long', {x,y,item,index})
 			}
 		}
 	}

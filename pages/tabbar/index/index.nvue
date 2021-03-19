@@ -1,29 +1,18 @@
 <template>
 	<view>
 		<!-- 导航栏 -->
-		<free-nav-bar title titleValue="叮咚(99+)" fixed  @openPopup="handleOpenPopup"/>
+		<free-nav-bar title titleValue="叮咚(99+)" fixed @openPopup="handleOpenPopup" />
 		<free-media-list />
-		
+
 		<!-- 列表 -->
 		<block v-for="(item, index) in list" :key="index">
-			<free-media-list
-				:item="item"
-				:index="index"
-				@click="handleListClick"
-				@long="longPress"
-			/>
+			<free-media-list :item="item" :index="index" @click="handleListClick" @long="longPress" />
 		</block>
-		
+
 		<!-- 弹出层 -->
 		<free-popup ref="popupRef" :bodyWidth="200" :bodyHeight="getMenusHeight">
 			<view class="flex flex-column" style="width: 240rpx;" :style="setMenusStyle">
-				<view
-					class="flex-1 flex align-center"
-					hover-class="bg-light"
-					v-for="(item,index) in menus"
-					:key="index"
-					@click="handleMenuItemClick(item.event)"
-					>
+				<view class="flex-1 flex align-center" hover-class="bg-light" v-for="(item,index) in menus" :key="index" @click="handleMenuItemClick(item.event)">
 					<text class="font-md p-3">{{item.name}}</text>
 				</view>
 			</view>
@@ -44,9 +33,12 @@
 		},
 		data() {
 			return {
+				// 删除聊天对象
+				deleteChartObj: {},
+				// 置顶列表
+				topList: [],
 				// 长按的弹出层菜单
-				menus: [
-					{
+				menus: [{
 						name: '设为置顶',
 						event: "setTop"
 					},
@@ -55,7 +47,7 @@
 						event: "setNoRead"
 					},
 					{
-						name: '删除改聊天',
+						name: '删除该聊天',
 						event: "removeChat"
 					}
 				],
@@ -149,7 +141,7 @@
 		methods: {
 			// 监听菜单点击事件
 			handleMenuItemClick(event) {
-				switch(event) {
+				switch (event) {
 					case "setTop":
 						console.log("设为置顶")
 						break
@@ -157,26 +149,38 @@
 						console.log("标记未读")
 						break
 					case "removeChat":
-						console.log("删除改聊天")
-						break												
+						this.handleDeleteChart()
+						break
 				}
-				
 			},
-			
+
+			// 删除聊天函数
+			handleDeleteChart() {
+				this.list.splice(this.deleteChartObj.index, 1)
+				// 关闭弹出层
+				this.$refs.popupRef.hide()
+			},
+
 			// 列表长按事件
-			longPress({x,y}) {
-				this.$refs.popupRef.show(x,y)
+			longPress({
+				x,
+				y,
+				item,
+				index
+			}) {
+				this.deleteChartObj.item = item
+				this.deleteChartObj.index = index
+				this.$refs.popupRef.show(x, y)
 			},
 			// 监听列表的点击事件
 			handleListClick() {
 				console.log("list item click...")
 			},
 			// 监听弹出层内容点击事件
-			handleContentClick() {
-			},
+			handleContentClick() {},
 			// 监听弹出层开启事件
 			handleOpenPopup() {
-				this.$refs.popupRef.show(100,100)
+				this.$refs.popupRef.show(100, 100)
 			}
 		},
 		computed: {
@@ -184,7 +188,7 @@
 			setMenusStyle() {
 				return `height: ${this.getMenusHeight}rpx`
 			},
-			
+
 			// 动态获取菜单高度
 			getMenusHeight() {
 				let h = 110
