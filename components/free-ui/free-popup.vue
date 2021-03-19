@@ -6,7 +6,7 @@
 		</div>
 
 		<!-- 弹出框内容 -->
-		<div ref="popup" class="position-fixed bg-white free-animated" :class="setBodyClass" :style="setBodyStyle">
+		<div ref="popup" class="position-fixed free-animated" :class="setBodyClass" :style="setBodyStyle">
 			<slot></slot>
 		</div>
 	</div>
@@ -40,9 +40,20 @@
 				type: Number,
 				default: 0
 			},
+			// 弹出层内容高度
 			bodyHeight: {
 				type: Number,
 				default: 0
+			},
+			// 弹出层背景颜色
+			bgColor: {
+				type: String,
+				default: 'bg-white'
+			},
+			// 弹出层动画效果中心点
+			transformOrigin: {
+				type: String,
+				default: 'left top'
 			}
 		},
 		data() {
@@ -63,7 +74,7 @@
 			// 设置蒙版层是否底部显示的计算属性
 			setBodyClass() {
 				let bottom = this.bottom ? 'left-0 right-0 bottom-0' : 'rounded border'
-				return bottom
+				return `${bottom} ${this.bgColor}`
 			},
 			// 设置蒙版层自定义位置的计算属性
 			setBodyStyle() {
@@ -79,11 +90,13 @@
 		mounted() {
 			// 获取系统信息
 			let info = uni.getSystemInfoSync()
-			this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 30
-			this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 30
+			this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10
+			this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10
 		},
 		methods: {
 			show(x = -1, y = -1) {
+				console.log(x)
+				console.log("maxX", this.maxX)
 				this.x = (x > this.maxX) ? this.maxX : x
 				this.y = (y > this.maxY) ? this.maxY : y
 				this.status = true
@@ -92,7 +105,7 @@
 					animation.transition(this.$refs.popup, {
 						styles: {
 							transform: 'scale(1,1)',
-							transformOrigin: 'left top',
+							transformOrigin: this.transformOrigin,
 							opacity: 1
 						},
 						duration: 200,	// 单位：ms
@@ -106,7 +119,7 @@
 				animation.transition(this.$refs.popup, {
 					styles: {
 						transform: 'scale(0,0)',
-						transformOrigin: 'left top',
+						transformOrigin: this.transformOrigin,
 						opacity: 0
 					},
 					duration: 200,	// 单位：ms

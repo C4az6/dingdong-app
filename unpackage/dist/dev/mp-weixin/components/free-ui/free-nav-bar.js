@@ -112,7 +112,25 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 57));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 64));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 57));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -141,7 +159,8 @@ __webpack_require__.r(__webpack_exports__);
 {
   name: 'FreeNavBar',
   components: {
-    FreeIconButton: FreeIconButton },
+    FreeIconButton: FreeIconButton,
+    FreePopup: FreePopup },
 
   props: {
     // 是否显示标题
@@ -161,6 +180,33 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      // 导航栏弹出菜单列表
+      menus: [{
+        name: '发起群聊',
+        event: "",
+        icon: "\uE633" },
+
+      {
+        name: "添加好友",
+        event: "",
+        icon: "\uE65D" },
+
+      {
+        name: "扫一扫",
+        event: "",
+        icon: "\uE614" },
+
+      {
+        name: "收付款",
+        event: "",
+        icon: "\uE66C" },
+
+      {
+        name: "帮助与反馈",
+        event: "",
+        icon: "\uE632" }],
+
+
       navBarHeight: 0, // 状态栏高度+导航栏高度
       statusBarHeight: 0 // 状态栏高度
     };
@@ -185,7 +231,15 @@ __webpack_require__.r(__webpack_exports__);
      */
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // 显示
+    openPopup: function openPopup() {
+      this.$refs.popupRef.show(uni.upx2px(415), uni.upx2px(150));
+    },
+    // 监听菜单点击事件
+    handleMenuItemClick: function handleMenuItemClick(e) {
+      console.log(e);
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

@@ -6,7 +6,12 @@
 			const domModule = weex.requireModule('dom')
 			domModule.addRule('fontFace', {
 				'fontFamily': "iconfont",
-				src: "url('https://at.alicdn.com/t/font_1365296_2ijcbdrmsg.ttf')"
+				src: "url('https://at.alicdn.com/t/font_1365296_vumpzwvr0z.ttf')"
+			});
+			
+			domModule.addRule('fontFace', {
+				'fontFamily': "iconfont2",
+				src: "url('https://at.alicdn.com/t/font_2432092_p4ksawxi55q.ttf')"
 			});
 			// #endif
 		},

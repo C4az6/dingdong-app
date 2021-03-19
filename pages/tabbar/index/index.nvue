@@ -15,7 +15,7 @@
 		</block>
 		
 		<!-- 弹出层 -->
-		<free-popup ref="popupRef" maskColor :bodyWidth="200" :bodyHeight="getMenusHeight">
+		<free-popup ref="popupRef" :bodyWidth="200" :bodyHeight="getMenusHeight">
 			<view class="flex flex-column" style="width: 240rpx;" :style="setMenusStyle">
 				<view
 					class="flex-1 flex align-center"

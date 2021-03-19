@@ -33,7 +33,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "",
 	"appid": "wx0aa9919d46c035e2",
-	"projectname": "%E4%BB%BF%E5%BE%AE%E4%BF%A1app",
+	"projectname": "仿微信app",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
