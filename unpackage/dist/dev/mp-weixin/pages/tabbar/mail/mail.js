@@ -172,6 +172,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     FreeNavBar: FreeNavBar,
@@ -179,7 +189,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      list: [
+      topList: [
       {
         title: "新的朋友",
         cover: "/static/images/mail/friend.png",
@@ -193,7 +203,178 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       {
         title: "标签",
         cover: "/static/images/mail/tag.png",
-        event: "" }] };
+        event: "" }],
+
+
+      list: [{
+        "letter": "A",
+        "data": [
+        "阿苏",
+        "阿拉",
+        "阿勒",
+        "阿里",
+        "安庆",
+        "澳机"] },
+
+      {
+        "letter": "B",
+        "data": [
+        "保罗",
+        "包头",
+        "北海福成",
+        "北南苑",
+        "北都国际"] },
+
+      {
+        "letter": "C",
+        "data": [
+        "长山场",
+        "长国",
+        "常德",
+        "长花~",
+        "长王",
+        "常机",
+        "成双",
+        "赤峰"] },
+
+      {
+        "letter": "D",
+        "data": [
+        "大理爱你",
+        "大周哈哈",
+        "达河",
+        "丹浪",
+        "德芒",
+        "迪香里拉"] },
+
+      {
+        "letter": "E",
+        "data": [
+        "鄂多斯"] },
+
+      {
+        "letter": "F",
+        "data": [
+        "福乐"] },
+
+      {
+        "letter": "G",
+        "data": [
+        "固原六盘",
+        "广盘龙",
+        "广白机",
+        "桂江"] },
+
+      {
+        "letter": "H",
+        "data": [
+        "哈尔滨太平",
+        "哈密",
+        "海美兰",
+        "海拉尔",
+        "邯郸"] },
+
+      {
+        "letter": "I",
+        "data": [] },
+      {
+        "letter": "J",
+        "data": [
+        "鸡西兴",
+        "佳木斯",
+        "嘉峪"] },
+
+      {
+        "letter": "K",
+        "data": [
+        "克拉玛依",
+        "库车龟兹",
+        "库尔勒"] },
+
+      {
+        "letter": "L",
+        "data": [
+        "拉萨贡嘎",
+        "黎平",
+        "林芝米",
+        "柳州白莲"] },
+
+      {
+        "letter": "M",
+        "data": [] },
+
+
+      {
+        "letter": "N",
+        "data": [] },
+
+
+      {
+        "letter": "O",
+        "data": [] },
+      {
+        "letter": "P",
+        "data": [
+        "普洱思茅"] },
+
+      {
+        "letter": "Q",
+        "data": [
+        "齐齐哈尔",
+        "秦皇岛山",
+        "青岛流亭",
+        "衢州机场",
+        "泉州晋江机场"] },
+
+      {
+        "letter": "R",
+        "data": [
+        "日喀则和"] },
+
+      {
+        "letter": "S",
+        "data": [
+        "三亚凤凰",
+        "汕头",
+        "上海虹桥",
+        "上海浦东",
+        "深圳宝安",
+        "沈阳桃仙",
+        "石家庄正定",
+        "苏南硕放"] },
+
+      {
+        "letter": "T",
+        "data": [
+        "塔城"] },
+
+      {
+        "letter": "U",
+        "data": [] },
+      {
+        "letter": "V",
+        "data": [] },
+      {
+        "letter": "W",
+        "data": [
+        "文山",
+        "温永强",
+        "乌海",
+        "武汉天"] },
+
+      {
+        "letter": "X",
+        "data": [] },
+      {
+        "letter": "Y",
+        "data": [] },
+      {
+        "letter": "Z",
+        "data": [
+        "昭通",
+        "芷江",
+        "中卫",
+        "舟山"] }] };
 
 
 
