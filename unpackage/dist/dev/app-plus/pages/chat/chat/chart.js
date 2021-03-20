@@ -1217,6 +1217,48 @@ var render = function() {
               })
             ],
             1
+          ),
+          _c(
+            "view",
+            {
+              staticClass: [
+                "position-fixed",
+                "bottom-0",
+                "left-0",
+                "right-0",
+                "flex",
+                "border-top",
+                "align-center"
+              ],
+              staticStyle: { height: "105rpx", backgroundColor: "#F7F7F6" }
+            },
+            [
+              _c("free-icon-button", {
+                attrs: { slot: "right", iconValue: "\ue606" },
+                slot: "right"
+              }),
+              _c(
+                "view",
+                { staticClass: ["flex-1"] },
+                [
+                  _c("u-textarea", {
+                    staticClass: ["bg-white", "rounded", "p-2", "font-md"],
+                    staticStyle: { height: "75rpx" },
+                    attrs: { fixed: true }
+                  })
+                ],
+                1
+              ),
+              _c("free-icon-button", {
+                attrs: { slot: "right", iconValue: "\ue605" },
+                slot: "right"
+              }),
+              _c("free-icon-button", {
+                attrs: { slot: "right", iconValue: "\ue603" },
+                slot: "right"
+              })
+            ],
+            1
           )
         ],
         1
@@ -1250,7 +1292,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;\n\n\n\n\n\n\n\n\n\nvar _freeNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 18));\nvar _freeIconButton = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default = { name: 'ChatIndex', components: { FreeNavBar: _freeNavBar.default, FreeIconButton: _freeIconButton.default }, props: {}, data: function data() {return {};\n  },\n  computed: {},\n  watch: {},\n  created: function created() {},\n  mounted: function mounted() {},\n  methods: {} };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvY2hhdC9jaGF0L2NoYXJ0Lm52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQVVBO0FBQ0EsdUg7Ozs7Ozs7OztlQUNBLEVBQ0EsaUJBREEsRUFFQSxjQUNBLCtCQURBLEVBRUEsdUNBRkEsRUFGQSxFQU1BLFNBTkEsRUFPQSxJQVBBLGtCQU9BLENBQ0E7QUFDQSxHQVRBO0FBVUEsY0FWQTtBQVdBLFdBWEE7QUFZQSxTQVpBLHFCQVlBLEVBWkE7QUFhQSxTQWJBLHFCQWFBLEVBYkE7QUFjQSxhQWRBLEUiLCJmaWxlIjoiMTcuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8dGVtcGxhdGU+XHJcbiAgPHZpZXc+XHJcblx0XHQ8IS0tIOWvvOiIquagjyAtLT5cclxuXHRcdDxmcmVlLW5hdi1iYXIgdGl0bGUgdGl0bGVWYWx1ZT1cIkNUT1wiIHNob3dCYWNrPlxyXG5cdFx0XHQ8ZnJlZS1pY29uLWJ1dHRvbiBzbG90PVwicmlnaHRcIiA6aWNvblZhbHVlPVwiJ1xcdWU2ZmQnXCIgLz5cclxuXHRcdDwvZnJlZS1uYXYtYmFyPlxyXG5cdDwvdmlldz5cclxuPC90ZW1wbGF0ZT5cclxuXHJcbjxzY3JpcHQ+XHJcbmltcG9ydCBGcmVlTmF2QmFyIGZyb20gJ0AvY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtbmF2LWJhci52dWUnXHJcbmltcG9ydCBGcmVlSWNvbkJ1dHRvbiBmcm9tICdAL2NvbXBvbmVudHMvZnJlZS11aS9mcmVlLWljb24tYnV0dG9uLnZ1ZSdcclxuZXhwb3J0IGRlZmF1bHQge1xyXG4gIG5hbWU6ICdDaGF0SW5kZXgnLFxyXG4gIGNvbXBvbmVudHM6IHtcclxuXHRcdEZyZWVOYXZCYXIsXHJcblx0XHRGcmVlSWNvbkJ1dHRvblxyXG5cdH0sXHJcbiAgcHJvcHM6IHt9LFxyXG4gIGRhdGEgKCkge1xyXG4gICAgcmV0dXJuIHt9XHJcbiAgfSxcclxuICBjb21wdXRlZDoge30sXHJcbiAgd2F0Y2g6IHt9LFxyXG4gIGNyZWF0ZWQgKCkge30sXHJcbiAgbW91bnRlZCAoKSB7fSxcclxuICBtZXRob2RzOiB7fVxyXG59XHJcbjwvc2NyaXB0PlxyXG5cclxuPHN0eWxlIHNjb3BlZCBsYW5nPVwibGVzc1wiPjwvc3R5bGU+XHJcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///17\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar _freeNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 18));\nvar _freeIconButton = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default = { name: 'ChatIndex', components: { FreeNavBar: _freeNavBar.default, FreeIconButton: _freeIconButton.default }, props: {}, data: function data() {return {};}, computed: {}, watch: {}, created: function created() {}, mounted: function mounted() {}, methods: {} };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvY2hhdC9jaGF0L2NoYXJ0Lm52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFvQkE7QUFDQSx1SDs7Ozs7Ozs7Ozs7Ozs7Ozs7OztlQUNBLEVBQ0EsaUJBREEsRUFFQSxjQUNBLCtCQURBLEVBRUEsdUNBRkEsRUFGQSxFQU1BLFNBTkEsRUFPQSxJQVBBLGtCQU9BLENBQ0EsVUFDQSxDQVRBLEVBVUEsWUFWQSxFQVdBLFNBWEEsRUFZQSxPQVpBLHFCQVlBLEVBWkEsRUFhQSxPQWJBLHFCQWFBLEVBYkEsRUFjQSxXQWRBLEUiLCJmaWxlIjoiMTcuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8dGVtcGxhdGU+XHJcbiAgPHZpZXc+XHJcblx0XHQ8IS0tIOWvvOiIquagjyAtLT5cclxuXHRcdDxmcmVlLW5hdi1iYXIgdGl0bGUgdGl0bGVWYWx1ZT1cIkNUT1wiIHNob3dCYWNrPlxyXG5cdFx0XHQ8ZnJlZS1pY29uLWJ1dHRvbiBzbG90PVwicmlnaHRcIiA6aWNvblZhbHVlPVwiJ1xcdWU2ZmQnXCIgLz5cclxuXHRcdDwvZnJlZS1uYXYtYmFyPlxyXG5cdFx0XHJcblx0XHQ8IS0tIOW6lemDqOi+k+WFpeahhumDqOWIhiAtLT5cclxuXHRcdDx2aWV3IGNsYXNzPVwicG9zaXRpb24tZml4ZWQgYm90dG9tLTAgbGVmdC0wIHJpZ2h0LTAgZmxleCBib3JkZXItdG9wIGFsaWduLWNlbnRlclwiIHN0eWxlPVwiaGVpZ2h0OiAxMDVycHg7YmFja2dyb3VuZC1jb2xvcjogI0Y3RjdGNjtcIj5cclxuXHRcdFx0PGZyZWUtaWNvbi1idXR0b24gc2xvdD1cInJpZ2h0XCIgOmljb25WYWx1ZT1cIidcXHVlNjA2J1wiIC8+XHJcblx0XHRcdDx2aWV3IGNsYXNzPVwiZmxleC0xXCI+XHJcblx0XHRcdFx0PHRleHRhcmVhIGZpeGVkICBjbGFzcz1cImJnLXdoaXRlIHJvdW5kZWQgcC0yIGZvbnQtbWRcIiBzdHlsZT1cImhlaWdodDogNzVycHg7XCIgLz5cclxuXHRcdFx0PC92aWV3PlxyXG5cdFx0XHQ8ZnJlZS1pY29uLWJ1dHRvbiBzbG90PVwicmlnaHRcIiA6aWNvblZhbHVlPVwiJ1xcdWU2MDUnXCIgLz5cclxuXHRcdFx0PGZyZWUtaWNvbi1idXR0b24gc2xvdD1cInJpZ2h0XCIgOmljb25WYWx1ZT1cIidcXHVlNjAzJ1wiIC8+XHJcblx0XHQ8L3ZpZXc+XHJcblx0PC92aWV3PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdD5cclxuaW1wb3J0IEZyZWVOYXZCYXIgZnJvbSAnQC9jb21wb25lbnRzL2ZyZWUtdWkvZnJlZS1uYXYtYmFyLnZ1ZSdcclxuaW1wb3J0IEZyZWVJY29uQnV0dG9uIGZyb20gJ0AvY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtaWNvbi1idXR0b24udnVlJ1xyXG5leHBvcnQgZGVmYXVsdCB7XHJcbiAgbmFtZTogJ0NoYXRJbmRleCcsXHJcbiAgY29tcG9uZW50czoge1xyXG5cdFx0RnJlZU5hdkJhcixcclxuXHRcdEZyZWVJY29uQnV0dG9uXHJcblx0fSxcclxuICBwcm9wczoge30sXHJcbiAgZGF0YSAoKSB7XHJcbiAgICByZXR1cm4ge31cclxuICB9LFxyXG4gIGNvbXB1dGVkOiB7fSxcclxuICB3YXRjaDoge30sXHJcbiAgY3JlYXRlZCAoKSB7fSxcclxuICBtb3VudGVkICgpIHt9LFxyXG4gIG1ldGhvZHM6IHt9XHJcbn1cclxuPC9zY3JpcHQ+XHJcblxyXG48c3R5bGUgc2NvcGVkIGxhbmc9XCJsZXNzXCI+PC9zdHlsZT5cclxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///17\n");
 
 /***/ }),
 /* 18 */

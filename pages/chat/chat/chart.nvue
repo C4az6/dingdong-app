@@ -4,6 +4,16 @@
 		<free-nav-bar title titleValue="CTO" showBack>
 			<free-icon-button slot="right" :iconValue="'\ue6fd'" />
 		</free-nav-bar>
+		
+		<!-- 底部输入框部分 -->
+		<view class="position-fixed bottom-0 left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;">
+			<free-icon-button slot="right" :iconValue="'\ue606'" />
+			<view class="flex-1">
+				<textarea fixed  class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
+			</view>
+			<free-icon-button slot="right" :iconValue="'\ue605'" />
+			<free-icon-button slot="right" :iconValue="'\ue603'" />
+		</view>
 	</view>
 </template>
 
