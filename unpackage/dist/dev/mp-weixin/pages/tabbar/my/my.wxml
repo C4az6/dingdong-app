@@ -1,1 +1,1 @@
-<view class="page">我的</view>
+<view class="data-v-6ed5dc07"><free-nav-bar vue-id="6ed9f9ef-1" title="{{true}}" titleValue="个人中心" fixed="{{true}}" data-event-opts="{{[['^openPopup',[['handleOpenPopup']]]]}}" bind:openPopup="__e" class="data-v-6ed5dc07" bind:__l="__l"></free-nav-bar></view>

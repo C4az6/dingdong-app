@@ -6,7 +6,7 @@
 			style="width: 132rpx; height: 104rpx;"
 		>
 			<slot name="icon"></slot>
-			<image v-if="cover" style="width: 76rpx; height: 76rpx;" :src="cover" mode="widthFix"></image>
+			<image v-if="cover" class="rounded" style="width: 76rpx; height: 76rpx;" :src="cover" mode="widthFix"></image>
 		</view>
 
 		<!-- 右侧内容 -->

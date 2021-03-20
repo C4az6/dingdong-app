@@ -16,7 +16,7 @@
 		<free-divider />
 		
 		<free-list-item title="扫一扫" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#58900;</text>
+			<text slot="icon" class="iconfont font-lg">&#59501;</text>
 		</free-list-item>
 		
 		<free-list-item title="摇一摇" rightIconShow>

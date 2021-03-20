@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 导航栏 -->
-		<view class="bg-light" :class="fixed?'fixed-top':''">
+		<view :class="setClass">
 			<!-- 状态栏 -->
 			<view :style="'height:'+statusBarHeight+'px'"></view>
 			<!-- 导航 -->
@@ -12,15 +12,17 @@
 				</view>
 				<!-- 右边图标部分 -->
 				<view class="flex align-center">
-					<free-icon-button :iconValue="'\ue6e3'" />
-					<free-icon-button @click="openPopup" :iconValue="'\ue682'" />
+					<slot name="right">
+						<free-icon-button :iconValue="'\ue6e3'" />
+						<free-icon-button @click="openPopup" :iconValue="'\ue682'" />
+					</slot>
 				</view>
 			</view>
 		</view>
-		<!-- 占位 -->
+		<!-- 占位元素 -->
 		<view v-if="fixed" :style="fixedStyle"></view>
 
-		<!-- 弹出层 -->
+		<!-- 弹出层 拓展菜单 -->
 		<free-popup 
 			ref="popupRef" 
 			:bodyWidth="320" 
@@ -62,6 +64,11 @@
 			fixed: {
 				type: Boolean,
 				default: true
+			},
+			// 导航栏背景颜色
+			bgColor: {
+				type: String,
+				default: "bg-light"
 			}
 		},
 		data() {
@@ -101,12 +108,15 @@
 		computed: {
 			fixedStyle() {
 				return `height: ${this.navBarHeight}px`
+			},
+			setClass() {
+				let fixed = this.fixed ? 'fixed-top' : ''
+				return `${fixed} ${this.bgColor}`
 			}
 		},
 		watch: {},
 		created() {},
 		mounted() {
-			console.log("API获取状态栏高度：", uni.getSystemInfoSync().statusBarHeight)
 			// NVUE环境下获取系统状态栏的高度
 			// #ifdef APP-NVUE
 			this.statusBarHeight = plus.navigator.getStatusbarHeight()

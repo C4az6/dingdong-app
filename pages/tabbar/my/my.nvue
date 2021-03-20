@@ -1,15 +1,30 @@
 <template>
-	<view class="page">
-		我的
+  <view class="page">
+	<free-nav-bar bgColor="bg-white" >
+		<free-icon-button slot="right" :iconValue="'\ue6ed'" />
+	</free-nav-bar>
 	</view>
 </template>
 
 <script>
-	export default {
-		
-	}
+import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+export default {
+  name: 'MyIndex',
+  components: {
+		FreeNavBar,
+		FreeIconButton
+	},
+  props: {},
+  data () {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created () {},
+  mounted () {},
+  methods: {}
+}
 </script>
 
-<style>
-
-</style>
+<style scoped lang="less"></style>
