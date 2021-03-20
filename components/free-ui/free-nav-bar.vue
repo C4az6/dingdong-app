@@ -8,6 +8,9 @@
 			<view class="w-100 flex align-center justify-between" style="height: 90rpx">
 				<!-- 左边标题部分 -->
 				<view class="flex align-center">
+					<!-- 返回按钮 -->
+					<free-icon-button v-if="showBack" :iconValue="'\ue60d'" @click="back" />
+					<!-- 标题 -->
 					<text v-if="title" class="font-md ml-3">{{titleValue}}</text>
 				</view>
 				<!-- 右边图标部分 -->
@@ -69,6 +72,11 @@
 			bgColor: {
 				type: String,
 				default: "bg-light"
+			},
+			// 是否显示返回箭头
+			showBack: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -128,7 +136,12 @@
 			this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 		},
 		methods: {
-			// 显示
+			// 返回上一页
+			back() {
+				uni.navigateBack()
+			},
+			
+			// 显示拓展菜单
 			openPopup() {
 				this.$refs.popupRef.show(uni.upx2px(415), uni.upx2px(150))
 			},

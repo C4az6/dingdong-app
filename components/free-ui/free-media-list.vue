@@ -44,7 +44,9 @@
 		mounted() {},
 		methods: {
 			onClick() {
-				this.$emit('click')
+				uni.navigateTo({
+					url: '/pages/chat/chat/chart'
+				})
 			},
 			long(item, index, e) {
 				let x = 0

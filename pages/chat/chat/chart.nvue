@@ -1,0 +1,31 @@
+<template>
+  <view>
+		<!-- 导航栏 -->
+		<free-nav-bar title titleValue="CTO" showBack>
+			<free-icon-button slot="right" :iconValue="'\ue6fd'" />
+		</free-nav-bar>
+	</view>
+</template>
+
+<script>
+import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+export default {
+  name: 'ChatIndex',
+  components: {
+		FreeNavBar,
+		FreeIconButton
+	},
+  props: {},
+  data () {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created () {},
+  mounted () {},
+  methods: {}
+}
+</script>
+
+<style scoped lang="less"></style>

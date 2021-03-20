@@ -3,7 +3,8 @@
     "pages/tabbar/index/index",
     "pages/tabbar/mail/mail",
     "pages/tabbar/find/find",
-    "pages/tabbar/my/my"
+    "pages/tabbar/my/my",
+    "pages/chat/chat/chart"
   ],
   "subPackages": [],
   "window": {
@@ -45,5 +46,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap33.json"
+  "sitemapLocation": "sitemap52.json"
 }

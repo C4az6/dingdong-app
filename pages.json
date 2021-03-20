@@ -15,6 +15,10 @@
 		{
 			"path": "pages/tabbar/my/my",
 			"style": {}
+		},
+		{
+			"path": "pages/chat/chat/chart",
+			"style": {}
 		}
 	],
 	"globalStyle": {

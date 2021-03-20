@@ -2,8 +2,7 @@
 	<view>
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="叮咚(99+)" fixed @openPopup="handleOpenPopup" />
-		<free-media-list />
-
+	
 		<!-- 置顶列表 -->
 		<block v-for="(item, index) in list" :key="index">
 			<free-media-list v-if="item.isTop" :item="item" :index="index" @click="handleListClick" @long="longPress" />

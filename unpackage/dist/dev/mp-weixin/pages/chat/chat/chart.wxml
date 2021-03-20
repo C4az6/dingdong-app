@@ -1,0 +1,1 @@
+<view class="data-v-26f6f2ae"><free-nav-bar vue-id="26eeb6de-1" title="{{true}}" titleValue="CTO" showBack="{{true}}" class="data-v-26f6f2ae" bind:__l="__l" vue-slots="{{['right']}}"><free-icon-button vue-id="{{('26eeb6de-2')+','+('26eeb6de-1')}}" slot="right" iconValue="" class="data-v-26f6f2ae" bind:__l="__l"></free-icon-button></free-nav-bar></view>
