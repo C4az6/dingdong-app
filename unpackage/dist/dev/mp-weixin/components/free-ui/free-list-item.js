@@ -129,6 +129,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   name: 'FreeListItem',
@@ -142,7 +149,12 @@ var _default =
     // 标题
     title: {
       type: String,
-      default: "" } },
+      default: "" },
+
+    // 是否显示右侧箭头
+    rightIconShow: {
+      type: Boolean,
+      default: false } },
 
 
   data: function data() {
@@ -152,7 +164,6 @@ var _default =
   watch: {},
   created: function created() {},
   mounted: function mounted() {
-    console.log(123);
   },
   methods: {} };exports.default = _default;
 

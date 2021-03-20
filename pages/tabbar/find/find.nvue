@@ -1,11 +1,57 @@
 <template>
 	<view class="page">
-		发现页
+		<free-nav-bar title titleValue="发现" />
+		
+		<!-- 列表 -->
+		<free-list-item title="朋友圈" rightIconShow>
+			<text slot="icon" class="iconfont font-lg main-text-color">&#58983;</text>
+			<view slot="right" class="position-relative p-1">
+				<free-avatar src="/static/avatar.jpg" size="55"/>
+				<text 
+				  class="rounded-circle bg-danger position-absolute"
+				  style="width: 20rpx;height: 20rpx;top: 0;right: 0;"
+				></text>
+			</view>
+		</free-list-item>
+		<free-divider />
+		
+		<free-list-item title="扫一扫" rightIconShow>
+			<text slot="icon" class="iconfont font-lg">&#58900;</text>
+		</free-list-item>
+		
+		<free-list-item title="摇一摇" rightIconShow>
+			<text slot="icon" class="iconfont font-lg">&#58941;</text>
+		</free-list-item>
+		<free-divider />
+		
+		<free-list-item title="看一看" rightIconShow>
+			<text slot="icon" class="iconfont font-lg">&#58896;</text>
+		</free-list-item>
+		
+		<free-list-item title="搜一搜" rightIconShow>
+			<text slot="icon" class="iconfont font-lg">&#58897;</text>
+		</free-list-item>
+		<free-divider />
+		
+		<free-list-item title="购物" rightIconShow>
+			<text slot="icon" class="iconfont font-lg">&#58968;</text>
+		</free-list-item>
 	</view>
 </template>
 
 <script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreeDivider from '@/components/free-ui/free-divider.vue'
 	export default {
+		name: "FindIndex",
+		components: {
+			FreeNavBar,
+			FreeListItem,
+			FreeDivider,
+			FreeAvatar
+		},
 		data() {
 			return {
 				
@@ -20,6 +66,6 @@
 	}
 </script>
 
-<style>
-	
+<style lang="less">
+
 </style>
