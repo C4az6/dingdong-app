@@ -16,6 +16,25 @@
 				<text class="iconfont font-md text-light-muted">&#xe614;</text>
 			</view>
 		</free-list-item>
+		
+		<free-divider></free-divider>
+		<free-list-item title="支付" rightIconShow>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe66c;</text>
+		</free-list-item>
+		<free-divider></free-divider>
+		<free-list-item title="收藏" rightIconShow>
+			<text slot="icon" class="iconfont font-lg py-1">&#xea2d;</text>
+		</free-list-item>
+		<free-list-item title="相册" rightIconShow>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe608;</text>
+		</free-list-item>
+		<free-list-item title="表情" rightIconShow>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe605;</text>
+		</free-list-item>
+		<free-divider></free-divider>
+		<free-list-item title="设置" rightIconShow>
+			<text slot="icon" class="iconfont font-lg py-1">&#xe612;</text>
+		</free-list-item>
 	</view>
 </template>
 
@@ -23,12 +42,14 @@
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeListItem from '@/components/free-ui/free-list-item.vue'
+import FreeDivider from '@/components/free-ui/free-divider.vue'
 export default {
   name: 'MyIndex',
   components: {
 		FreeNavBar,
 		FreeIconButton,
-		FreeListItem
+		FreeListItem,
+		FreeDivider
 	},
   props: {},
   data () {
