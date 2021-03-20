@@ -4,7 +4,7 @@
 		
 		<!-- 列表 -->
 		<free-list-item title="朋友圈" rightIconShow>
-			<text slot="icon" class="iconfont font-lg main-text-color">&#58983;</text>
+			<text slot="icon" class="iconfont py-1 font-lg main-text-color">&#58983;</text>
 			<view slot="right" class="position-relative p-1">
 				<free-avatar src="/static/avatar.jpg" size="55"/>
 				<text 
@@ -16,25 +16,25 @@
 		<free-divider />
 		
 		<free-list-item title="扫一扫" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#59501;</text>
+			<text slot="icon" class="iconfont py-1 font-lg">&#59501;</text>
 		</free-list-item>
 		
 		<free-list-item title="摇一摇" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#58941;</text>
+			<text slot="icon" class="iconfont py-1 font-lg">&#58941;</text>
 		</free-list-item>
 		<free-divider />
 		
 		<free-list-item title="看一看" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#58896;</text>
+			<text slot="icon" class="iconfont py-1 font-lg">&#58896;</text>
 		</free-list-item>
 		
 		<free-list-item title="搜一搜" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#58897;</text>
+			<text slot="icon" class="iconfont py-1 font-lg">&#58897;</text>
 		</free-list-item>
 		<free-divider />
 		
 		<free-list-item title="购物" rightIconShow>
-			<text slot="icon" class="iconfont font-lg">&#58968;</text>
+			<text slot="icon" class="iconfont py-1 font-lg">&#58968;</text>
 		</free-list-item>
 	</view>
 </template>

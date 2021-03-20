@@ -1,19 +1,34 @@
 <template>
   <view class="page">
-	<free-nav-bar bgColor="bg-white" >
-		<free-icon-button slot="right" :iconValue="'\ue6ed'" />
-	</free-nav-bar>
+		<free-nav-bar bgColor="bg-white" >
+			<free-icon-button slot="right" :iconValue="'\ue6ed'" />
+		</free-nav-bar>
+		
+		<free-list-item cover="/static/images/demo/demo6.jpg" coverSize="120" title="张波" rightIconShow>
+			<!-- 中间文本内容 -->
+			<view class="flex flex-column">
+				<text class="text-dark font-lg font-weight-bold">伤心的瘦子</text>
+				<text class="text-light-muted font mt-2">叮咚号: Alexander3714</text>
+			</view>
+			
+			<!-- 右侧图标 -->
+			<view slot="right">
+				<text class="iconfont font-md text-light-muted">&#xe614;</text>
+			</view>
+		</free-list-item>
 	</view>
 </template>
 
 <script>
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+import FreeListItem from '@/components/free-ui/free-list-item.vue'
 export default {
   name: 'MyIndex',
   components: {
 		FreeNavBar,
-		FreeIconButton
+		FreeIconButton,
+		FreeListItem
 	},
   props: {},
   data () {
