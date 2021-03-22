@@ -6,10 +6,16 @@
 		</free-nav-bar>
 
 		<!-- 聊天内容区域 -->
-		<scroll-view scroll-y class="bg-warning position-fixed left-0 right-0" style="bottom: 105rpx;" :style="`top: ${navBarHeight}px`">
-			<view v-for="item in 20" style="height: 200rpx;" class="border-bottom">
-				<text class="text-white  font-lg">{{item}}</text>
-			</view>
+		<scroll-view scroll-y class="position-fixed left-0 right-0" style="bottom: 105rpx;" :style="'top:'+ navBarHeight +'px'">
+			<!-- 聊天信息列表组件 -->
+			<div class="flex align-start justify-start">
+				<free-avatar size="70" src="/static/images/demo/demo6.jpg" />
+				<view class="bg-white p-2 rounded ml-3" style="max-width: 500rpx;">
+					<text class="font-md">
+						11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+					</text>
+				</view>
+			</div>
 		</scroll-view>
 
 		<!-- 底部输入框部分 -->
@@ -27,15 +33,18 @@
 <script>
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+import FreeAvatar from '@/components/free-ui/free-avatar.vue'
 export default {
   name: 'ChatIndex',
   components: {
 		FreeNavBar,
-		FreeIconButton
+		FreeIconButton,
+		FreeAvatar
 	},
   props: {},
   data () {
     return {
+			statusBarHeight: 0,	// 系统状态栏高度
 			navBarHeight: 0		// 导航栏高度
 		}
   },
@@ -45,11 +54,9 @@ export default {
 	mounted() {
 		// NVUE环境下获取系统状态栏的高度
 		// #ifdef APP-NVUE
-		let statusBarHeight = plus.navigator.getStatusbarHeight()
-		console.log(statusBarHeight)
+		this.statusBarHeight = plus.navigator.getStatusbarHeight()
 		// #endif
-		this.navBarHeight = statusBarHeight + uni.upx2px(90)
-		console.log("this.navBarHeight: ", this.navBarHeight)
+		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {}
 }

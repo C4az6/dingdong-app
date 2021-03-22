@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "free-nav-bar": "/components/free-ui/free-nav-bar",
-    "free-icon-button": "/components/free-ui/free-icon-button"
+    "free-icon-button": "/components/free-ui/free-icon-button",
+    "free-avatar": "/components/free-ui/free-avatar"
   }
 }
