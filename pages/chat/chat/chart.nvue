@@ -8,24 +8,24 @@
 		<!-- 聊天内容区域 -->
 		<scroll-view scroll-y class="position-fixed left-0 right-0 px-3" style="bottom: 105rpx;" :style="'top:'+ navBarHeight +'px'">
 			<!-- 聊天信息列表组件 -->
-			<view class="flex align-start justify-start position-relative mb-3">
-				<free-avatar size="70" src="/static/images/demo/demo6.jpg" />
-				<!-- 箭头图标 -->
-				<text class="iconfont text-white font-md position-absolute chat-left-icon">&#xe609;</text>
-				<div class="bg-white p-2 rounded ml-3" style="max-width: 500rpx;">
-					<text class="font-md">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</text>
-				</div>
-			</view>
 			
-			
-			<!-- 右侧 -->
-			<view class="flex align-start justify-end position-relative mb-3">
-				<div class="bg-white p-2 rounded mr-3" style="max-width: 500rpx;">
-					<text class="font-md">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</text>
-				</div>
-				<text class="iconfont text-white font-md position-absolute chat-right-icon">&#xe640;</text>
-				<free-avatar size="70" src="/static/images/demo/demo6.jpg" />
-			</view>
+			<template v-for="(item, index) in list" >
+				<view ref="renderdDom" :key="index" class="flex position-relative mb-3" :class="item.user_id===1?'align-start justify-end ':'align-start justify-start'">
+					<free-avatar size="70" :src="item.avatar" v-if="item.user_id!==1"/>
+					<!-- 箭头图标 -->
+					<text 
+						class="iconfont font-md position-absolute" :class="item.user_id===1?'text-chat-item chat-right-icon':'text-white chat-left-icon'"
+					>{{item.user_id===1?'&#xe640;':'&#xe609;'}}</text>
+					<div 
+					class="p-2 rounded"
+				  style="max-width: 500rpx;"
+					:class="item.user_id===1?'mr-3 bg-chat-item':'ml-3 bg-white'"
+					>
+						<text class="font-md">{{item.data}}</text>
+					</div>
+					<free-avatar size="70" :src="item.avatar" v-if="item.user_id===1"/>
+				</view>
+			</template>
 		</scroll-view>
 
 		<!-- 底部输入框部分 -->
@@ -55,7 +55,23 @@ export default {
   data () {
     return {
 			statusBarHeight: 0,	// 系统状态栏高度
-			navBarHeight: 0		// 导航栏高度
+			navBarHeight: 0,		// 导航栏高度
+			list: [
+				{
+					avatar: "/static/images/demo/demo6.jpg",
+					user_id: 2,		// 用户自己
+					nickname: "寻找阿诺泰的猪",
+					type: "text",	// image、audio、video
+					data: '你还是放弃吧。'
+				},
+				{
+					avatar: "/static/images/demo/demo5.jpg",
+					user_id: 1,		// 用户自己
+					nickname: "Alexander",
+					type: "text",	// image、audio、video
+					data: '做人就要坚持，做人不坚持不如做狗!'
+				}
+			]
 		}
   },
   computed: {},
@@ -81,5 +97,9 @@ export default {
 	.chat-right-icon {
 		right: 80rpx;
 		top: 20rpx;
+	}
+	
+	.avatar {
+		
 	}
 </style>

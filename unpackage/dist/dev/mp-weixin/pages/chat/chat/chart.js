@@ -247,8 +247,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       statusBarHeight: 0, // 系统状态栏高度
-      navBarHeight: 0 // 导航栏高度
-    };
+      navBarHeight: 0, // 导航栏高度
+      list: [
+      {
+        avatar: "/static/images/demo/demo6.jpg",
+        user_id: 2, // 用户自己
+        nickname: "寻找阿诺泰的猪",
+        type: "text", // image、audio、video
+        data: '你还是放弃吧。' },
+
+      {
+        avatar: "/static/images/demo/demo5.jpg",
+        user_id: 1, // 用户自己
+        nickname: "Alexander",
+        type: "text", // image、audio、video
+        data: '做人就要坚持，做人不坚持不如做狗!' }] };
+
+
+
   },
   computed: {},
   watch: {},
