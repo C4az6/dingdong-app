@@ -1,0 +1,9 @@
+.chat-left-icon.data-v-5376c07c {
+  left: 80rpx;
+  top: 20rpx;
+}
+.chat-right-icon.data-v-5376c07c {
+  right: 80rpx;
+  top: 20rpx;
+}
+

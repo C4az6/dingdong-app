@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "free-avatar": "/components/free-ui/free-avatar"
+  }
+}
