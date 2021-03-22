@@ -1,16 +1,23 @@
 <template>
-  <view>
+	<view>
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="CTO" showBack>
 			<free-icon-button slot="right" :iconValue="'\ue6fd'" />
 		</free-nav-bar>
-		
+
+		<!-- 聊天内容区域 -->
+		<scroll-view scroll-y class="bg-warning position-fixed left-0 right-0" style="bottom: 105rpx;" :style="`top: ${navBarHeight}px`">
+			<view v-for="item in 20" style="height: 200rpx;" class="border-bottom">
+				<text class="text-white  font-lg">{{item}}</text>
+			</view>
+		</scroll-view>
+
 		<!-- 底部输入框部分 -->
 		<view class="position-fixed bottom-0 left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;">
 			<free-icon-button slot="right" :iconValue="'\ue606'" />
 			<view class="flex-1">
-				<textarea fixed  class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
-			</view>
+				<textarea fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
+				</view>
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
 			<free-icon-button slot="right" :iconValue="'\ue603'" />
 		</view>
@@ -28,12 +35,22 @@ export default {
 	},
   props: {},
   data () {
-    return {}
+    return {
+			navBarHeight: 0		// 导航栏高度
+		}
   },
   computed: {},
   watch: {},
   created () {},
-  mounted () {},
+	mounted() {
+		// NVUE环境下获取系统状态栏的高度
+		// #ifdef APP-NVUE
+		let statusBarHeight = plus.navigator.getStatusbarHeight()
+		console.log(statusBarHeight)
+		// #endif
+		this.navBarHeight = statusBarHeight + uni.upx2px(90)
+		console.log("this.navBarHeight: ", this.navBarHeight)
+	},
   methods: {}
 }
 </script>
