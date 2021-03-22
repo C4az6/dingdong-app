@@ -173,7 +173,24 @@ var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/tim
   watch: {},
   created: function created() {},
   mounted: function mounted() {},
-  methods: {} };exports.default = _default;
+  methods: {
+    long: function long(e) {
+      var x = 0;
+      var y = 0;
+
+
+
+
+
+
+
+
+      x = e.target.x;
+      y = e.target.y;
+
+
+      this.$emit('long', { x: x, y: y, index: this.index });
+    } } };exports.default = _default;
 
 /***/ }),
 

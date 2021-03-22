@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<div @longpress="long">
 		<!-- 时间显示 -->
 		<view v-if="item.create_time" class="flex align-center justify-center py-3">
 			<text class="font-sm text-muted">{{showTime}}</text>
@@ -14,7 +14,7 @@
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
-	</view>
+	</div>
 </template>
 
 <script>
@@ -57,7 +57,25 @@
 		watch: {},
 		created() {},
 		mounted() {},
-		methods: {}
+		methods: {
+			long(e) {
+				let x = 0
+				let y = 0
+				// #ifdef APP-NVUE
+				if(Array.isArray(e.changedTouches) && e.changedTouches.length > 0) {
+					x = e.changedTouches[0].screenX
+					y = e.changedTouches[0].screenY
+				}
+				// #endif
+				
+				// #ifdef MP-WEIXIN
+				x = e.target.x
+				y = e.target.y
+				// #endif
+				
+				this.$emit('long', {x,y,index: this.index})
+			}
+		}
 	}
 </script>
 

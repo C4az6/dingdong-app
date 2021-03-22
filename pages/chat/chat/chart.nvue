@@ -10,7 +10,7 @@
 			<!-- 聊天信息列表组件 -->
 			
 			<template v-for="(item, index) in list" >
-				<free-chat-item :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0"></free-chat-item>
+				<free-chat-item :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
 			</template>
 		</scroll-view>
 
@@ -23,6 +23,15 @@
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
 			<free-icon-button slot="right" :iconValue="'\ue603'" />
 		</view>
+		
+		<!-- 弹出层 -->
+		<free-popup ref="popupRef" :bodyWidth="200" :bodyHeight="getMenusHeight" :tabbarHeight="105">
+			<view class="flex flex-column" style="width: 240rpx;" :style="setMenusStyle">
+				<view class="flex-1 flex align-center" hover-class="bg-light" v-for="(item,index) in setMenusList" :key="index" @click="handleMenuItemClick(item.event)">
+					<text class="font-md p-3">{{item.name}}</text>
+				</view>
+			</view>
+		</free-popup>
 	</view>
 </template>
 
@@ -30,22 +39,50 @@
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
+import FreePopup from "@/components/free-ui/free-popup.vue"
 export default {
   name: 'ChatIndex',
   components: {
 		FreeNavBar,
 		FreeIconButton,
-		FreeChatItem
+		FreeChatItem,
+		FreePopup
 	},
   props: {},
   data () {
     return {
+			propIndex: -1,		// 当前长按的聊天信息索引
 			statusBarHeight: 0,	// 系统状态栏高度
 			navBarHeight: 0,		// 导航栏高度
+			menus: [{
+					name: '复制',
+					event: ""
+				},
+				{
+					name: '发送给朋友',
+					event: ""
+				},
+				{
+					name: '收藏',
+					event: ""
+				},
+				{
+					name: '删除',
+					event: ""
+				},
+				{
+					name: '多选',
+					event: ""
+				},
+				{
+					name: '撤回',
+					event: ""
+				}
+			],
 			list: [
 				{
 					avatar: "/static/images/demo/demo6.jpg",
-					user_id: 2,		// 用户自己
+					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
 					type: "text",	// image、audio、video
 					data: '你还是放弃吧。',
@@ -53,7 +90,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo5.jpg",
-					user_id: 1,		// 用户自己
+					user_id: 1,
 					nickname: "Alexander",
 					type: "text",	// image、audio、video
 					data: '做人就要坚持，做人不坚持不如做狗!',
@@ -61,7 +98,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo6.jpg",
-					user_id: 2,		// 用户自己
+					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
 					type: "text",	// image、audio、video
 					data: '你还是放弃吧。',
@@ -69,7 +106,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo5.jpg",
-					user_id: 1,		// 用户自己
+					user_id: 1,
 					nickname: "Alexander",
 					type: "text",	// image、audio、video
 					data: '做人就要坚持，做人不坚持不如做狗!',
@@ -77,7 +114,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo6.jpg",
-					user_id: 2,		// 用户自己
+					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
 					type: "text",	// image、audio、video
 					data: '你还是放弃吧。',
@@ -85,7 +122,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo5.jpg",
-					user_id: 1,		// 用户自己
+					user_id: 1,
 					nickname: "Alexander",
 					type: "text",	// image、audio、video
 					data: '做人就要坚持，做人不坚持不如做狗!',
@@ -93,7 +130,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo6.jpg",
-					user_id: 2,		// 用户自己
+					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
 					type: "text",	// image、audio、video
 					data: '你还是放弃吧。',
@@ -101,7 +138,7 @@ export default {
 				},
 				{
 					avatar: "/static/images/demo/demo5.jpg",
-					user_id: 1,		// 用户自己
+					user_id: 1,
 					nickname: "Alexander",
 					type: "text",	// image、audio、video
 					data: '做人就要坚持，做人不坚持不如做狗!',
@@ -110,7 +147,36 @@ export default {
 			]
 		}
   },
-  computed: {},
+  computed: {
+		// 设置菜单样式的计算属性
+		setMenusStyle() {
+			return `height: ${this.getMenusHeight}rpx`
+		},
+		
+		// 动态获取菜单高度,用于边界处理
+		getMenusHeight() {
+			let h = 100			
+			return this.menus.length * h
+		},
+		
+		// 动态设置菜单项
+		setMenusList() {
+			return this.menus.filter(v=>{
+				if(v.name === '撤回' && !this.isdoSelf) {
+					// 该项聊天信息不是本人ID就进行隐藏操作
+					return false
+				}
+				return true
+			})
+		},
+		
+		isdoSelf() {
+			// 获取本人id （假设拿到了）
+			let id = 1
+			let user_id = this.propIndex > -1 ? this.list[this.propIndex].user_id : 0
+			return user_id === id
+		}
+	},
   watch: {},
   created () {},
 	mounted() {
@@ -120,7 +186,18 @@ export default {
 		// #endif
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
-  methods: {}
+  methods: {
+		// 监听聊天信息弹出菜单点击事件
+		handleMenuItemClick() {
+			
+		},
+		
+		// 监听聊天信息的长按事件
+		handleLongPress({x,y,index}) {
+			this.propIndex = index
+			this.$refs.popupRef.show(x, y)
+		}
+	}
 }
 </script>
 

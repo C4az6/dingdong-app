@@ -2,6 +2,7 @@
   "usingComponents": {
     "free-nav-bar": "/components/free-ui/free-nav-bar",
     "free-icon-button": "/components/free-ui/free-icon-button",
-    "free-chat-item": "/components/free-ui/free-chat-item"
+    "free-chat-item": "/components/free-ui/free-chat-item",
+    "free-popup": "/components/free-ui/free-popup"
   }
 }

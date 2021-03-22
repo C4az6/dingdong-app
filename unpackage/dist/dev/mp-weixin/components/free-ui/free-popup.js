@@ -169,7 +169,12 @@ var _default =
     // 弹出层动画效果中心点
     transformOrigin: {
       type: String,
-      default: 'left top' } },
+      default: 'left top' },
+
+    // tabbar高度
+    tabbarHeight: {
+      type: [String, Number],
+      default: 0 } },
 
 
   data: function data() {
@@ -204,15 +209,18 @@ var _default =
   watch: {},
   created: function created() {},
   mounted: function mounted() {
-    // 获取系统信息
-    var info = uni.getSystemInfoSync();
-    this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10;
-    this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10;
+    try {
+      // 获取系统信息
+      var info = uni.getSystemInfoSync();
+      this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10;
+      this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10 - uni.upx2px(this.tabbarHeight);
+      console.log("****************maxY: ", this.maxY);
+    } catch (error) {
+      console.log("error: ", error);
+    }
   },
   methods: {
     show: function show() {var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-      console.log(x);
-      console.log("maxX", this.maxX);
       this.x = x > this.maxX ? this.maxX : x;
       this.y = y > this.maxY ? this.maxY : y;
       this.status = true;

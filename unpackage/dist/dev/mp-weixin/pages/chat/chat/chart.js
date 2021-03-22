@@ -130,7 +130,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {Promise.all(/*! require.ensure | components/free-ui/free-chat-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-chat-item")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {Promise.all(/*! require.ensure | components/free-ui/free-chat-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-chat-item")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 65));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,17 +206,44 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     FreeNavBar: FreeNavBar,
     FreeIconButton: FreeIconButton,
-    FreeChatItem: FreeChatItem },
+    FreeChatItem: FreeChatItem,
+    FreePopup: FreePopup },
 
   props: {},
   data: function data() {
     return {
+      propIndex: -1, // 当前长按的聊天信息索引
       statusBarHeight: 0, // 系统状态栏高度
       navBarHeight: 0, // 导航栏高度
+      menus: [{
+        name: '复制',
+        event: "" },
+
+      {
+        name: '发送给朋友',
+        event: "" },
+
+      {
+        name: '收藏',
+        event: "" },
+
+      {
+        name: '删除',
+        event: "" },
+
+      {
+        name: '多选',
+        event: "" },
+
+      {
+        name: '撤回',
+        event: "" }],
+
+
       list: [
       {
         avatar: "/static/images/demo/demo6.jpg",
-        user_id: 2, // 用户自己
+        user_id: 2,
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
@@ -214,7 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo5.jpg",
-        user_id: 1, // 用户自己
+        user_id: 1,
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
@@ -222,7 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo6.jpg",
-        user_id: 2, // 用户自己
+        user_id: 2,
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
@@ -230,7 +267,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo5.jpg",
-        user_id: 1, // 用户自己
+        user_id: 1,
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
@@ -238,7 +275,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo6.jpg",
-        user_id: 2, // 用户自己
+        user_id: 2,
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
@@ -246,7 +283,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo5.jpg",
-        user_id: 1, // 用户自己
+        user_id: 1,
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
@@ -254,7 +291,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo6.jpg",
-        user_id: 2, // 用户自己
+        user_id: 2,
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
@@ -262,7 +299,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         avatar: "/static/images/demo/demo5.jpg",
-        user_id: 1, // 用户自己
+        user_id: 1,
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
@@ -271,7 +308,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
   },
-  computed: {},
+  computed: {
+    // 设置菜单样式的计算属性
+    setMenusStyle: function setMenusStyle() {
+      return "height: ".concat(this.getMenusHeight, "rpx");
+    },
+
+    // 动态获取菜单高度,用于边界处理
+    getMenusHeight: function getMenusHeight() {
+      var h = 100;
+      return this.menus.length * h;
+    },
+
+    // 动态设置菜单项
+    setMenusList: function setMenusList() {var _this = this;
+      return this.menus.filter(function (v) {
+        if (v.name === '撤回' && !_this.isdoSelf) {
+          // 该项聊天信息不是本人ID就进行隐藏操作
+          return false;
+        }
+        return true;
+      });
+    },
+
+    isdoSelf: function isdoSelf() {
+      // 获取本人id （假设拿到了）
+      var id = 1;
+      var user_id = this.propIndex > -1 ? this.list[this.propIndex].user_id : 0;
+      return user_id === id;
+    } },
+
   watch: {},
   created: function created() {},
   mounted: function mounted() {
@@ -281,7 +347,17 @@ __webpack_require__.r(__webpack_exports__);
 
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // 监听聊天信息弹出菜单点击事件
+    handleMenuItemClick: function handleMenuItemClick() {
+
+    },
+
+    // 监听聊天信息的长按事件
+    handleLongPress: function handleLongPress(_ref) {var x = _ref.x,y = _ref.y,index = _ref.index;
+      this.propIndex = index;
+      this.$refs.popupRef.show(x, y);
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
