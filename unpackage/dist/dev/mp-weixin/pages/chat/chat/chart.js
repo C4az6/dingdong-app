@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-chat-item */ "components/free-ui/free-chat-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 51));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 87));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {Promise.all(/*! require.ensure | components/free-ui/free-chat-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-chat-item")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 92));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -209,56 +209,64 @@ __webpack_require__.r(__webpack_exports__);
         user_id: 2, // 用户自己
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
-        data: '你还是放弃吧。' },
+        data: '你还是放弃吧。',
+        create_time: 1615533541 },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1, // 用户自己
         nickname: "Alexander",
         type: "text", // image、audio、video
-        data: '做人就要坚持，做人不坚持不如做狗!' },
+        data: '做人就要坚持，做人不坚持不如做狗!',
+        create_time: 161554034 },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
         user_id: 2, // 用户自己
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
-        data: '你还是放弃吧。' },
+        data: '你还是放弃吧。',
+        create_time: 1615580357 },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1, // 用户自己
         nickname: "Alexander",
         type: "text", // image、audio、video
-        data: '做人就要坚持，做人不坚持不如做狗!' },
+        data: '做人就要坚持，做人不坚持不如做狗!',
+        create_time: 1615581234 },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
         user_id: 2, // 用户自己
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
-        data: '你还是放弃吧。' },
+        data: '你还是放弃吧。',
+        create_time: 1616444341 },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1, // 用户自己
         nickname: "Alexander",
         type: "text", // image、audio、video
-        data: '做人就要坚持，做人不坚持不如做狗!' },
+        data: '做人就要坚持，做人不坚持不如做狗!',
+        create_time: 1616444341 },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
         user_id: 2, // 用户自己
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
-        data: '你还是放弃吧。' },
+        data: '你还是放弃吧。',
+        create_time: 1616444341 },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1, // 用户自己
         nickname: "Alexander",
         type: "text", // image、audio、video
-        data: '做人就要坚持，做人不坚持不如做狗!' }] };
+        data: '做人就要坚持，做人不坚持不如做狗!',
+        create_time: 1616444941 }] };
 
 
 

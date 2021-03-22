@@ -58,14 +58,13 @@ export default{
 		let dateObj = {},
 			rStr = /\{([^}]+)\}/,
 			mons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-		 
 		dateObj["Y"] = date.getFullYear();
 		dateObj["M"] = date.getMonth() + 1;
 		dateObj["MM"] = this.parseNumber(dateObj["M"]);
 		dateObj["Mon"] = mons[dateObj['M'] - 1];
 		dateObj["D"] = date.getDate();
 		dateObj["DD"] = this.parseNumber(dateObj["D"]);
-		dateObj["h"] = date.getHours();
+		dateObj["h"] = date.getHours() > 10 ? date.getHours() : '0' + date.getHours();
 		dateObj["hh"] = this.parseNumber(dateObj["h"]);
 		dateObj["t"] = dateObj["h"] > 12 ? dateObj["h"] - 12 : dateObj["h"];
 		dateObj["tt"] = this.parseNumber(dateObj["t"]);
