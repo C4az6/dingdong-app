@@ -1128,6 +1128,12 @@ module.exports = {
   },
   "main-text-color": {
     "color": "#08C060"
+  },
+  "bg-chat-item": {
+    "backgroundColor": "#6BEE68"
+  },
+  "text-chat-item": {
+    "color": "#6BEE68"
   }
 }
 

@@ -40,3 +40,12 @@ swiper-item {
   position: absolute;
 }
 
+.chat-left-icon.data-v-26f6f2ae {
+  left: 80rpx;
+  top: 20rpx;
+}
+.chat-right-icon.data-v-26f6f2ae {
+  right: 80rpx;
+  top: 20rpx;
+}
+
