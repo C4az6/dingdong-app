@@ -209,17 +209,20 @@ var _default =
   watch: {},
   created: function created() {},
   mounted: function mounted() {
-    try {
-      // 获取系统信息
-      var info = uni.getSystemInfoSync();
-      this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10;
-      this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10 - uni.upx2px(this.tabbarHeight);
-      console.log("****************maxY: ", this.maxY);
-    } catch (error) {
-      console.log("error: ", error);
-    }
+    console.log("popup 已渲染!");
+    this.setPopupHeight();
   },
   methods: {
+    setPopupHeight: function setPopupHeight() {
+      try {
+        // 获取系统信息
+        var info = uni.getSystemInfoSync();
+        this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10;
+        this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10 - uni.upx2px(this.tabbarHeight);
+      } catch (error) {
+        console.log("error: ", error);
+      }
+    },
     show: function show() {var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
       this.x = x > this.maxX ? this.maxX : x;
       this.y = y > this.maxY ? this.maxY : y;

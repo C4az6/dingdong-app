@@ -1,11 +1,19 @@
 <template>
 	<div @longpress="long">
 		<!-- 时间显示 -->
-		<view v-if="item.create_time" class="flex align-center justify-center py-3">
+		<view v-if="showTime" class="flex align-center justify-center py-3">
 			<text class="font-sm text-muted">{{showTime}}</text>
 		</view>
 		
-		<view :key="index" class="flex position-relative mb-3" :class="isSelf?'align-start justify-end ':'align-start justify-start'">
+		<!-- 撤回消息 -->
+		<view 
+			v-if="item.isRemove"
+			ref="isRemove"
+			class="flex align-center justify-center pb-4 pt-2 chat-animate"
+		>
+			<text class="font-sm text-light-muted">你撤回了一条信息</text>
+		</view>
+		<view v-else :key="index" class="flex position-relative mb-3" :class="isSelf?'align-start justify-end ':'align-start justify-start'">
 			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" />
 			<!-- 箭头图标 -->
 			<text class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
@@ -54,9 +62,33 @@
 				return $T.getChatTime(this.item.create_time, this.pretime)
 			}
 		},
-		watch: {},
+		watch: {
+			// 监听是否撤回消息
+			'item.isRemove': {
+				handler(newValue, oldValue) {
+					// #ifdef APP-NVUE
+					if(newValue) {
+						const animation = weex.requireModule('animation')
+						this.$nextTick(()=>{
+							animation.transition(this.$refs.isRemove, {
+								styles: {
+									opacity: 1
+								},
+								duration: 500,
+								timingFunction: 'ease',
+							},function(){
+								console.log("动画执行结束!")
+							})
+						})
+					}
+					// #endif
+				},
+				immediate: true
+			}
+		},
 		created() {},
-		mounted() {},
+		mounted() {
+		},
 		methods: {
 			long(e) {
 				let x = 0
@@ -88,5 +120,11 @@
 	.chat-right-icon {
 		right: 80rpx;
 		top: 20rpx;
+	}
+	
+	.chat-animate {
+		/* #ifdef APP-NVUE */
+		opacity: 0;
+		/* #endif */
 	}
 </style>

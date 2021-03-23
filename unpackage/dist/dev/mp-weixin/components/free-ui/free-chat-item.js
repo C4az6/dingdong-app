@@ -135,6 +135,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
 var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 62));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 77));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   name: 'FreeChatItem',
@@ -170,9 +178,33 @@ var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/tim
       return _time.default.getChatTime(this.item.create_time, this.pretime);
     } },
 
-  watch: {},
+  watch: {
+    // 监听是否撤回消息
+    'item.isRemove': {
+      handler: function handler(newValue, oldValue) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      },
+      immediate: true } },
+
+
   created: function created() {},
-  mounted: function mounted() {},
+  mounted: function mounted() {
+  },
   methods: {
     long: function long(e) {
       var x = 0;

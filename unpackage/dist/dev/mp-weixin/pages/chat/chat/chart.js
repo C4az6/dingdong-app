@@ -237,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         name: '撤回',
-        event: "" }],
+        event: "removeChatItem" }],
 
 
       list: [
@@ -247,7 +247,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
-        create_time: 1615533541 },
+        create_time: 1615533541,
+        isRemove: true },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
@@ -255,7 +256,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
-        create_time: 161554034 },
+        create_time: 161554034,
+        isRemove: false },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
@@ -263,7 +265,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
-        create_time: 1615580357 },
+        create_time: 1615580357,
+        isRemove: true },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
@@ -271,7 +274,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
-        create_time: 1615581234 },
+        create_time: 1615581234,
+        isRemove: false },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
@@ -279,7 +283,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
-        create_time: 1616444341 },
+        create_time: 1616444341,
+        isRemove: false },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
@@ -287,7 +292,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
-        create_time: 1616444341 },
+        create_time: 1616444341,
+        isRemove: false },
 
       {
         avatar: "/static/images/demo/demo6.jpg",
@@ -295,7 +301,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "寻找阿诺泰的猪",
         type: "text", // image、audio、video
         data: '你还是放弃吧。',
-        create_time: 1616444341 },
+        create_time: 1616444341,
+        isRemove: false },
 
       {
         avatar: "/static/images/demo/demo5.jpg",
@@ -303,7 +310,8 @@ __webpack_require__.r(__webpack_exports__);
         nickname: "Alexander",
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
-        create_time: 1616444941 }] };
+        create_time: 1616444941,
+        isRemove: false }] };
 
 
 
@@ -346,11 +354,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
+    console.log(this.$refs.popupRef);
   },
   methods: {
     // 监听聊天信息弹出菜单点击事件
-    handleMenuItemClick: function handleMenuItemClick() {
+    handleMenuItemClick: function handleMenuItemClick(e) {
+      switch (e) {
+        case 'removeChatItem': // 撤回消息事件
+          // 拿到当前操作的信息对象
+          if (this.propIndex > -1) {
+            this.list[this.propIndex].isRemove = true;
+          }
+          break;
+        default:
+          break;}
 
+      // 关闭弹出菜单
+      this.$refs.popupRef.hide();
     },
 
     // 监听聊天信息的长按事件

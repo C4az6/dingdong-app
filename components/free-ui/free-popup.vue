@@ -93,17 +93,20 @@
 		watch: {},
 		created() {},
 		mounted() {
-			try {
-				// 获取系统信息
-				let info = uni.getSystemInfoSync()
-				this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10
-				this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10 - uni.upx2px(this.tabbarHeight)	
-				console.log("****************maxY: ", this.maxY)
-			}catch(error){
-				console.log("error: ", error)
-			}
+			console.log("popup 已渲染!")
+			this.setPopupHeight()
 		},
 		methods: {
+			setPopupHeight() {
+				try {
+					// 获取系统信息
+					let info = uni.getSystemInfoSync()
+					this.maxX = info.windowWidth - uni.upx2px(this.bodyWidth) - 10
+					this.maxY = info.windowHeight - uni.upx2px(this.bodyHeight) - 10 - uni.upx2px(this.tabbarHeight)	
+				}catch(error){
+					console.log("error: ", error)
+				}
+			},
 			show(x = -1, y = -1) {
 				this.x = (x > this.maxX) ? this.maxX : x
 				this.y = (y > this.maxY) ? this.maxY : y
