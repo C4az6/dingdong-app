@@ -9,7 +9,7 @@
 		<scroll-view scroll-y :show-scrollbar="false" class="position-fixed left-0 right-0 px-3" :style="setBodyBottom">
 			<!-- 聊天信息列表组件 -->
 			<template v-for="(item, index) in list" >
-				<free-chat-item :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
+				<free-chat-item ref="chatItemRef" :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
 			</template>
 		</scroll-view>
 
@@ -35,6 +35,9 @@
 </template>
 
 <script>
+// #ifdef APP-NVUE
+const dom = weex.requireModule('dom')
+// #endif
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
@@ -196,6 +199,12 @@ export default {
 		// 监听键盘高度的动态变化
 		uni.onKeyboardHeightChange(res => {
 			this.KeyboardHeight = res.height
+			if(res.height>0) {
+				this.$nextTick(_=>{
+					this.setPageToBottom()
+					console.log("去底部..." + res.height)
+				})
+			}
 		})
 		
 		// NVUE环境下获取系统状态栏的高度
@@ -206,6 +215,15 @@ export default {
 		console.log(this.$refs.popupRef);
 	},
   methods: {
+		//　回到底部
+		setPageToBottom() {
+			let chatItem = this.$refs.chatItemRef
+			let lastIndex = chatItem.length > 0 ? chatItem.length -1 : 0
+			if(chatItem[lastIndex]) {
+				dom.scrollToElement(chatItem[lastIndex], {})
+			}
+		},
+		
 		// 监听聊天信息弹出菜单点击事件
 		handleMenuItemClick(e) {
 			switch(e) {

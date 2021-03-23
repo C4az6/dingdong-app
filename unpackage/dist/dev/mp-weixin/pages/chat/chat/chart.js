@@ -200,6 +200,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 {
   name: 'ChatIndex',
   components: {
@@ -357,6 +360,12 @@ __webpack_require__.r(__webpack_exports__);
     // 监听键盘高度的动态变化
     uni.onKeyboardHeightChange(function (res) {
       _this2.KeyboardHeight = res.height;
+      if (res.height > 0) {
+        _this2.$nextTick(function (_) {
+          _this2.setPageToBottom();
+          console.log("去底部..." + res.height);
+        });
+      }
     });
 
     // NVUE环境下获取系统状态栏的高度
@@ -367,6 +376,15 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.$refs.popupRef);
   },
   methods: {
+    //　回到底部
+    setPageToBottom: function setPageToBottom() {
+      var chatItem = this.$refs.chatItemRef;
+      var lastIndex = chatItem.length > 0 ? chatItem.length - 1 : 0;
+      if (chatItem[lastIndex]) {
+        dom.scrollToElement(chatItem[lastIndex], {});
+      }
+    },
+
     // 监听聊天信息弹出菜单点击事件
     handleMenuItemClick: function handleMenuItemClick(e) {
       switch (e) {

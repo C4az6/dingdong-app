@@ -76,8 +76,6 @@
 								},
 								duration: 300,
 								timingFunction: 'ease',
-							},function(){
-								console.log("动画执行结束!")
 							})
 						})
 					}
