@@ -203,6 +203,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 {
   name: 'ChatIndex',
   components: {
@@ -214,6 +219,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: function data() {
     return {
+      text: "", // 用户输入的聊天信息
       KeyboardHeight: 0, // 键盘高度
       propIndex: -1, // 当前长按的聊天信息索引
       statusBarHeight: 0, // 系统状态栏高度
@@ -363,7 +369,6 @@ __webpack_require__.r(__webpack_exports__);
       if (res.height > 0) {
         _this2.$nextTick(function (_) {
           _this2.setPageToBottom();
-          console.log("去底部..." + res.height);
         });
       }
     });
@@ -376,6 +381,29 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.$refs.popupRef);
   },
   methods: {
+    // 发送聊天信息
+    send: function send(type) {var _this3 = this;
+      var chatObj = {
+        avatar: "/static/images/demo/demo5.jpg",
+        user_id: 1,
+        nickname: "伤心的瘦子",
+        type: "", // image、audio、video
+        data: this.text,
+        create_time: Date.now(),
+        isRemove: false };
+
+      switch (type) {
+        case 'text':
+          chatObj.type = type;
+          this.text = "";
+          break;}
+
+      this.list.push(chatObj);
+      this.$nextTick(function (_) {
+        _this3.setPageToBottom();
+      });
+    },
+
     //　回到底部
     setPageToBottom: function setPageToBottom() {
       var chatItem = this.$refs.chatItemRef;

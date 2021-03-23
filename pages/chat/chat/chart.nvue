@@ -17,10 +17,15 @@
 		<view class="position-fixed left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;" :style="'bottom:'+KeyboardHeight+'px;'">
 			<free-icon-button slot="right" :iconValue="'\ue606'" />
 			<view class="flex-1">
-				<textarea :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
+				<textarea :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" />
 				</view>
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
-			<free-icon-button slot="right" :iconValue="'\ue603'" />
+			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" />
+			
+			<!-- 发送文字按钮 -->
+			<view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
+				<text class="font text-white">发送</text>
+			</view>
 		</view>
 		
 		<!-- 弹出层 -->
@@ -53,6 +58,7 @@ export default {
   props: {},
   data () {
     return {
+			text: "",		// 用户输入的聊天信息
 			KeyboardHeight: 0,		// 键盘高度
 			propIndex: -1,		// 当前长按的聊天信息索引
 			statusBarHeight: 0,	// 系统状态栏高度
@@ -202,7 +208,6 @@ export default {
 			if(res.height>0) {
 				this.$nextTick(_=>{
 					this.setPageToBottom()
-					console.log("去底部..." + res.height)
 				})
 			}
 		})
@@ -215,6 +220,29 @@ export default {
 		console.log(this.$refs.popupRef);
 	},
   methods: {
+		// 发送聊天信息
+		send(type) {
+			let chatObj = {
+				avatar: "/static/images/demo/demo5.jpg",
+				user_id: 1,
+				nickname: "伤心的瘦子",
+				type: "",	// image、audio、video
+				data: this.text,
+				create_time: Date.now(),
+				isRemove: false
+			}
+			switch(type) {
+				case 'text':
+					chatObj.type = type
+					this.text = ""
+					break
+			}
+			this.list.push(chatObj)
+			this.$nextTick(_=>{
+				this.setPageToBottom()
+			})
+		},
+		
 		//　回到底部
 		setPageToBottom() {
 			let chatItem = this.$refs.chatItemRef
