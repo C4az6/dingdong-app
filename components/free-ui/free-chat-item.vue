@@ -65,7 +65,7 @@
 		watch: {
 			// 监听是否撤回消息
 			'item.isRemove': {
-				handler(newValue, oldValue) {
+				handler: function (newValue, oldValue) {
 					// #ifdef APP-NVUE
 					if(newValue) {
 						const animation = weex.requireModule('animation')
@@ -74,7 +74,7 @@
 								styles: {
 									opacity: 1
 								},
-								duration: 500,
+								duration: 300,
 								timingFunction: 'ease',
 							},function(){
 								console.log("动画执行结束!")

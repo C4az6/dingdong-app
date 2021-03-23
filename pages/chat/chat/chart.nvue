@@ -6,19 +6,18 @@
 		</free-nav-bar>
 
 		<!-- 聊天内容区域 -->
-		<scroll-view scroll-y class="position-fixed left-0 right-0 px-3" style="bottom: 105rpx;" :style="'top:'+ navBarHeight +'px'">
+		<scroll-view scroll-y :show-scrollbar="false" class="position-fixed left-0 right-0 px-3" :style="setBodyBottom">
 			<!-- 聊天信息列表组件 -->
-			
 			<template v-for="(item, index) in list" >
 				<free-chat-item :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
 			</template>
 		</scroll-view>
 
 		<!-- 底部输入框部分 -->
-		<view class="position-fixed bottom-0 left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;">
+		<view class="position-fixed left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;" :style="'bottom:'+KeyboardHeight+'px;'">
 			<free-icon-button slot="right" :iconValue="'\ue606'" />
 			<view class="flex-1">
-				<textarea fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
+				<textarea :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" />
 				</view>
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
 			<free-icon-button slot="right" :iconValue="'\ue603'" />
@@ -51,6 +50,7 @@ export default {
   props: {},
   data () {
     return {
+			KeyboardHeight: 0,		// 键盘高度
 			propIndex: -1,		// 当前长按的聊天信息索引
 			statusBarHeight: 0,	// 系统状态栏高度
 			navBarHeight: 0,		// 导航栏高度
@@ -156,6 +156,11 @@ export default {
 		}
   },
   computed: {
+		// 设置内容区域高度
+		setBodyBottom () {
+			return `bottom: ${this.KeyboardHeight + uni.upx2px(105)}px;top: ${this.navBarHeight}px;`
+		},
+		
 		// 设置菜单样式的计算属性
 		setMenusStyle() {
 			return `height: ${this.getMenusHeight}rpx`
@@ -188,6 +193,11 @@ export default {
   watch: {},
   created () {},
 	mounted() {
+		// 监听键盘高度的动态变化
+		uni.onKeyboardHeightChange(res => {
+			this.KeyboardHeight = res.height
+		})
+		
 		// NVUE环境下获取系统状态栏的高度
 		// #ifdef APP-NVUE
 		this.statusBarHeight = plus.navigator.getStatusbarHeight()

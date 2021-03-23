@@ -200,7 +200,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 {
   name: 'ChatIndex',
   components: {
@@ -212,6 +211,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: function data() {
     return {
+      KeyboardHeight: 0, // 键盘高度
       propIndex: -1, // 当前长按的聊天信息索引
       statusBarHeight: 0, // 系统状态栏高度
       navBarHeight: 0, // 导航栏高度
@@ -317,6 +317,11 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   computed: {
+    // 设置内容区域高度
+    setBodyBottom: function setBodyBottom() {
+      return "bottom: ".concat(this.KeyboardHeight + uni.upx2px(105), "px;top: ").concat(this.navBarHeight, "px;");
+    },
+
     // 设置菜单样式的计算属性
     setMenusStyle: function setMenusStyle() {
       return "height: ".concat(this.getMenusHeight, "rpx");
@@ -348,7 +353,12 @@ __webpack_require__.r(__webpack_exports__);
 
   watch: {},
   created: function created() {},
-  mounted: function mounted() {
+  mounted: function mounted() {var _this2 = this;
+    // 监听键盘高度的动态变化
+    uni.onKeyboardHeightChange(function (res) {
+      _this2.KeyboardHeight = res.height;
+    });
+
     // NVUE环境下获取系统状态栏的高度
 
 
