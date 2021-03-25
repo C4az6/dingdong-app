@@ -45,7 +45,7 @@
 		methods: {
 			onClick() {
 				uni.navigateTo({
-					url: '/pages/chat/chat/chart'
+					url: '/pages/chat/chat/chat'
 				})
 			},
 			long(item, index, e) {

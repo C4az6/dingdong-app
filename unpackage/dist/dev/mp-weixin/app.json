@@ -4,7 +4,7 @@
     "pages/tabbar/mail/mail",
     "pages/tabbar/find/find",
     "pages/tabbar/my/my",
-    "pages/chat/chat/chart"
+    "pages/chat/chat/chat"
   ],
   "subPackages": [],
   "window": {
@@ -45,6 +45,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap29.json"
+  "usingComponents": {}
 }
