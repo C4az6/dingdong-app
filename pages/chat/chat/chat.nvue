@@ -39,11 +39,15 @@
 		
 		<!-- 扩展菜单 -->
 		<free-popup ref="extendMenuRef" bottom transformOrigin="center bottom" @closePopup="KeyboardHeight=0">
-			<view
-				style="height: 580rpx"
-				class="border-top border-light-secondary"
-			>
-				<text>拓展菜单</text>
+			<view style="height: 580rpx" class="border-top border-light-secondary bg-light">
+				<swiper :indicator-dots="true" style="height: 510rpx;">
+					<swiper-item v-for="item in 2" class="row">
+						<view class="flex flex-column col-3 justify-center align-center" v-for="item2 in 8" style="height: 255rpx;">
+							<image src="/static/images/extends/audio.png" mode="widthFix" style="width: 100rpx;height: 100rpx;"></image>
+							<text class="font-sm text-muted mt-2">音频</text>
+						</view>
+					</swiper-item>
+				</swiper>
 			</view>
 		</free-popup>
 		
