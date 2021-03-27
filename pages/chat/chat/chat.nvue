@@ -20,7 +20,7 @@
 				<textarea :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" />
 				</view>
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
-			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" />
+			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" @click="handleExtandMenuShow" />
 			
 			<!-- 发送文字按钮 -->
 			<view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
@@ -28,7 +28,7 @@
 			</view>
 		</view>
 		
-		<!-- 弹出层 -->
+		<!-- 长按聊天信息弹出层 -->
 		<free-popup ref="popupRef" :bodyWidth="200" :bodyHeight="getMenusHeight" :tabbarHeight="105">
 			<view class="flex flex-column" style="width: 240rpx;" :style="setMenusStyle">
 				<view class="flex-1 flex align-center" hover-class="bg-light" v-for="(item,index) in setMenusList" :key="index" @click="handleMenuItemClick(item.event)">
@@ -36,6 +36,17 @@
 				</view>
 			</view>
 		</free-popup>
+		
+		<!-- 扩展菜单 -->
+		<free-popup ref="extendMenuRef" bottom transformOrigin="center bottom" @closePopup="KeyboardHeight=0">
+			<view
+				style="height: 580rpx"
+				class="border-top border-light-secondary"
+			>
+				<text>拓展菜单</text>
+			</view>
+		</free-popup>
+		
 	</view>
 </template>
 
@@ -219,6 +230,12 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 底部拓展菜单展示
+		handleExtandMenuShow() {
+			this.$refs.extendMenuRef.show()
+			this.KeyboardHeight = uni.upx2px(580)
+		},
+		
 		// 发送聊天信息
 		send(type) {
 			let chatObj = {

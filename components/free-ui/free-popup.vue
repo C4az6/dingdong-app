@@ -126,6 +126,8 @@
 				// #endif
 			},
 			hide() {
+				console.log("close popup...")
+				this.$emit('closePopup')
 				// #ifdef APP-NVUE
 				animation.transition(this.$refs.popup, {
 					styles: {
