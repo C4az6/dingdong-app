@@ -41,10 +41,16 @@
 		<free-popup ref="extendMenuRef" bottom transformOrigin="center bottom" @closePopup="KeyboardHeight=0">
 			<view style="height: 580rpx" class="border-top border-light-secondary bg-light">
 				<swiper :indicator-dots="true" style="height: 510rpx;">
-					<swiper-item v-for="item in 2" class="row">
-						<view class="flex flex-column col-3 justify-center align-center" v-for="item2 in 8" style="height: 255rpx;">
-							<image src="/static/images/extends/audio.png" mode="widthFix" style="width: 100rpx;height: 100rpx;"></image>
-							<text class="font-sm text-muted mt-2">音频</text>
+					<swiper-item v-for="(item, index) in extendMenuList" :key="index" class="row">
+						<view 
+						class="flex flex-column col-3 justify-center align-center" 
+						style="height: 255rpx;"
+						v-for="(item2, index2) in item" 
+						@click="handleExtendMenuClick(item2.event)"
+						:key="index2"
+						>
+							<image :src="item2.icon" mode="widthFix" style="width: 100rpx;height: 100rpx;"></image>
+							<text class="font-sm text-muted mt-2">{{item2.name}}</text>
 						</view>
 					</swiper-item>
 				</swiper>
@@ -78,6 +84,33 @@ export default {
 			propIndex: -1,		// 当前长按的聊天信息索引
 			statusBarHeight: 0,	// 系统状态栏高度
 			navBarHeight: 0,		// 导航栏高度
+			extendMenuList: [
+					[{
+						name:"相册",
+						icon:"/static/images/extends/pic.png",
+						event:"uploadImage"
+					},{
+						name:"拍摄",
+						icon:"/static/images/extends/video.png",
+						event:""
+					},{
+						name:"收藏",
+						icon:"/static/images/extends/shoucan.png",
+						event:""
+					},{
+						name:"名片",
+						icon:"/static/images/extends/man.png",
+						event:""
+					},{
+						name:"语音通话",
+						icon:"/static/images/extends/phone.png",
+						event:""
+					},{
+						name:"位置",
+						icon:"/static/images/extends/path.png",
+						event:""
+					}]
+			],
 			menus: [{
 					name: '复制',
 					event: ""
@@ -234,6 +267,11 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 监听拓展菜单点击事件
+		handleExtendMenuClick(event) {
+			console.log('Click...', event)
+		},
+		
 		// 底部拓展菜单展示
 		handleExtandMenuShow() {
 			this.$refs.extendMenuRef.show()
