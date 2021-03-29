@@ -6,18 +6,28 @@
 		</free-nav-bar>
 
 		<!-- 聊天内容区域 -->
-		<scroll-view scroll-y :show-scrollbar="false" class="position-fixed left-0 right-0 px-3" :style="setBodyBottom">
+		<scroll-view scroll-y :show-scrollbar="false" class="position-fixed left-0 right-0 px-3" :style="setBodyBottom" @click="clickPage">
 			<!-- 聊天信息列表组件 -->
 			<template v-for="(item, index) in list" >
 				<free-chat-item ref="chatItemRef" :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
 			</template>
 		</scroll-view>
+		
+		<!-- 针对nvue环境下的蒙版层 -->
+		<!-- #ifdef APP-NVUE -->
+			<div 
+				v-if="mode === 'action'" 
+				class="position-fixed top-0 left-0 right-0 bottom-0" 
+				@click="clickPage"
+				:style="'bottom:'+maskBottom+'px'"
+			></div>
+		<!-- #endif -->
 
 		<!-- 底部输入框部分 -->
 		<view class="position-fixed left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;" :style="'bottom:'+KeyboardHeight+'px;'">
 			<free-icon-button slot="right" :iconValue="'\ue606'" />
 			<view class="flex-1">
-				<textarea :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" />
+				<textarea ref="textareaRef" :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" @focus="mode='text'"/>
 				</view>
 			<free-icon-button slot="right" :iconValue="'\ue605'" />
 			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" @click="handleExtandMenuShow" />
@@ -38,8 +48,8 @@
 		</free-popup>
 		
 		<!-- 扩展菜单 -->
-		<free-popup ref="extendMenuRef" bottom transformOrigin="center bottom" @closePopup="KeyboardHeight=0">
-			<view style="height: 580rpx" class="border-top border-light-secondary bg-light">
+		<free-popup ref="extendMenuRef" :mask="false" bottom transformOrigin="center bottom" @closePopup="onClosePopup">
+			<view style="height: 530rpx" class="border-top border-light-secondary bg-light">
 				<swiper :indicator-dots="true" style="height: 510rpx;">
 					<swiper-item v-for="(item, index) in extendMenuList" :key="index" class="row">
 						<view 
@@ -79,6 +89,8 @@ export default {
   props: {},
   data () {
     return {
+			// 模式：text输入文字，emoticon表情，action操作，audio音频
+			mode: "text",
 			text: "",		// 用户输入的聊天信息
 			KeyboardHeight: 0,		// 键盘高度
 			propIndex: -1,		// 当前长按的聊天信息索引
@@ -213,6 +225,11 @@ export default {
 		}
   },
   computed: {
+		// 计算蒙版距离底部的位置
+		maskBottom() {
+			return this.KeyboardHeight + uni.upx2px(105)
+		},
+		
 		// 设置内容区域高度
 		setBodyBottom () {
 			return `bottom: ${this.KeyboardHeight + uni.upx2px(105)}px;top: ${this.navBarHeight}px;`
@@ -247,12 +264,24 @@ export default {
 			return user_id === id
 		}
 	},
-  watch: {},
-  created () {},
+  watch: {
+		mode: {
+			handler(newVal, oldVal) {
+				console.log("new val: ", newVal)
+				newVal!=='action' && this.$refs.extendMenuRef.hide()
+				newVal !== 'text' && uni.hideKeyboard()
+			}
+		}
+	},
+  created () {
+	},
 	mounted() {
 		// 监听键盘高度的动态变化
 		uni.onKeyboardHeightChange(res => {
-			this.KeyboardHeight = res.height
+			if(this.mode!=='action') {
+				// 不为操作拓展菜单模式的时候才动态赋值键盘高度
+				this.KeyboardHeight = res.height
+			}
 			if(res.height>0) {
 				this.$nextTick(_=>{
 					this.setPageToBottom()
@@ -267,6 +296,17 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 点击页面
+		clickPage() {
+			console.log('click page...')
+			this.mode = ''
+		},
+		
+		// 关闭底部拓展菜单
+		onClosePopup() {
+			this.KeyboardHeight = 0
+		},
+		
 		// 监听拓展菜单点击事件
 		handleExtendMenuClick(event) {
 			console.log('Click...', event)
@@ -274,8 +314,13 @@ export default {
 		
 		// 底部拓展菜单展示
 		handleExtandMenuShow() {
+			this.mode = 'action',  // 修改模式为操作拓展菜单的模式
+			// 显示拓展菜单
+			this.$refs.textareaRef.blur()
 			this.$refs.extendMenuRef.show()
-			this.KeyboardHeight = uni.upx2px(580)
+			// 收起键盘,此时键盘高度为0,但是不会马上就更新到模版中
+			uni.hideKeyboard()
+			this.KeyboardHeight = uni.upx2px(530)
 		},
 		
 		// 发送聊天信息

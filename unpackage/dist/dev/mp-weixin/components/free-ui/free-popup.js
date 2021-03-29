@@ -209,7 +209,6 @@ var _default =
   watch: {},
   created: function created() {},
   mounted: function mounted() {
-    console.log("popup 已渲染!");
     this.setPopupHeight();
   },
   methods: {
@@ -242,6 +241,7 @@ var _default =
 
     },
     hide: function hide() {
+      this.$emit('closePopup');
 
 
 

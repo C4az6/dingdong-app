@@ -1,5 +1,5 @@
 <template>
-	<div @longpress="long">
+	<div>
 		<!-- 时间显示 -->
 		<view v-if="showTime" class="flex align-center justify-center py-3">
 			<text class="font-sm text-muted">{{showTime}}</text>
@@ -17,7 +17,7 @@
 			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" />
 			<!-- 箭头图标 -->
 			<text class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
-			<div class="p-2 rounded" style="max-width: 500rpx;" :class="isSelf?'mr-3 bg-chat-item':'ml-3 bg-white'">
+			<div class="p-2 rounded" style="max-width: 500rpx;" :class="isSelf?'mr-3 bg-chat-item':'ml-3 bg-white'" @longpress="long">
 				<text class="font-md">{{item.data}}</text>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />

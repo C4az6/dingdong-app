@@ -93,7 +93,6 @@
 		watch: {},
 		created() {},
 		mounted() {
-			console.log("popup 已渲染!")
 			this.setPopupHeight()
 		},
 		methods: {
@@ -126,7 +125,6 @@
 				// #endif
 			},
 			hide() {
-				console.log("close popup...")
 				this.$emit('closePopup')
 				// #ifdef APP-NVUE
 				animation.transition(this.$refs.popup, {

@@ -97,6 +97,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.mode = "text"
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -208,6 +213,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   name: 'ChatIndex',
   components: {
@@ -219,11 +255,40 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: function data() {
     return {
+      // 模式：text输入文字，emoticon表情，action操作，audio音频
+      mode: "text",
       text: "", // 用户输入的聊天信息
       KeyboardHeight: 0, // 键盘高度
       propIndex: -1, // 当前长按的聊天信息索引
       statusBarHeight: 0, // 系统状态栏高度
       navBarHeight: 0, // 导航栏高度
+      extendMenuList: [
+      [{
+        name: "相册",
+        icon: "/static/images/extends/pic.png",
+        event: "uploadImage" },
+      {
+        name: "拍摄",
+        icon: "/static/images/extends/video.png",
+        event: "" },
+      {
+        name: "收藏",
+        icon: "/static/images/extends/shoucan.png",
+        event: "" },
+      {
+        name: "名片",
+        icon: "/static/images/extends/man.png",
+        event: "" },
+      {
+        name: "语音通话",
+        icon: "/static/images/extends/phone.png",
+        event: "" },
+      {
+        name: "位置",
+        icon: "/static/images/extends/path.png",
+        event: "" }]],
+
+
       menus: [{
         name: '复制',
         event: "" },
@@ -326,6 +391,11 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   computed: {
+    // 计算蒙版距离底部的位置
+    maskBottom: function maskBottom() {
+      return this.KeyboardHeight + uni.upx2px(105);
+    },
+
     // 设置内容区域高度
     setBodyBottom: function setBodyBottom() {
       return "bottom: ".concat(this.KeyboardHeight + uni.upx2px(105), "px;top: ").concat(this.navBarHeight, "px;");
@@ -360,12 +430,24 @@ __webpack_require__.r(__webpack_exports__);
       return user_id === id;
     } },
 
-  watch: {},
-  created: function created() {},
+  watch: {
+    mode: {
+      handler: function handler(newVal, oldVal) {
+        console.log("new val: ", newVal);
+        newVal !== 'action' && this.$refs.extendMenuRef.hide();
+        newVal !== 'text' && uni.hideKeyboard();
+      } } },
+
+
+  created: function created() {
+  },
   mounted: function mounted() {var _this2 = this;
     // 监听键盘高度的动态变化
     uni.onKeyboardHeightChange(function (res) {
-      _this2.KeyboardHeight = res.height;
+      if (_this2.mode !== 'action') {
+        // 不为操作拓展菜单模式的时候才动态赋值键盘高度
+        _this2.KeyboardHeight = res.height;
+      }
       if (res.height > 0) {
         _this2.$nextTick(function (_) {
           _this2.setPageToBottom();
@@ -378,9 +460,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
-    console.log(this.$refs.popupRef);
   },
   methods: {
+    // 点击页面
+    clickPage: function clickPage() {
+      console.log('click page...');
+      this.mode = '';
+    },
+
+    // 关闭底部拓展菜单
+    onClosePopup: function onClosePopup() {
+      this.KeyboardHeight = 0;
+    },
+
+    // 监听拓展菜单点击事件
+    handleExtendMenuClick: function handleExtendMenuClick(event) {
+      console.log('Click...', event);
+    },
+
+    // 底部拓展菜单展示
+    handleExtandMenuShow: function handleExtandMenuShow() {
+      this.mode = 'action', // 修改模式为操作拓展菜单的模式
+      // 显示拓展菜单
+      this.$refs.textareaRef.blur();
+      this.$refs.extendMenuRef.show();
+      // 收起键盘,此时键盘高度为0,但是不会马上就更新到模版中
+      uni.hideKeyboard();
+      this.KeyboardHeight = uni.upx2px(530);
+    },
+
     // 发送聊天信息
     send: function send(type) {var _this3 = this;
       var chatObj = {
