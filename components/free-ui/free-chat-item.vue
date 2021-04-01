@@ -16,9 +16,12 @@
 		<view v-else :key="index" class="flex position-relative mb-3" :class="isSelf?'align-start justify-end ':'align-start justify-start'">
 			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" />
 			<!-- 箭头图标 -->
-			<text class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
-			<div class="p-2 rounded" style="max-width: 500rpx;" :class="isSelf?'mr-3 bg-chat-item':'ml-3 bg-white'" @longpress="long">
-				<text class="font-md">{{item.data}}</text>
+			<text v-if="hasLabelClass" class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
+			<div class="p-2 rounded" style="max-width: 500rpx;" :class="labelClass" @longpress="long">
+				<!-- 文字内容 -->
+				<text v-if="item.type === 'text'" class="font-md">{{item.data}}</text>
+				<!-- 表情包 -->
+				<image v-else-if="item.type === 'emoticon'" :src="item.data" mode="widthFix" lazy-load style="width: 300rpx; height: 300rpx;"></image>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
@@ -52,6 +55,17 @@
 			return {}
 		},
 		computed: {
+			// 是否需要气泡样式
+			hasLabelClass() {
+				// 短路运算，如果前者为true则返回前者的表达式，如果前者为false，则返回后者的表达式,只有 text 和 audio 类型才需要气泡
+				return this.item.type === 'text' || this.item.type === 'audio'
+			},
+			
+			// 气泡样式
+			labelClass() {
+				let label = this.hasLabelClass ? 'mr-3 bg-chat-item': 'mr-3'
+				return this.isSelf ? label : 'bg-white ml-3'
+			},
 			// 利用计算属性减少模版的判断代码，例如v-if
 			isSelf() {
 				let id = 1; // 假设用户本身的id为1
@@ -85,8 +99,7 @@
 			}
 		},
 		created() {},
-		mounted() {
-		},
+		mounted() {},
 		methods: {
 			long(e) {
 				let x = 0

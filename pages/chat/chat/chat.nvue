@@ -54,13 +54,13 @@
 		<!-- 扩展菜单 -->
 		<free-popup ref="extendMenuRef" :mask="false" bottom transformOrigin="center bottom" @closePopup="onClosePopup">
 			<view style="height: 530rpx" class="border-top border-light-secondary bg-light">
-				<swiper :indicator-dots="true" style="height: 510rpx;">
+				<swiper :indicator-dots="emoticonOrActionList.length > 1" style="height: 510rpx;">
 					<swiper-item v-for="(item, index) in emoticonOrActionList" :key="index" class="row">
 						<view 
 						class="flex flex-column col-3 justify-center align-center" 
 						style="height: 255rpx;"
 						v-for="(item2, index2) in item" 
-						@click="handleExtendMenuClick(item2.event)"
+						@click="handleActionClick(item2)"
 						:key="index2"
 						>
 							<image :src="item2.icon" mode="widthFix" style="width: 100rpx;height: 100rpx;"></image>
@@ -232,7 +232,6 @@ export default {
   computed: {
 		// 获取拓展菜单操作列表或者表情列表
 		emoticonOrActionList() {
-			console.log("result: ", (this.mode === 'emoticon' || this.mode === 'action') ? this[this.mode + 'List']: [])
 			return (this.mode === 'emoticon' || this.mode === 'action') ? this[this.mode + 'List']: []
 		},
 		
@@ -322,14 +321,13 @@ export default {
 				arr[i] = []
 				for (var j = 0; j < 8; j++) {
 					var no = start + j
-					console.log(no)
 					if ((no+1) > total) {
-						continue;
+						break;
 					}
 					arr[i].push({
 						name: '表情' + no,
 						icon: `/static/images/emoticon/5497/${no}.gif`,
-						event: ""
+						event: 'sendEmoticon'
 					})
 				}
 			}
@@ -348,8 +346,14 @@ export default {
 		},
 		
 		// 监听拓展菜单点击事件
-		handleExtendMenuClick(event) {
-			console.log('Click...', event)
+		handleActionClick(e) {
+			switch(e.event) {
+				case 'uploadImage':	// 上传图片
+					console.log("上传图片");
+					break;
+				case 'sendEmoticon':	// 发送表情包
+				this.send('emoticon', e.icon)
+			}
 		},
 		
 		// 底部拓展菜单展示
@@ -365,21 +369,24 @@ export default {
 		},
 		
 		// 发送聊天信息
-		send(type) {
+		send(type, data = '') {
 			let chatObj = {
 				avatar: "/static/images/demo/demo5.jpg",
 				user_id: 1,
 				nickname: "伤心的瘦子",
-				type: "",	// image、audio、video
-				data: this.text,
+				type: type,	// image、audio、video
+				data: "",
 				create_time: Date.now(),
 				isRemove: false
 			}
 			switch(type) {
 				case 'text':
-					chatObj.type = type
-					this.text = ""
-					break
+					chatObj.data = this.text
+					this.text = ''
+					break;
+				default:
+					chatObj.data = data
+					break;
 			}
 			this.list.push(chatObj)
 			this.$nextTick(_=>{
