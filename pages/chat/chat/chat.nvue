@@ -16,7 +16,7 @@
 		<!-- 针对nvue环境下的蒙版层 -->
 		<!-- #ifdef APP-NVUE -->
 			<div 
-				v-if="mode === 'action'" 
+				v-if="mode === 'action' || mode === 'emoticon'" 
 				class="position-fixed top-0 left-0 right-0 bottom-0" 
 				@click="clickPage"
 				:style="'bottom:'+maskBottom+'px'"
@@ -25,12 +25,16 @@
 
 		<!-- 底部输入框部分 -->
 		<view class="position-fixed left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;" :style="'bottom:'+KeyboardHeight+'px;'">
+			<!-- 语音输入 -->
 			<free-icon-button slot="right" :iconValue="'\ue606'" />
+			<!-- 输入框 -->
 			<view class="flex-1">
 				<textarea ref="textareaRef" :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" @focus="mode='text'"/>
-				</view>
-			<free-icon-button slot="right" :iconValue="'\ue605'" />
-			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" @click="handleExtandMenuShow" />
+			</view>
+			<!-- 表情包 -->
+			<free-icon-button slot="right" :iconValue="'\ue605'" @click="openActionOrEmoticon('emoticon')" />
+			<!-- 拓展菜单按钮 -->
+			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" @click="openActionOrEmoticon('action')" />
 			
 			<!-- 发送文字按钮 -->
 			<view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
@@ -51,7 +55,7 @@
 		<free-popup ref="extendMenuRef" :mask="false" bottom transformOrigin="center bottom" @closePopup="onClosePopup">
 			<view style="height: 530rpx" class="border-top border-light-secondary bg-light">
 				<swiper :indicator-dots="true" style="height: 510rpx;">
-					<swiper-item v-for="(item, index) in extendMenuList" :key="index" class="row">
+					<swiper-item v-for="(item, index) in emoticonOrActionList" :key="index" class="row">
 						<view 
 						class="flex flex-column col-3 justify-center align-center" 
 						style="height: 255rpx;"
@@ -96,7 +100,7 @@ export default {
 			propIndex: -1,		// 当前长按的聊天信息索引
 			statusBarHeight: 0,	// 系统状态栏高度
 			navBarHeight: 0,		// 导航栏高度
-			extendMenuList: [
+			actionList: [
 					[{
 						name:"相册",
 						icon:"/static/images/extends/pic.png",
@@ -221,10 +225,17 @@ export default {
 					create_time: 1616444941,
 					isRemove: false
 				}
-			]
+			],
+			emoticonList: []
 		}
   },
   computed: {
+		// 获取拓展菜单操作列表或者表情列表
+		emoticonOrActionList() {
+			console.log("result: ", (this.mode === 'emoticon' || this.mode === 'action') ? this[this.mode + 'List']: [])
+			return (this.mode === 'emoticon' || this.mode === 'action') ? this[this.mode + 'List']: []
+		},
+		
 		// 计算蒙版距离底部的位置
 		maskBottom() {
 			return this.KeyboardHeight + uni.upx2px(105)
@@ -267,19 +278,20 @@ export default {
   watch: {
 		mode: {
 			handler(newVal, oldVal) {
-				console.log("new val: ", newVal)
-				newVal!=='action' && this.$refs.extendMenuRef.hide()
+				// mode模式不为操作菜单并且不为表情包的时候关闭拓展菜单弹出层
+				(newVal !== 'action' && newVal !== 'emoticon') && this.$refs.extendMenuRef.hide()
 				newVal !== 'text' && uni.hideKeyboard()
 			}
 		}
 	},
   created () {
+		this.__init()
 	},
 	mounted() {
 		// 监听键盘高度的动态变化
 		uni.onKeyboardHeightChange(res => {
-			if(this.mode!=='action') {
-				// 不为操作拓展菜单模式的时候才动态赋值键盘高度
+			if(this.mode!=='action' && this.mode !== 'emoticon') {
+				// 不为操作拓展菜单模式并且不为表情包模式的时候才动态赋值键盘高度
 				this.KeyboardHeight = res.height
 			}
 			if(res.height>0) {
@@ -296,6 +308,32 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 初始化表情包数据列表函数
+		__init() {
+			// 一共有20张表情包，因此total = 20
+			var total = 20
+			// 每个swiper-item里面有8张表情包，page为计算出来的总页数,此处为3
+			var page = Math.ceil(total / 8)
+			var arr = []
+			for (var i = 0; i < page; i++) {
+				var start = i * 8
+				arr[i] = []
+				for (var j = 0; j < 8; j++) {
+					var no = start + j
+					console.log(no)
+					if ((no+1) > total) {
+						continue;
+					}
+					arr[i].push({
+						name: '表情' + no,
+						icon: `/static/images/emoticon/5497/${no}.gif`,
+						event: ""
+					})
+				}
+			}
+			this.emoticonList = arr
+		},
+		
 		// 点击页面
 		clickPage() {
 			console.log('click page...')
@@ -313,8 +351,9 @@ export default {
 		},
 		
 		// 底部拓展菜单展示
-		handleExtandMenuShow() {
-			this.mode = 'action',  // 修改模式为操作拓展菜单的模式
+		openActionOrEmoticon(mode='action') {
+			console.log("mode: ", mode)
+			this.mode = mode,  // 修改模式为操作拓展菜单的模式
 			// 显示拓展菜单
 			this.$refs.textareaRef.blur()
 			this.$refs.extendMenuRef.show()
