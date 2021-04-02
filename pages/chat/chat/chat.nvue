@@ -349,7 +349,15 @@ export default {
 		handleActionClick(e) {
 			switch(e.event) {
 				case 'uploadImage':	// 上传图片
-					console.log("上传图片");
+					uni.chooseImage({		// 选择相册
+						count: 9,
+						success: res => {
+							console.log("uploadImage res: ", res)
+							res.tempFilePaths.forEach(item=>{
+								this.send('image', item)
+							})
+						}
+					})
 					break;
 				case 'sendEmoticon':	// 发送表情包
 				this.send('emoticon', e.icon)
@@ -374,7 +382,7 @@ export default {
 				avatar: "/static/images/demo/demo5.jpg",
 				user_id: 1,
 				nickname: "伤心的瘦子",
-				type: type,	// image、audio、video
+				type: type,	// image、audio、video、emoticon
 				data: "",
 				create_time: Date.now(),
 				isRemove: false

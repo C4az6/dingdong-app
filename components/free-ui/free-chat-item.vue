@@ -21,7 +21,7 @@
 				<!-- 文字内容 -->
 				<text v-if="item.type === 'text'" class="font-md">{{item.data}}</text>
 				<!-- 表情包 -->
-				<image v-else-if="item.type === 'emoticon'" :src="item.data" mode="widthFix" lazy-load style="width: 300rpx; height: 300rpx;"></image>
+				<image v-else-if="item.type === 'emoticon' || item.type === 'image'" :src="item.data" mode="widthFix" lazy-load style="width: 300rpx; height: 300rpx;"></image>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
@@ -63,7 +63,7 @@
 			
 			// 气泡样式
 			labelClass() {
-				let label = this.hasLabelClass ? 'mr-3 bg-chat-item': 'mr-3'
+				let label = this.hasLabelClass ? 'mr-3 bg-chat-item': 'mr-3 border'
 				return this.isSelf ? label : 'bg-white ml-3'
 			},
 			// 利用计算属性减少模版的判断代码，例如v-if
