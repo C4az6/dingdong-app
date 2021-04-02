@@ -21,7 +21,14 @@
 				<!-- 文字内容 -->
 				<text v-if="item.type === 'text'" class="font-md">{{item.data}}</text>
 				<!-- 表情包 -->
-				<image v-else-if="item.type === 'emoticon' || item.type === 'image'" :src="item.data" mode="widthFix" lazy-load style="width: 300rpx; height: 300rpx;"></image>
+				<image 
+				v-else-if="item.type === 'emoticon' || item.type === 'image'" 
+				class="border-radiu" 
+				:src="item.data" mode="widthFix" 
+				lazy-load 
+				style="width: 300rpx; height: 300rpx;"
+				@click="$emit('previewImage', item)"
+				></image>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>

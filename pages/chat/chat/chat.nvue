@@ -9,7 +9,14 @@
 		<scroll-view scroll-y :show-scrollbar="false" class="position-fixed left-0 right-0 px-3" :style="setBodyBottom" @click="clickPage">
 			<!-- 聊天信息列表组件 -->
 			<template v-for="(item, index) in list" >
-				<free-chat-item ref="chatItemRef" :item="item" :index="index" :pretime="index>0?list[index-1].create_time:0" @long="handleLongPress"></free-chat-item>
+				<free-chat-item 
+					ref="chatItemRef" 
+					:item="item" 
+					:index="index" 
+					:pretime="index>0?list[index-1].create_time:0" 
+					@long="handleLongPress"
+					@previewImage="handlePreviewImage"
+				></free-chat-item>
 			</template>
 		</scroll-view>
 		
@@ -230,6 +237,17 @@ export default {
 		}
   },
   computed: {
+		// 计算预览图片的列表
+		previewImageList() {
+			let arrList = []
+			this.list.forEach(item => {
+				if(item.type === 'emoticon' || item.type === 'image') {
+					arrList.push(item.data)
+				}
+			})
+			return arrList
+		},
+		
 		// 获取拓展菜单操作列表或者表情列表
 		emoticonOrActionList() {
 			return (this.mode === 'emoticon' || this.mode === 'action') ? this[this.mode + 'List']: []
@@ -309,6 +327,15 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 监听图片预览
+		handlePreviewImage(e) {
+			uni.previewImage({
+				current:e.data,
+				urls: this.previewImageList,
+				indicator: 'default'
+			})
+		},
+		
 		// 初始化表情包数据列表函数
 		__init() {
 			// 一共有20张表情包，因此total = 20
