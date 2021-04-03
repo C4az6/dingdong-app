@@ -143,6 +143,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 62));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 77));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   name: 'FreeChatItem',
@@ -168,6 +179,17 @@ var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/tim
     return {};
   },
   computed: {
+    // 是否需要气泡样式
+    hasLabelClass: function hasLabelClass() {
+      // 短路运算，如果前者为true则返回前者的表达式，如果前者为false，则返回后者的表达式,只有 text 和 audio 类型才需要气泡
+      return this.item.type === 'text' || this.item.type === 'audio';
+    },
+
+    // 气泡样式
+    labelClass: function labelClass() {
+      var label = this.hasLabelClass ? 'mr-3 bg-chat-item' : 'mr-3 border';
+      return this.isSelf ? label : 'bg-white ml-3';
+    },
     // 利用计算属性减少模版的判断代码，例如v-if
     isSelf: function isSelf() {
       var id = 1; // 假设用户本身的id为1
@@ -201,9 +223,12 @@ var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/tim
 
 
   created: function created() {},
-  mounted: function mounted() {
-  },
+  mounted: function mounted() {},
   methods: {
+    // 聊天信息的图片加载完成
+    imageLoaded: function imageLoaded(e) {
+      console.log("image loaded: ", e);
+    },
     long: function long(e) {
       var x = 0;
       var y = 0;

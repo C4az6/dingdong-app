@@ -22,12 +22,13 @@
 				<text v-if="item.type === 'text'" class="font-md">{{item.data}}</text>
 				<!-- 表情包 -->
 				<image 
-				v-else-if="item.type === 'emoticon' || item.type === 'image'" 
-				class="border-radiu" 
-				:src="item.data" mode="widthFix" 
-				lazy-load 
-				style="width: 300rpx; height: 300rpx;"
-				@click="$emit('previewImage', item)"
+					v-else-if="item.type === 'emoticon' || item.type === 'image'" 
+					class="rounded" 
+					:src="item.data" 
+					lazy-load 
+					:style="'width:' + w + 'px;height: ' + h + 'px;'"
+					@click="$emit('previewImage', item)"
+					@load="loadImage"
 				></image>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
@@ -59,7 +60,10 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				w: 100,
+				h: 100
+			}
 		},
 		computed: {
 			// 是否需要气泡样式
@@ -108,6 +112,42 @@
 		created() {},
 		mounted() {},
 		methods: {
+			// 聊天信息的图片加载完成
+			loadImage(e) { 
+				console.log("e: ", e)
+				let w = e.detail.width
+				let h = e.detail.height
+				// 最大宽度作为基准的写法
+				// let maxW = uni.upx2px(500)
+				// if( w <= maxW ) {
+				// 	// 使用原来的宽和高
+				// 	this.w = w
+				// 	this.h = h
+				// 	return;
+				// }
+				// /* 
+				// 	计算公式：
+				// 	w / h = maxW / maxH
+				// 	maxH = maxW * h/w
+				//  */
+				// this.w = maxW
+				// this.h = maxW * (h/w)
+				
+				// 最大高度作为基准的写法
+				let maxW = uni.upx2px(500)
+				let maxH = uni.upx2px(350)
+				if (h <= maxH) {
+					this.h = h
+					this.w = w <= maxW ? w : maxW
+					return
+				}
+				this.h = maxH
+				// 计算等比例的最大宽度，赋值给w2变量
+				let w2 = maxH * (w / h)
+				// 如果等比例最大宽度小于之前定义的最大宽度则使用w2，否则使用之前定义的最大宽度
+				this.w = w2 <= maxW ? w2 : maxW
+			},
+			// 长按事件
 			long(e) {
 				let x = 0
 				let y = 0

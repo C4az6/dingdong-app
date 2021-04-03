@@ -244,6 +244,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 {
   name: 'ChatIndex',
   components: {
@@ -262,7 +273,7 @@ __webpack_require__.r(__webpack_exports__);
       propIndex: -1, // 当前长按的聊天信息索引
       statusBarHeight: 0, // 系统状态栏高度
       navBarHeight: 0, // 导航栏高度
-      extendMenuList: [
+      actionList: [
       [{
         name: "相册",
         icon: "/static/images/extends/pic.png",
@@ -385,12 +396,29 @@ __webpack_require__.r(__webpack_exports__);
         type: "text", // image、audio、video
         data: '做人就要坚持，做人不坚持不如做狗!',
         create_time: 1616444941,
-        isRemove: false }] };
+        isRemove: false }],
 
 
+      emoticonList: [] };
 
   },
   computed: {
+    // 计算预览图片的列表
+    previewImageList: function previewImageList() {
+      var arrList = [];
+      this.list.forEach(function (item) {
+        if (item.type === 'emoticon' || item.type === 'image') {
+          arrList.push(item.data);
+        }
+      });
+      return arrList;
+    },
+
+    // 获取拓展菜单操作列表或者表情列表
+    emoticonOrActionList: function emoticonOrActionList() {
+      return this.mode === 'emoticon' || this.mode === 'action' ? this[this.mode + 'List'] : [];
+    },
+
     // 计算蒙版距离底部的位置
     maskBottom: function maskBottom() {
       return this.KeyboardHeight + uni.upx2px(105);
@@ -433,19 +461,22 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     mode: {
       handler: function handler(newVal, oldVal) {
-        console.log("new val: ", newVal);
-        newVal !== 'action' && this.$refs.extendMenuRef.hide();
+        // mode模式不为操作菜单并且不为表情包的时候关闭拓展菜单弹出层
+        newVal !== 'action' && newVal !== 'emoticon' && this.$refs.extendMenuRef.hide();
         newVal !== 'text' && uni.hideKeyboard();
       } } },
 
 
   created: function created() {
+    this.__init();
   },
   mounted: function mounted() {var _this2 = this;
     // 监听键盘高度的动态变化
     uni.onKeyboardHeightChange(function (res) {
-      if (_this2.mode !== 'action') {
-        // 不为操作拓展菜单模式的时候才动态赋值键盘高度
+      console.log("current mode: ", _this2.mode, _this2.mode !== 'action' && _this2.mode !== 'emoticon');
+
+      if (_this2.mode !== 'action' && _this2.mode !== 'emoticon') {
+        // 不为操作拓展菜单模式并且不为表情包模式的时候才动态赋值键盘高度
         _this2.KeyboardHeight = res.height;
       }
       if (res.height > 0) {
@@ -462,6 +493,40 @@ __webpack_require__.r(__webpack_exports__);
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
   },
   methods: {
+    // 监听图片预览
+    handlePreviewImage: function handlePreviewImage(e) {
+      uni.previewImage({
+        current: e.data,
+        urls: this.previewImageList,
+        indicator: 'default' });
+
+    },
+
+    // 初始化表情包数据列表函数
+    __init: function __init() {
+      // 一共有20张表情包，因此total = 20
+      var total = 20;
+      // 每个swiper-item里面有8张表情包，page为计算出来的总页数,此处为3
+      var page = Math.ceil(total / 8);
+      var arr = [];
+      for (var i = 0; i < page; i++) {
+        var start = i * 8;
+        arr[i] = [];
+        for (var j = 0; j < 8; j++) {
+          var no = start + j;
+          if (no + 1 > total) {
+            break;
+          }
+          arr[i].push({
+            name: '表情' + no,
+            icon: "/static/images/emoticon/5497/".concat(no, ".gif"),
+            event: 'sendEmoticon' });
+
+        }
+      }
+      this.emoticonList = arr;
+    },
+
     // 点击页面
     clickPage: function clickPage() {
       console.log('click page...');
@@ -474,13 +539,28 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     // 监听拓展菜单点击事件
-    handleExtendMenuClick: function handleExtendMenuClick(event) {
-      console.log('Click...', event);
+    handleActionClick: function handleActionClick(e) {var _this3 = this;
+      switch (e.event) {
+        case 'uploadImage': // 上传图片
+          uni.chooseImage({ // 选择相册
+            count: 9,
+            success: function success(res) {
+              console.log("uploadImage res: ", res);
+              res.tempFilePaths.forEach(function (item) {
+                _this3.send('image', item);
+              });
+            } });
+
+          break;
+        case 'sendEmoticon': // 发送表情包
+          this.send('emoticon', e.icon);}
+
     },
 
     // 底部拓展菜单展示
-    handleExtandMenuShow: function handleExtandMenuShow() {
-      this.mode = 'action', // 修改模式为操作拓展菜单的模式
+    openActionOrEmoticon: function openActionOrEmoticon() {var mode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'action';
+      console.log("mode: ", mode);
+      this.mode = mode, // 修改模式为操作拓展菜单的模式
       // 显示拓展菜单
       this.$refs.textareaRef.blur();
       this.$refs.extendMenuRef.show();
@@ -490,25 +570,28 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     // 发送聊天信息
-    send: function send(type) {var _this3 = this;
+    send: function send(type) {var _this4 = this;var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       var chatObj = {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1,
         nickname: "伤心的瘦子",
-        type: "", // image、audio、video
-        data: this.text,
+        type: type, // image、audio、video、emoticon
+        data: "",
         create_time: Date.now(),
         isRemove: false };
 
       switch (type) {
         case 'text':
-          chatObj.type = type;
-          this.text = "";
+          chatObj.data = this.text;
+          this.text = '';
+          break;
+        default:
+          chatObj.data = data;
           break;}
 
       this.list.push(chatObj);
       this.$nextTick(function (_) {
-        _this3.setPageToBottom();
+        _this4.setPageToBottom();
       });
     },
 
