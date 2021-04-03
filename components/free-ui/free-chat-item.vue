@@ -25,10 +25,13 @@
 					v-else-if="item.type === 'emoticon' || item.type === 'image'" 
 					:src="item.data"
 					image-class="rounded"
-					max-height="350"
 					@click="$emit('previewImage', item)"
 				>
 				</FreeImage>
+				
+				<view v-else-if="item.type === 'audio'" class="flex align-center" @click="openAudio">
+					<text class="font">300'</text>
+				</view>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
@@ -61,7 +64,9 @@
 			}
 		},
 		data() {
-			return {}
+			return {
+				innerAudioContext: null
+			}
 		},
 		computed: {
 			// 是否需要气泡样式
@@ -109,7 +114,28 @@
 		},
 		created() {},
 		mounted() {},
+		destroyed() {
+			// 销毁当前的音频实例
+			this.innerAudioContext && this.innerAudioContext.destroy()
+		},
 		methods: {
+			// 播放音频函数
+			openAudio() {
+				if(!this.innerAudioContext) {
+					// 创建音频对象
+					this.innerAudioContext = uni.createInnerAudioContext();
+					// 设置音频播放地址
+					this.innerAudioContext.src = this.item.data;
+					// 播放音频
+					this.innerAudioContext.play()
+					console.log("audio src: ", this.innerAudioContext.src)
+				}else {
+					// 重新播放
+					this.innerAudioContext.stop()
+					this.innerAudioContext.play()
+				}
+			},
+			
 			// 长按事件
 			long(e) {
 				let x = 0

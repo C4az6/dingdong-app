@@ -227,8 +227,8 @@ export default {
 					avatar: "/static/images/demo/demo5.jpg",
 					user_id: 1,
 					nickname: "Alexander",
-					type: "text",	// image、audio、video
-					data: '做人就要坚持，做人不坚持不如做狗!',
+					type: "audio",	// image、audio、video
+					data: '/static/audio/01.mp3',
 					create_time: 1616444941,
 					isRemove: false
 				}
