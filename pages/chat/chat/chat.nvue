@@ -210,8 +210,8 @@ export default {
 					avatar: "/static/images/demo/demo5.jpg",
 					user_id: 1,
 					nickname: "Alexander",
-					type: "text",	// image、audio、video
-					data: '做人就要坚持，做人不坚持不如做狗!',
+					type: "audio",	// image、audio、video
+					data: '/static/audio/01.mp3',
 					create_time: 1616444341,
 					isRemove: false
 				},
@@ -219,8 +219,8 @@ export default {
 					avatar: "/static/images/demo/demo6.jpg",
 					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
-					type: "text",	// image、audio、video
-					data: '你还是放弃吧。',
+					type: "audio",	// image、audio、video
+					data: '/static/audio/02.mp3',
 					create_time: 1616444341,
 					isRemove: false
 				},
@@ -229,7 +229,7 @@ export default {
 					user_id: 1,
 					nickname: "Alexander",
 					type: "audio",	// image、audio、video
-					data: '/static/audio/01.mp3',
+					data: '/static/audio/03.mp3',
 					create_time: 1616444941,
 					isRemove: false
 				}
@@ -238,7 +238,9 @@ export default {
 		}
   },
   computed: {
-		...mapState(['hello']),
+		...mapState({
+			hello: state=>state.audio.hello
+		}),
 		// 计算预览图片的列表
 		previewImageList() {
 			let arrList = []
@@ -307,7 +309,6 @@ export default {
 		this.__init()
 	},
 	mounted() {
-		console.log(this.hello)
 		// 监听键盘高度的动态变化
 		uni.onKeyboardHeightChange(res => {
 			if(this.mode !== 'action' && this.mode !== 'emoticon') {

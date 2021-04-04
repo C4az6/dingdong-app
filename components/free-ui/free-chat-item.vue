@@ -28,7 +28,7 @@
 					@click="$emit('previewImage', item)"
 				>
 				</FreeImage>
-				
+				<!-- 语音部分 -->
 				<view v-else-if="item.type === 'audio'" class="flex align-center" @click="openAudio">
 					<text class="font">300'</text>
 				</view>
@@ -42,6 +42,7 @@
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
 	import FreeImage from '@/components/free-ui/free-image.vue'
 	import $T from "@/common/free-lib/time.js"
+	import {mapState, mapActions} from 'vuex'
 	export default {
 		name: 'FreeChatItem',
 		components: {
@@ -113,12 +114,18 @@
 			}
 		},
 		created() {},
-		mounted() {},
+		mounted() {
+			// 注册全局事件
+			this.$on(res => {
+				console.log(res)
+			})
+		},
 		destroyed() {
 			// 销毁当前的音频实例
 			this.innerAudioContext && this.innerAudioContext.destroy()
 		},
 		methods: {
+			...mapActions(['$on']),
 			// 播放音频函数
 			openAudio() {
 				if(!this.innerAudioContext) {

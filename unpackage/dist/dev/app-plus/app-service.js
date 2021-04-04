@@ -1182,7 +1182,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));\nvar _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 10));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}\n_vue.default.use(_vuex.default);var _default =\n\nnew _vuex.default.Store({\n  state: {\n    hello: 'hello' },\n\n  getters: {},\n  mutations: {},\n  actions: {} });exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvaW5kZXguanMiXSwibmFtZXMiOlsiVnVlIiwidXNlIiwiVnVleCIsIlN0b3JlIiwic3RhdGUiLCJoZWxsbyIsImdldHRlcnMiLCJtdXRhdGlvbnMiLCJhY3Rpb25zIl0sIm1hcHBpbmdzIjoidUZBQUE7QUFDQSx3RTtBQUNBQSxhQUFJQyxHQUFKLENBQVFDLGFBQVIsRTs7QUFFZSxJQUFJQSxjQUFLQyxLQUFULENBQWU7QUFDN0JDLE9BQUssRUFBRTtBQUNOQyxTQUFLLEVBQUUsT0FERCxFQURzQjs7QUFJN0JDLFNBQU8sRUFBRSxFQUpvQjtBQUs3QkMsV0FBUyxFQUFFLEVBTGtCO0FBTTdCQyxTQUFPLEVBQUUsRUFOb0IsRUFBZixDIiwiZmlsZSI6IjkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgVnVlIGZyb20gJ3Z1ZSdcclxuaW1wb3J0IFZ1ZXggZnJvbSAndnVleCdcclxuVnVlLnVzZShWdWV4KVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgbmV3IFZ1ZXguU3RvcmUoe1xyXG5cdHN0YXRlOiB7XHJcblx0XHRoZWxsbzogJ2hlbGxvJ1xyXG5cdH0sXHJcblx0Z2V0dGVyczoge30sXHJcblx0bXV0YXRpb25zOiB7fSxcclxuXHRhY3Rpb25zOiB7fVxyXG59KVxyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///9\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));\nvar _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 10));\n\nvar _audio = _interopRequireDefault(__webpack_require__(/*! @/store/modules/audio.js */ 11));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}_vue.default.use(_vuex.default);var _default =\n\nnew _vuex.default.Store({\n  modules: {\n    audio: _audio.default } });exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvaW5kZXguanMiXSwibmFtZXMiOlsiVnVlIiwidXNlIiwiVnVleCIsIlN0b3JlIiwibW9kdWxlcyIsImF1ZGlvIl0sIm1hcHBpbmdzIjoidUZBQUE7QUFDQTs7QUFFQSw2Riw2RkFEQUEsYUFBSUMsR0FBSixDQUFRQyxhQUFSLEU7O0FBR2UsSUFBSUEsY0FBS0MsS0FBVCxDQUFlO0FBQzdCQyxTQUFPLEVBQUU7QUFDUkMsU0FBSyxFQUFMQSxjQURRLEVBRG9CLEVBQWYsQyIsImZpbGUiOiI5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFZ1ZSBmcm9tICd2dWUnXHJcbmltcG9ydCBWdWV4IGZyb20gJ3Z1ZXgnXHJcblZ1ZS51c2UoVnVleClcclxuaW1wb3J0IGF1ZGlvIGZyb20gJ0Avc3RvcmUvbW9kdWxlcy9hdWRpby5qcydcclxuXHJcbmV4cG9ydCBkZWZhdWx0IG5ldyBWdWV4LlN0b3JlKHtcclxuXHRtb2R1bGVzOiB7XHJcblx0XHRhdWRpb1xyXG5cdH1cclxufSlcclxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///9\n");
 
 /***/ }),
 /* 10 */
@@ -2284,6 +2284,107 @@ var index = {
 
 
 index;exports.default = _default;
+
+/***/ }),
+/* 11 */
+/*!******************************************************************!*\
+  !*** C:/Users/replaceroot/Desktop/仿微信app/store/modules/audio.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default = {\n  state: {\n    events: [] },\n\n  // 同步操作写在这里\n  mutations: {\n    // 注册全局事件\n    regEvent: function regEvent(state, event) {\n      state.events.push(event);\n    } },\n\n  // 异步操作写在这里\n  actions: {\n    // 分发注册全局事件\n    $on: function $on(_ref) {var commit = _ref.commit,event = _ref.event;\n      __f__(\"log\", \"receive event: \", event, \" at store/modules/audio.js:16\");\n      commit('regEvent');\n    } } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 12)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvbW9kdWxlcy9hdWRpby5qcyJdLCJuYW1lcyI6WyJzdGF0ZSIsImV2ZW50cyIsIm11dGF0aW9ucyIsInJlZ0V2ZW50IiwiZXZlbnQiLCJwdXNoIiwiYWN0aW9ucyIsIiRvbiIsImNvbW1pdCJdLCJtYXBwaW5ncyI6Im1KQUFlO0FBQ2RBLE9BQUssRUFBRTtBQUNOQyxVQUFNLEVBQUUsRUFERixFQURPOztBQUlkO0FBQ0FDLFdBQVMsRUFBRTtBQUNWO0FBQ0FDLFlBRlUsb0JBRURILEtBRkMsRUFFTUksS0FGTixFQUVhO0FBQ3RCSixXQUFLLENBQUNDLE1BQU4sQ0FBYUksSUFBYixDQUFrQkQsS0FBbEI7QUFDQSxLQUpTLEVBTEc7O0FBV2Q7QUFDQUUsU0FBTyxFQUFFO0FBQ1I7QUFDQUMsT0FGUSxxQkFFYSxLQUFoQkMsTUFBZ0IsUUFBaEJBLE1BQWdCLENBQVJKLEtBQVEsUUFBUkEsS0FBUTtBQUNwQixtQkFBWSxpQkFBWixFQUErQkEsS0FBL0I7QUFDQUksWUFBTSxDQUFDLFVBQUQsQ0FBTjtBQUNBLEtBTE8sRUFaSyxFIiwiZmlsZSI6IjExLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQge1xyXG5cdHN0YXRlOiB7XHJcblx0XHRldmVudHM6IFtdXHJcblx0fSxcclxuXHQvLyDlkIzmraXmk43kvZzlhpnlnKjov5nph4xcclxuXHRtdXRhdGlvbnM6IHtcclxuXHRcdC8vIOazqOWGjOWFqOWxgOS6i+S7tlxyXG5cdFx0cmVnRXZlbnQoc3RhdGUsIGV2ZW50KSB7XHJcblx0XHRcdHN0YXRlLmV2ZW50cy5wdXNoKGV2ZW50KVxyXG5cdFx0fVxyXG5cdH0sXHJcblx0Ly8g5byC5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0YWN0aW9uczoge1xyXG5cdFx0Ly8g5YiG5Y+R5rOo5YaM5YWo5bGA5LqL5Lu2XHJcblx0XHQkb24oe2NvbW1pdCwgZXZlbnR9KSB7XHJcblx0XHRcdGNvbnNvbGUubG9nKFwicmVjZWl2ZSBldmVudDogXCIsIGV2ZW50KVxyXG5cdFx0XHRjb21taXQoJ3JlZ0V2ZW50JylcclxuXHRcdH1cclxuXHR9XHJcbn0iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///11\n");
+
+/***/ }),
+/* 12 */
+/*!*********************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.log = log;exports.default = formatLog;function typof(v) {
+  var s = Object.prototype.toString.call(v);
+  return s.substring(8, s.length - 1);
+}
+
+function isDebugMode() {
+  /* eslint-disable no-undef */
+  return typeof __channelId__ === 'string' && __channelId__;
+}
+
+function jsonStringifyReplacer(k, p) {
+  switch (typof(p)) {
+    case 'Function':
+      return 'function() { [native code] }';
+    default:
+      return p;}
+
+}
+
+function log(type) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+  console[type].apply(console, args);
+}
+
+function formatLog() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  var type = args.shift();
+  if (isDebugMode()) {
+    args.push(args.pop().replace('at ', 'uni-app:///'));
+    return console[type].apply(console, args);
+  }
+
+  var msgs = args.map(function (v) {
+    var type = Object.prototype.toString.call(v).toLowerCase();
+
+    if (type === '[object object]' || type === '[object array]') {
+      try {
+        v = '---BEGIN:JSON---' + JSON.stringify(v, jsonStringifyReplacer) + '---END:JSON---';
+      } catch (e) {
+        v = type;
+      }
+    } else {
+      if (v === null) {
+        v = '---NULL---';
+      } else if (v === undefined) {
+        v = '---UNDEFINED---';
+      } else {
+        var vType = typof(v).toUpperCase();
+
+        if (vType === 'NUMBER' || vType === 'BOOLEAN') {
+          v = '---BEGIN:' + vType + '---' + v + '---END:' + vType + '---';
+        } else {
+          v = String(v);
+        }
+      }
+    }
+
+    return v;
+  });
+  var msg = '';
+
+  if (msgs.length > 1) {
+    var lastMsg = msgs.pop();
+    msg = msgs.join('---COMMA---');
+
+    if (lastMsg.indexOf(' at ') === 0) {
+      msg += lastMsg;
+    } else {
+      msg += '---COMMA---' + lastMsg;
+    }
+  } else {
+    msg = msgs[0];
+  }
+
+  console[type](msg);
+}
 
 /***/ })
 /******/ ]);
