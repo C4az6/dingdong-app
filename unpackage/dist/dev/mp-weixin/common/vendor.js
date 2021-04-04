@@ -3077,21 +3077,32 @@ var index = {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
   state: {
-    events: [] },
-
+    events: [] // 存放的都是Function的类型,直接加()就能调用了
+  },
   // 同步操作写在这里
   mutations: {
     // 注册全局事件
     regEvent: function regEvent(state, event) {
+      console.log('注册事件: ', state.events.length);
       state.events.push(event);
+    },
+    // 执行全局事件
+    doEvent: function doEvent(state, params) {
+      state.events.forEach(function (e) {
+        e(params); // 这里传递的参数会被组件中的$on(res=>{})的res接收
+      });
     } },
 
   // 异步操作写在这里
   actions: {
     // 分发注册全局事件
-    $on: function $on(_ref) {var commit = _ref.commit,event = _ref.event;
+    $on: function $on(_ref, event) {var commit = _ref.commit;
       console.log("receive event: ", event);
-      commit('regEvent');
+      commit('regEvent', event);
+    },
+    // 分发执行全局函数
+    $emit: function $emit(_ref2, params) {var commit = _ref2.commit;
+      commit('doEvent', params);
     } } };exports.default = _default;
 
 /***/ }),

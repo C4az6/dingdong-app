@@ -116,18 +116,22 @@
 		created() {},
 		mounted() {
 			// 注册全局事件
-			this.$on(res => {
-				console.log(res)
-			})
+			if(this.item.type === 'audio') {
+				this.$on(res => {
+					console.log(res)
+				})
+			}
 		},
 		destroyed() {
 			// 销毁当前的音频实例
 			this.innerAudioContext && this.innerAudioContext.destroy()
 		},
 		methods: {
-			...mapActions(['$on']),
+			...mapActions(['$on', '$emit']),
 			// 播放音频函数
 			openAudio() {
+				console.log("开始播放!");
+				this.$emit(this.index)
 				if(!this.innerAudioContext) {
 					// 创建音频对象
 					this.innerAudioContext = uni.createInnerAudioContext();

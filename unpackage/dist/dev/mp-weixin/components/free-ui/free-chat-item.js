@@ -261,18 +261,22 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
   created: function created() {},
   mounted: function mounted() {
     // 注册全局事件
-    this.$on(function (res) {
-      console.log(res);
-    });
+    if (this.item.type === 'audio') {
+      this.$on(function (res) {
+        console.log(res);
+      });
+    }
   },
   destroyed: function destroyed() {
     // 销毁当前的音频实例
     this.innerAudioContext && this.innerAudioContext.destroy();
   },
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapActions)(['$on'])), {}, {
+  (0, _vuex.mapActions)(['$on', '$emit'])), {}, {
     // 播放音频函数
     openAudio: function openAudio() {
+      console.log("开始播放!");
+      this.$emit(this.index);
       if (!this.innerAudioContext) {
         // 创建音频对象
         this.innerAudioContext = uni.createInnerAudioContext();
