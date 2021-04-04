@@ -55,11 +55,15 @@ export default {
   data () {
     return {}
   },
-  computed: {},
+	computed:{
+	},
   watch: {},
   created () {},
   mounted () {},
-  methods: {}
+	onLoad() {
+	},
+  methods: {
+	}
 }
 </script>
 

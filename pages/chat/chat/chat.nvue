@@ -89,6 +89,7 @@ import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
 import FreePopup from "@/components/free-ui/free-popup.vue"
+import {mapState} from 'vuex'
 export default {
   name: 'ChatIndex',
   components: {
@@ -237,6 +238,7 @@ export default {
 		}
   },
   computed: {
+		...mapState(['hello']),
 		// 计算预览图片的列表
 		previewImageList() {
 			let arrList = []
@@ -305,6 +307,7 @@ export default {
 		this.__init()
 	},
 	mounted() {
+		console.log(this.hello)
 		// 监听键盘高度的动态变化
 		uni.onKeyboardHeightChange(res => {
 			if(this.mode !== 'action' && this.mode !== 'emoticon') {
