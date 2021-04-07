@@ -3083,6 +3083,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   mutations: {
     // 注册全局事件
     regEvent: function regEvent(state, event) {
+      console.log('注册事件: ', state.events.length);
       state.events.push(event);
     },
     // 执行全局事件
@@ -3090,29 +3091,18 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       state.events.forEach(function (e) {
         e(params); // 这里传递的参数会被组件中的$on(res=>{})的res接收
       });
-    },
-    //注销事件
-    removeEvent: function removeEvent(state, event) {
-      var index = state.events.findIndex(function (item) {
-        return item === event;
-      });
-      index !== -1 && state.events.splice(index, 1);
     } },
 
   // 异步操作写在这里
   actions: {
     // 分发注册全局事件
     $on: function $on(_ref, event) {var commit = _ref.commit;
+      console.log("receive event: ", event);
       commit('regEvent', event);
     },
     // 分发执行全局函数
     $emit: function $emit(_ref2, params) {var commit = _ref2.commit;
       commit('doEvent', params);
-    },
-    // 分发注销全局事件
-    $off: function $off(_ref3, event) {var commit = _ref3.commit;
-      console.log("注销全局事件: ", event);
-      commit('removeEvent', event);
     } } };exports.default = _default;
 
 /***/ }),

@@ -2294,7 +2294,97 @@ index;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default = {\n  state: {\n    events: [] // 存放的都是Function的类型,直接加()就能调用了\n  },\n  // 同步操作写在这里\n  mutations: {\n    // 注册全局事件\n    regEvent: function regEvent(state, event) {\n      state.events.push(event);\n    },\n    // 执行全局事件\n    doEvent: function doEvent(state, params) {\n      state.events.forEach(function (e) {\n        e(params); // 这里传递的参数会被组件中的$on(res=>{})的res接收\n      });\n    } },\n\n  // 异步操作写在这里\n  actions: {\n    // 分发注册全局事件\n    $on: function $on(_ref, event) {var commit = _ref.commit;\n      commit('regEvent', event);\n    },\n    // 分发执行全局函数\n    $emit: function $emit(_ref2, params) {var commit = _ref2.commit;\n      commit('doEvent', params);\n    } } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvbW9kdWxlcy9hdWRpby5qcyJdLCJuYW1lcyI6WyJzdGF0ZSIsImV2ZW50cyIsIm11dGF0aW9ucyIsInJlZ0V2ZW50IiwiZXZlbnQiLCJwdXNoIiwiZG9FdmVudCIsInBhcmFtcyIsImZvckVhY2giLCJlIiwiYWN0aW9ucyIsIiRvbiIsImNvbW1pdCIsIiRlbWl0Il0sIm1hcHBpbmdzIjoic0dBQWU7QUFDZEEsT0FBSyxFQUFFO0FBQ05DLFVBQU0sRUFBRSxFQURGLENBQ007QUFETixHQURPO0FBSWQ7QUFDQUMsV0FBUyxFQUFFO0FBQ1Y7QUFDQUMsWUFGVSxvQkFFREgsS0FGQyxFQUVNSSxLQUZOLEVBRWE7QUFDdEJKLFdBQUssQ0FBQ0MsTUFBTixDQUFhSSxJQUFiLENBQWtCRCxLQUFsQjtBQUNBLEtBSlM7QUFLVjtBQUNBRSxXQU5VLG1CQU1GTixLQU5FLEVBTUtPLE1BTkwsRUFNYTtBQUN0QlAsV0FBSyxDQUFDQyxNQUFOLENBQWFPLE9BQWIsQ0FBcUIsVUFBQUMsQ0FBQyxFQUFFO0FBQ3ZCQSxTQUFDLENBQUNGLE1BQUQsQ0FBRCxDQUR1QixDQUNaO0FBQ1gsT0FGRDtBQUdBLEtBVlMsRUFMRzs7QUFpQmQ7QUFDQUcsU0FBTyxFQUFFO0FBQ1I7QUFDQUMsT0FGUSxxQkFFTVAsS0FGTixFQUVhLEtBQWhCUSxNQUFnQixRQUFoQkEsTUFBZ0I7QUFDcEJBLFlBQU0sQ0FBQyxVQUFELEVBQWFSLEtBQWIsQ0FBTjtBQUNBLEtBSk87QUFLUjtBQUNBUyxTQU5RLHdCQU1RTixNQU5SLEVBTWdCLEtBQWpCSyxNQUFpQixTQUFqQkEsTUFBaUI7QUFDdkJBLFlBQU0sQ0FBQyxTQUFELEVBQVlMLE1BQVosQ0FBTjtBQUNBLEtBUk8sRUFsQkssRSIsImZpbGUiOiIxMS5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IHtcclxuXHRzdGF0ZToge1xyXG5cdFx0ZXZlbnRzOiBbXVx0XHQvLyDlrZjmlL7nmoTpg73mmK9GdW5jdGlvbueahOexu+Weiyznm7TmjqXliqAoKeWwseiDveiwg+eUqOS6hlxyXG5cdH0sXHJcblx0Ly8g5ZCM5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0bXV0YXRpb25zOiB7XHJcblx0XHQvLyDms6jlhozlhajlsYDkuovku7ZcclxuXHRcdHJlZ0V2ZW50KHN0YXRlLCBldmVudCkge1xyXG5cdFx0XHRzdGF0ZS5ldmVudHMucHVzaChldmVudClcclxuXHRcdH0sXHJcblx0XHQvLyDmiafooYzlhajlsYDkuovku7ZcclxuXHRcdGRvRXZlbnQoc3RhdGUsIHBhcmFtcykge1xyXG5cdFx0XHRzdGF0ZS5ldmVudHMuZm9yRWFjaChlPT57XHJcblx0XHRcdFx0ZShwYXJhbXMpXHRcdC8vIOi/memHjOS8oOmAkueahOWPguaVsOS8muiiq+e7hOS7tuS4reeahCRvbihyZXM9Pnt9KeeahHJlc+aOpeaUtlxyXG5cdFx0XHR9KVxyXG5cdFx0fVxyXG5cdH0sXHJcblx0Ly8g5byC5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0YWN0aW9uczoge1xyXG5cdFx0Ly8g5YiG5Y+R5rOo5YaM5YWo5bGA5LqL5Lu2XHJcblx0XHQkb24oe2NvbW1pdH0sIGV2ZW50KSB7XHJcblx0XHRcdGNvbW1pdCgncmVnRXZlbnQnLCBldmVudClcclxuXHRcdH0sXHJcblx0XHQvLyDliIblj5HmiafooYzlhajlsYDlh73mlbBcclxuXHRcdCRlbWl0KHtjb21taXR9LCBwYXJhbXMpIHtcclxuXHRcdFx0Y29tbWl0KCdkb0V2ZW50JywgcGFyYW1zKVxyXG5cdFx0fVxyXG5cdH1cclxufSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///11\n");
+eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default = {\n  state: {\n    events: [] // 存放的都是Function的类型,直接加()就能调用了\n  },\n  // 同步操作写在这里\n  mutations: {\n    // 注册全局事件\n    regEvent: function regEvent(state, event) {\n      __f__(\"log\", '注册事件: ', state.events.length, \" at store/modules/audio.js:9\");\n      state.events.push(event);\n    },\n    // 执行全局事件\n    doEvent: function doEvent(state, params) {\n      state.events.forEach(function (e) {\n        e(params); // 这里传递的参数会被组件中的$on(res=>{})的res接收\n      });\n    } },\n\n  // 异步操作写在这里\n  actions: {\n    // 分发注册全局事件\n    $on: function $on(_ref, event) {var commit = _ref.commit;\n      __f__(\"log\", \"receive event: \", event, \" at store/modules/audio.js:23\");\n      commit('regEvent', event);\n    },\n    // 分发执行全局函数\n    $emit: function $emit(_ref2, params) {var commit = _ref2.commit;\n      commit('doEvent', params);\n    } } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 12)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvbW9kdWxlcy9hdWRpby5qcyJdLCJuYW1lcyI6WyJzdGF0ZSIsImV2ZW50cyIsIm11dGF0aW9ucyIsInJlZ0V2ZW50IiwiZXZlbnQiLCJsZW5ndGgiLCJwdXNoIiwiZG9FdmVudCIsInBhcmFtcyIsImZvckVhY2giLCJlIiwiYWN0aW9ucyIsIiRvbiIsImNvbW1pdCIsIiRlbWl0Il0sIm1hcHBpbmdzIjoibUpBQWU7QUFDZEEsT0FBSyxFQUFFO0FBQ05DLFVBQU0sRUFBRSxFQURGLENBQ007QUFETixHQURPO0FBSWQ7QUFDQUMsV0FBUyxFQUFFO0FBQ1Y7QUFDQUMsWUFGVSxvQkFFREgsS0FGQyxFQUVNSSxLQUZOLEVBRWE7QUFDdEIsbUJBQVksUUFBWixFQUFzQkosS0FBSyxDQUFDQyxNQUFOLENBQWFJLE1BQW5DO0FBQ0FMLFdBQUssQ0FBQ0MsTUFBTixDQUFhSyxJQUFiLENBQWtCRixLQUFsQjtBQUNBLEtBTFM7QUFNVjtBQUNBRyxXQVBVLG1CQU9GUCxLQVBFLEVBT0tRLE1BUEwsRUFPYTtBQUN0QlIsV0FBSyxDQUFDQyxNQUFOLENBQWFRLE9BQWIsQ0FBcUIsVUFBQUMsQ0FBQyxFQUFFO0FBQ3ZCQSxTQUFDLENBQUNGLE1BQUQsQ0FBRCxDQUR1QixDQUNaO0FBQ1gsT0FGRDtBQUdBLEtBWFMsRUFMRzs7QUFrQmQ7QUFDQUcsU0FBTyxFQUFFO0FBQ1I7QUFDQUMsT0FGUSxxQkFFTVIsS0FGTixFQUVhLEtBQWhCUyxNQUFnQixRQUFoQkEsTUFBZ0I7QUFDcEIsbUJBQVksaUJBQVosRUFBK0JULEtBQS9CO0FBQ0FTLFlBQU0sQ0FBQyxVQUFELEVBQWFULEtBQWIsQ0FBTjtBQUNBLEtBTE87QUFNUjtBQUNBVSxTQVBRLHdCQU9RTixNQVBSLEVBT2dCLEtBQWpCSyxNQUFpQixTQUFqQkEsTUFBaUI7QUFDdkJBLFlBQU0sQ0FBQyxTQUFELEVBQVlMLE1BQVosQ0FBTjtBQUNBLEtBVE8sRUFuQkssRSIsImZpbGUiOiIxMS5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IHtcclxuXHRzdGF0ZToge1xyXG5cdFx0ZXZlbnRzOiBbXVx0XHQvLyDlrZjmlL7nmoTpg73mmK9GdW5jdGlvbueahOexu+Weiyznm7TmjqXliqAoKeWwseiDveiwg+eUqOS6hlxyXG5cdH0sXHJcblx0Ly8g5ZCM5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0bXV0YXRpb25zOiB7XHJcblx0XHQvLyDms6jlhozlhajlsYDkuovku7ZcclxuXHRcdHJlZ0V2ZW50KHN0YXRlLCBldmVudCkge1xyXG5cdFx0XHRjb25zb2xlLmxvZygn5rOo5YaM5LqL5Lu2OiAnLCBzdGF0ZS5ldmVudHMubGVuZ3RoKTtcclxuXHRcdFx0c3RhdGUuZXZlbnRzLnB1c2goZXZlbnQpXHJcblx0XHR9LFxyXG5cdFx0Ly8g5omn6KGM5YWo5bGA5LqL5Lu2XHJcblx0XHRkb0V2ZW50KHN0YXRlLCBwYXJhbXMpIHtcclxuXHRcdFx0c3RhdGUuZXZlbnRzLmZvckVhY2goZT0+e1xyXG5cdFx0XHRcdGUocGFyYW1zKVx0XHQvLyDov5nph4zkvKDpgJLnmoTlj4LmlbDkvJrooqvnu4Tku7bkuK3nmoQkb24ocmVzPT57fSnnmoRyZXPmjqXmlLZcclxuXHRcdFx0fSlcclxuXHRcdH1cclxuXHR9LFxyXG5cdC8vIOW8guatpeaTjeS9nOWGmeWcqOi/memHjFxyXG5cdGFjdGlvbnM6IHtcclxuXHRcdC8vIOWIhuWPkeazqOWGjOWFqOWxgOS6i+S7tlxyXG5cdFx0JG9uKHtjb21taXR9LCBldmVudCkge1xyXG5cdFx0XHRjb25zb2xlLmxvZyhcInJlY2VpdmUgZXZlbnQ6IFwiLCBldmVudClcclxuXHRcdFx0Y29tbWl0KCdyZWdFdmVudCcsIGV2ZW50KVxyXG5cdFx0fSxcclxuXHRcdC8vIOWIhuWPkeaJp+ihjOWFqOWxgOWHveaVsFxyXG5cdFx0JGVtaXQoe2NvbW1pdH0sIHBhcmFtcykge1xyXG5cdFx0XHRjb21taXQoJ2RvRXZlbnQnLCBwYXJhbXMpXHJcblx0XHR9XHJcblx0fVxyXG59Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///11\n");
+
+/***/ }),
+/* 12 */
+/*!*********************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.log = log;exports.default = formatLog;function typof(v) {
+  var s = Object.prototype.toString.call(v);
+  return s.substring(8, s.length - 1);
+}
+
+function isDebugMode() {
+  /* eslint-disable no-undef */
+  return typeof __channelId__ === 'string' && __channelId__;
+}
+
+function jsonStringifyReplacer(k, p) {
+  switch (typof(p)) {
+    case 'Function':
+      return 'function() { [native code] }';
+    default:
+      return p;}
+
+}
+
+function log(type) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+  console[type].apply(console, args);
+}
+
+function formatLog() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  var type = args.shift();
+  if (isDebugMode()) {
+    args.push(args.pop().replace('at ', 'uni-app:///'));
+    return console[type].apply(console, args);
+  }
+
+  var msgs = args.map(function (v) {
+    var type = Object.prototype.toString.call(v).toLowerCase();
+
+    if (type === '[object object]' || type === '[object array]') {
+      try {
+        v = '---BEGIN:JSON---' + JSON.stringify(v, jsonStringifyReplacer) + '---END:JSON---';
+      } catch (e) {
+        v = type;
+      }
+    } else {
+      if (v === null) {
+        v = '---NULL---';
+      } else if (v === undefined) {
+        v = '---UNDEFINED---';
+      } else {
+        var vType = typof(v).toUpperCase();
+
+        if (vType === 'NUMBER' || vType === 'BOOLEAN') {
+          v = '---BEGIN:' + vType + '---' + v + '---END:' + vType + '---';
+        } else {
+          v = String(v);
+        }
+      }
+    }
+
+    return v;
+  });
+  var msg = '';
+
+  if (msgs.length > 1) {
+    var lastMsg = msgs.pop();
+    msg = msgs.join('---COMMA---');
+
+    if (lastMsg.indexOf(' at ') === 0) {
+      msg += lastMsg;
+    } else {
+      msg += '---COMMA---' + lastMsg;
+    }
+  } else {
+    msg = msgs[0];
+  }
+
+  console[type](msg);
+}
 
 /***/ })
 /******/ ]);

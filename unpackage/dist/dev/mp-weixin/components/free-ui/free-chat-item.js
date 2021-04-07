@@ -263,7 +263,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     // 注册全局事件
     if (this.item.type === 'audio') {
       this.$on(function (res) {
-        console.log("$on 接收的数据: ", res);
+        console.log(res);
       });
     }
   },
