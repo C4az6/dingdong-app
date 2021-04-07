@@ -118,7 +118,7 @@
 			// 注册全局事件
 			if(this.item.type === 'audio') {
 				this.$on(res => {
-					console.log(res)
+					console.log("$on 接收的数据: ", res)
 				})
 			}
 		},
