@@ -187,7 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 65));
-var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeImage = function FreeImage() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-image */ "components/free-ui/free-image").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-image.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeImage = function FreeImage() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-image */ "components/free-ui/free-image").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-image.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   name: 'FreeChatItem',
   components: {
@@ -260,20 +260,15 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
   created: function created() {},
   mounted: function mounted() {
-    // 注册全局事件
-    if (this.item.type === 'audio') {
-      // 将要注册的事件传递给 Vuex
-      this.$audioOn(this.handlePlayAudio);
-    }
   },
   destroyed: function destroyed() {
     // 如果是音频类型，就注销事件
-    this.item.type === 'audio' && this.$audioOff(this.handlePlayAudio);
+    this.item.type === 'audio' && this.$off(this.handlePlayAudio);
     // 销毁当前的音频实例
     this.innerAudioContext && this.innerAudioContext.destroy();
   },
-  methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapActions)(['$audioOn', '$audioEmit', '$audioOff'])), {}, {
+  methods: {
+    // ...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
     // 监听播放音频全局事件
     handlePlayAudio: function handlePlayAudio(index) {
       console.log("this.index: ", this.index);
@@ -288,7 +283,8 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     // 播放音频函数
     openAudio: function openAudio() {
       // 通知其他音频停止播放，传递的参数是当前点击的音频的索引
-      this.$audioEmit(this.index);
+      // this.$audioEmit(this.index)
+      this.$emit('audioEmit', this.index);
       if (!this.innerAudioContext) {
         // 创建音频对象
         this.innerAudioContext = uni.createInnerAudioContext();
@@ -320,7 +316,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
 
       this.$emit('long', { x: x, y: y, index: this.index });
-    } }) };exports.default = _default;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

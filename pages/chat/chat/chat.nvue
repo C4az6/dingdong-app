@@ -16,6 +16,7 @@
 					:pretime="index>0?list[index-1].create_time:0" 
 					@long="handleLongPress"
 					@previewImage="handlePreviewImage"
+					@audioEmit="handleAudioEmit"
 				></free-chat-item>
 			</template>
 		</scroll-view>
@@ -325,6 +326,14 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		handleAudioEmit(index) {
+			console.log("index: ", index)
+			this.$refs.chatItemRef.forEach(item => {
+				if (item.item.type === 'audio' && item.index !== index && item.innerAudioContext) {
+					item.innerAudioContext.stop()
+				}
+			})
+		},
 		// 监听图片预览
 		handlePreviewImage(e) {
 			uni.previewImage({

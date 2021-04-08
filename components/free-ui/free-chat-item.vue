@@ -115,20 +115,15 @@
 		},
 		created() {},
 		mounted() {
-			// 注册全局事件
-			if(this.item.type === 'audio') {
-				// 将要注册的事件传递给 Vuex
-				this.$audioOn(this.handlePlayAudio)
-			}
 		},
 		destroyed() {
 			// 如果是音频类型，就注销事件
-			this.item.type === 'audio' && this.$audioOff(this.handlePlayAudio)
+			this.item.type === 'audio' && this.$off(this.handlePlayAudio)
 			// 销毁当前的音频实例
 			this.innerAudioContext && this.innerAudioContext.destroy()
 		},
 		methods: {
-			...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
+			// ...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
 			// 监听播放音频全局事件
 			handlePlayAudio(index) {
 				console.log("this.index: ", this.index)
@@ -143,7 +138,8 @@
 			// 播放音频函数
 			openAudio() {
 				// 通知其他音频停止播放，传递的参数是当前点击的音频的索引
-				this.$audioEmit(this.index)
+				// this.$audioEmit(this.index)
+				this.$emit('audioEmit', this.index)
 				if(!this.innerAudioContext) {
 					// 创建音频对象
 					this.innerAudioContext = uni.createInnerAudioContext();

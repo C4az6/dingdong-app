@@ -259,6 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   name: 'ChatIndex',
   components: {
@@ -495,6 +496,14 @@ __webpack_require__.r(__webpack_exports__);
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
   },
   methods: {
+    handleAudioEmit: function handleAudioEmit(index) {
+      console.log("index: ", index);
+      this.$refs.chatItemRef.forEach(function (item) {
+        if (item.item.type === 'audio' && item.index !== index && item.innerAudioContext) {
+          item.innerAudioContext.stop();
+        }
+      });
+    },
     // 监听图片预览
     handlePreviewImage: function handlePreviewImage(e) {
       uni.previewImage({
