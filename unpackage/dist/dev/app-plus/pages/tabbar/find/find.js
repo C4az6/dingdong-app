@@ -1227,7 +1227,8 @@ module.exports = {
   },
   "text-chat-item": {
     "color": "#6BEE68"
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -1309,9 +1310,15 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm.title
-                  ? _c("u-text", { staticClass: ["font-md", "ml-3"] }, [
-                      _vm._v(_vm._s(_vm.titleValue))
-                    ])
+                  ? _c(
+                      "u-text",
+                      {
+                        staticClass: ["font-md", "ml-3"],
+                        appendAsTree: true,
+                        attrs: { append: "tree" }
+                      },
+                      [_vm._v(_vm._s(_vm.titleValue))]
+                    )
                   : _vm._e()
               ],
               1
@@ -1371,13 +1378,21 @@ var render = function() {
                     {
                       staticClass: ["pl-3", "pr-2", "font-md", "text-white"],
                       class:
-                        item.name === "帮助与反馈" ? "iconfont2" : "iconfont"
+                        item.name === "帮助与反馈" ? "iconfont2" : "iconfont",
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
                     },
                     [_vm._v(_vm._s(item.icon))]
                   ),
-                  _c("u-text", { staticClass: ["font-md", "text-white"] }, [
-                    _vm._v(_vm._s(item.name))
-                  ])
+                  _c(
+                    "u-text",
+                    {
+                      staticClass: ["font-md", "text-white"],
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
+                    },
+                    [_vm._v(_vm._s(item.name))]
+                  )
                 ]
               )
             }),
@@ -1481,9 +1496,15 @@ var render = function() {
       }
     },
     [
-      _c("u-text", { staticClass: ["iconfont", "font-lg"] }, [
-        _vm._v(_vm._s(_vm.iconValue))
-      ])
+      _c(
+        "u-text",
+        {
+          staticClass: ["iconfont", "font-lg"],
+          appendAsTree: true,
+          attrs: { append: "tree" }
+        },
+        [_vm._v(_vm._s(_vm.iconValue))]
+      )
     ]
   )
 }
@@ -1650,7 +1671,8 @@ module.exports = {
   "free-animated": {
     "transform": "scale(0, 0)",
     "opacity": 0
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -1857,9 +1879,15 @@ var render = function() {
         },
         [
           _vm._t("default", [
-            _c("u-text", { staticClass: ["font-md", "text-dark"] }, [
-              _vm._v(_vm._s(_vm.title))
-            ])
+            _c(
+              "u-text",
+              {
+                staticClass: ["font-md", "text-dark"],
+                appendAsTree: true,
+                attrs: { append: "tree" }
+              },
+              [_vm._v(_vm._s(_vm.title))]
+            )
           ]),
           _vm.rightIconShow
             ? _c(
@@ -1870,7 +1898,9 @@ var render = function() {
                   _c(
                     "u-text",
                     {
-                      staticClass: ["iconfont", "font-lg", "text-light-muted"]
+                      staticClass: ["iconfont", "font-lg", "text-light-muted"],
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
                     },
                     [_vm._v("")]
                   )
@@ -2087,7 +2117,8 @@ var render = function() {
                     "font-lg",
                     "main-text-color"
                   ],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]
@@ -2114,7 +2145,9 @@ var render = function() {
                       height: "20rpx",
                       top: "0",
                       right: "0"
-                    }
+                    },
+                    appendAsTree: true,
+                    attrs: { append: "tree" }
                   })
                 ],
                 1
@@ -2130,7 +2163,8 @@ var render = function() {
                 "u-text",
                 {
                   staticClass: ["iconfont", "py-1", "font-lg"],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]
@@ -2145,7 +2179,8 @@ var render = function() {
                 "u-text",
                 {
                   staticClass: ["iconfont", "py-1", "font-lg"],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]
@@ -2161,7 +2196,8 @@ var render = function() {
                 "u-text",
                 {
                   staticClass: ["iconfont", "py-1", "font-lg"],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]
@@ -2176,7 +2212,8 @@ var render = function() {
                 "u-text",
                 {
                   staticClass: ["iconfont", "py-1", "font-lg"],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]
@@ -2192,7 +2229,8 @@ var render = function() {
                 "u-text",
                 {
                   staticClass: ["iconfont", "py-1", "font-lg"],
-                  attrs: { slot: "icon" },
+                  appendAsTree: true,
+                  attrs: { slot: "icon", append: "tree" },
                   slot: "icon"
                 },
                 [_vm._v("")]

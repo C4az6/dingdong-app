@@ -89,7 +89,6 @@ import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
 import FreePopup from "@/components/free-ui/free-popup.vue"
-import {mapState} from 'vuex'
 export default {
   name: 'ChatIndex',
   components: {
@@ -238,9 +237,6 @@ export default {
 		}
   },
   computed: {
-		...mapState({
-			hello: state=>state.audio.hello
-		}),
 		// 计算预览图片的列表
 		previewImageList() {
 			let arrList = []
@@ -365,7 +361,6 @@ export default {
 		
 		// 点击页面
 		clickPage() {
-			console.log('click page...')
 			this.mode = ''
 		},
 		

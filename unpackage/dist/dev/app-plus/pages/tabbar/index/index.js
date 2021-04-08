@@ -1227,7 +1227,8 @@ module.exports = {
   },
   "text-chat-item": {
     "color": "#6BEE68"
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -1309,9 +1310,15 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm.title
-                  ? _c("u-text", { staticClass: ["font-md", "ml-3"] }, [
-                      _vm._v(_vm._s(_vm.titleValue))
-                    ])
+                  ? _c(
+                      "u-text",
+                      {
+                        staticClass: ["font-md", "ml-3"],
+                        appendAsTree: true,
+                        attrs: { append: "tree" }
+                      },
+                      [_vm._v(_vm._s(_vm.titleValue))]
+                    )
                   : _vm._e()
               ],
               1
@@ -1371,13 +1378,21 @@ var render = function() {
                     {
                       staticClass: ["pl-3", "pr-2", "font-md", "text-white"],
                       class:
-                        item.name === "帮助与反馈" ? "iconfont2" : "iconfont"
+                        item.name === "帮助与反馈" ? "iconfont2" : "iconfont",
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
                     },
                     [_vm._v(_vm._s(item.icon))]
                   ),
-                  _c("u-text", { staticClass: ["font-md", "text-white"] }, [
-                    _vm._v(_vm._s(item.name))
-                  ])
+                  _c(
+                    "u-text",
+                    {
+                      staticClass: ["font-md", "text-white"],
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
+                    },
+                    [_vm._v(_vm._s(item.name))]
+                  )
                 ]
               )
             }),
@@ -1481,9 +1496,15 @@ var render = function() {
       }
     },
     [
-      _c("u-text", { staticClass: ["iconfont", "font-lg"] }, [
-        _vm._v(_vm._s(_vm.iconValue))
-      ])
+      _c(
+        "u-text",
+        {
+          staticClass: ["iconfont", "font-lg"],
+          appendAsTree: true,
+          attrs: { append: "tree" }
+        },
+        [_vm._v(_vm._s(_vm.iconValue))]
+      )
     ]
   )
 }
@@ -1650,7 +1671,8 @@ module.exports = {
   "free-animated": {
     "transform": "scale(0, 0)",
     "opacity": 0
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -1928,9 +1950,15 @@ var render = function() {
                       }
                     },
                     [
-                      _c("u-text", { staticClass: ["font-md", "p-3"] }, [
-                        _vm._v(_vm._s(item.name))
-                      ])
+                      _c(
+                        "u-text",
+                        {
+                          staticClass: ["font-md", "p-3"],
+                          appendAsTree: true,
+                          attrs: { append: "tree" }
+                        },
+                        [_vm._v(_vm._s(item.name))]
+                      )
                     ]
                   )
                 }),
@@ -2093,12 +2121,22 @@ var render = function() {
                       ]
                     },
                     [
-                      _c("u-text", { staticClass: ["font-md"] }, [
-                        _vm._v(_vm._s(_vm.item.nickname))
-                      ]),
                       _c(
                         "u-text",
-                        { staticClass: ["font-sm", "text-light-muted"] },
+                        {
+                          staticClass: ["font-md"],
+                          appendAsTree: true,
+                          attrs: { append: "tree" }
+                        },
+                        [_vm._v(_vm._s(_vm.item.nickname))]
+                      ),
+                      _c(
+                        "u-text",
+                        {
+                          staticClass: ["font-sm", "text-light-muted"],
+                          appendAsTree: true,
+                          attrs: { append: "tree" }
+                        },
                         [
                           _vm._v(
                             _vm._s(_vm._f("formatTime")(_vm.item.update_time))
@@ -2114,7 +2152,9 @@ var render = function() {
                         "font-sm",
                         "text-ellipsis",
                         "text-light-muted"
-                      ]
+                      ],
+                      appendAsTree: true,
+                      attrs: { append: "tree" }
                     },
                     [_vm._v(_vm._s(_vm.item.data))]
                   )
@@ -2227,7 +2267,9 @@ var render = function() {
         "free-badge"
       ],
       class: _vm.badgeClass,
-      style: _vm.badgeStyle
+      style: _vm.badgeStyle,
+      appendAsTree: true,
+      attrs: { append: "tree" }
     },
     [_vm._v(_vm._s(_vm.value))]
   )
@@ -2289,7 +2331,8 @@ module.exports = {
     "paddingRight": "14rpx",
     "paddingBottom": "6rpx",
     "paddingLeft": "14rpx"
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -2318,7 +2361,8 @@ __webpack_require__.r(__webpack_exports__);
 module.exports = {
   "bg-hover-light": {
     "backgroundColor": "#f7f7f7"
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ })

@@ -262,21 +262,33 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
   mounted: function mounted() {
     // 注册全局事件
     if (this.item.type === 'audio') {
-      this.$on(function (res) {
-        console.log("$on 接收的数据: ", res);
-      });
+      // 将要注册的事件传递给 Vuex
+      this.$audioOn(this.handlePlayAudio);
     }
   },
   destroyed: function destroyed() {
+    // 如果是音频类型，就注销事件
+    this.item.type === 'audio' && this.$audioOff(this.handlePlayAudio);
     // 销毁当前的音频实例
     this.innerAudioContext && this.innerAudioContext.destroy();
   },
   methods: _objectSpread(_objectSpread({},
-  (0, _vuex.mapActions)(['$on', '$emit'])), {}, {
+  (0, _vuex.mapActions)(['$audioOn', '$audioEmit', '$audioOff'])), {}, {
+    // 监听播放音频全局事件
+    handlePlayAudio: function handlePlayAudio(index) {
+      console.log("this.index: ", this.index);
+      console.log("--------------: ", index);
+      if (this.innerAudioContext) {
+        if (this.index !== index) {
+          this.innerAudioContext.stop();
+        }
+      }
+    },
+
     // 播放音频函数
     openAudio: function openAudio() {
-      console.log("开始播放!");
-      this.$emit(this.index);
+      // 通知其他音频停止播放，传递的参数是当前点击的音频的索引
+      this.$audioEmit(this.index);
       if (!this.innerAudioContext) {
         // 创建音频对象
         this.innerAudioContext = uni.createInnerAudioContext();
@@ -284,7 +296,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
         this.innerAudioContext.src = this.item.data;
         // 播放音频
         this.innerAudioContext.play();
-        console.log("audio src: ", this.innerAudioContext.src);
       } else {
         // 重新播放
         this.innerAudioContext.stop();

@@ -1042,7 +1042,8 @@ module.exports = {
   },
   "text-chat-item": {
     "color": "#6BEE68"
-  }
+  },
+  "@VERSION": 2
 }
 
 /***/ }),
@@ -2294,7 +2295,97 @@ index;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default = {\n  state: {\n    events: [] // 存放的都是Function的类型,直接加()就能调用了\n  },\n  // 同步操作写在这里\n  mutations: {\n    // 注册全局事件\n    regEvent: function regEvent(state, event) {\n      state.events.push(event);\n    },\n    // 执行全局事件\n    doEvent: function doEvent(state, params) {\n      state.events.forEach(function (e) {\n        e(params); // 这里传递的参数会被组件中的$on(res=>{})的res接收\n      });\n    } },\n\n  // 异步操作写在这里\n  actions: {\n    // 分发注册全局事件\n    $on: function $on(_ref, event) {var commit = _ref.commit;\n      commit('regEvent', event);\n    },\n    // 分发执行全局函数\n    $emit: function $emit(_ref2, params) {var commit = _ref2.commit;\n      commit('doEvent', params);\n    } } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvbW9kdWxlcy9hdWRpby5qcyJdLCJuYW1lcyI6WyJzdGF0ZSIsImV2ZW50cyIsIm11dGF0aW9ucyIsInJlZ0V2ZW50IiwiZXZlbnQiLCJwdXNoIiwiZG9FdmVudCIsInBhcmFtcyIsImZvckVhY2giLCJlIiwiYWN0aW9ucyIsIiRvbiIsImNvbW1pdCIsIiRlbWl0Il0sIm1hcHBpbmdzIjoic0dBQWU7QUFDZEEsT0FBSyxFQUFFO0FBQ05DLFVBQU0sRUFBRSxFQURGLENBQ007QUFETixHQURPO0FBSWQ7QUFDQUMsV0FBUyxFQUFFO0FBQ1Y7QUFDQUMsWUFGVSxvQkFFREgsS0FGQyxFQUVNSSxLQUZOLEVBRWE7QUFDdEJKLFdBQUssQ0FBQ0MsTUFBTixDQUFhSSxJQUFiLENBQWtCRCxLQUFsQjtBQUNBLEtBSlM7QUFLVjtBQUNBRSxXQU5VLG1CQU1GTixLQU5FLEVBTUtPLE1BTkwsRUFNYTtBQUN0QlAsV0FBSyxDQUFDQyxNQUFOLENBQWFPLE9BQWIsQ0FBcUIsVUFBQUMsQ0FBQyxFQUFFO0FBQ3ZCQSxTQUFDLENBQUNGLE1BQUQsQ0FBRCxDQUR1QixDQUNaO0FBQ1gsT0FGRDtBQUdBLEtBVlMsRUFMRzs7QUFpQmQ7QUFDQUcsU0FBTyxFQUFFO0FBQ1I7QUFDQUMsT0FGUSxxQkFFTVAsS0FGTixFQUVhLEtBQWhCUSxNQUFnQixRQUFoQkEsTUFBZ0I7QUFDcEJBLFlBQU0sQ0FBQyxVQUFELEVBQWFSLEtBQWIsQ0FBTjtBQUNBLEtBSk87QUFLUjtBQUNBUyxTQU5RLHdCQU1RTixNQU5SLEVBTWdCLEtBQWpCSyxNQUFpQixTQUFqQkEsTUFBaUI7QUFDdkJBLFlBQU0sQ0FBQyxTQUFELEVBQVlMLE1BQVosQ0FBTjtBQUNBLEtBUk8sRUFsQkssRSIsImZpbGUiOiIxMS5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IHtcclxuXHRzdGF0ZToge1xyXG5cdFx0ZXZlbnRzOiBbXVx0XHQvLyDlrZjmlL7nmoTpg73mmK9GdW5jdGlvbueahOexu+Weiyznm7TmjqXliqAoKeWwseiDveiwg+eUqOS6hlxyXG5cdH0sXHJcblx0Ly8g5ZCM5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0bXV0YXRpb25zOiB7XHJcblx0XHQvLyDms6jlhozlhajlsYDkuovku7ZcclxuXHRcdHJlZ0V2ZW50KHN0YXRlLCBldmVudCkge1xyXG5cdFx0XHRzdGF0ZS5ldmVudHMucHVzaChldmVudClcclxuXHRcdH0sXHJcblx0XHQvLyDmiafooYzlhajlsYDkuovku7ZcclxuXHRcdGRvRXZlbnQoc3RhdGUsIHBhcmFtcykge1xyXG5cdFx0XHRzdGF0ZS5ldmVudHMuZm9yRWFjaChlPT57XHJcblx0XHRcdFx0ZShwYXJhbXMpXHRcdC8vIOi/memHjOS8oOmAkueahOWPguaVsOS8muiiq+e7hOS7tuS4reeahCRvbihyZXM9Pnt9KeeahHJlc+aOpeaUtlxyXG5cdFx0XHR9KVxyXG5cdFx0fVxyXG5cdH0sXHJcblx0Ly8g5byC5q2l5pON5L2c5YaZ5Zyo6L+Z6YeMXHJcblx0YWN0aW9uczoge1xyXG5cdFx0Ly8g5YiG5Y+R5rOo5YaM5YWo5bGA5LqL5Lu2XHJcblx0XHQkb24oe2NvbW1pdH0sIGV2ZW50KSB7XHJcblx0XHRcdGNvbW1pdCgncmVnRXZlbnQnLCBldmVudClcclxuXHRcdH0sXHJcblx0XHQvLyDliIblj5HmiafooYzlhajlsYDlh73mlbBcclxuXHRcdCRlbWl0KHtjb21taXR9LCBwYXJhbXMpIHtcclxuXHRcdFx0Y29tbWl0KCdkb0V2ZW50JywgcGFyYW1zKVxyXG5cdFx0fVxyXG5cdH1cclxufSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///11\n");
+eval("/* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;var _default = {\n  state: {\n    events: [] // 存放的都是Function的类型,直接加()就能调用了\n  },\n  // 同步操作写在这里\n  mutations: {\n    // 注册全局事件\n    regEvent: function regEvent(state, event) {\n      // 将要注册的事件推送到事件数组中\n      state.events.push(event);\n    },\n    // 执行全局事件\n    doEvent: function doEvent(state, params) {\n      state.events.forEach(function (e) {\n        e(params);\n      });\n    },\n    //注销事件\n    removeEvent: function removeEvent(state, event) {\n      var index = state.events.findIndex(function (item) {return item === event;});\n      // 找到了就删除事件\n      index !== -1 && state.events.splice(index, 1);\n    } },\n\n  // 异步操作写在这里\n  actions: {\n    // 分发注册全局事件\n    $audioOn: function $audioOn(_ref, event) {var commit = _ref.commit;\n      commit('regEvent', event);\n    },\n    // 分发执行全局函数\n    $audioEmit: function $audioEmit(_ref2, params) {var commit = _ref2.commit;\n      commit('doEvent', params);\n    },\n    // 分发注销全局事件\n    $audioOff: function $audioOff(_ref3, event) {var commit = _ref3.commit;\n      __f__(\"log\", \"注销全局事件: \", event, \" at store/modules/audio.js:37\");\n      commit('removeEvent', event);\n    } } };exports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 12)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vc3RvcmUvbW9kdWxlcy9hdWRpby5qcyJdLCJuYW1lcyI6WyJzdGF0ZSIsImV2ZW50cyIsIm11dGF0aW9ucyIsInJlZ0V2ZW50IiwiZXZlbnQiLCJwdXNoIiwiZG9FdmVudCIsInBhcmFtcyIsImZvckVhY2giLCJlIiwicmVtb3ZlRXZlbnQiLCJpbmRleCIsImZpbmRJbmRleCIsIml0ZW0iLCJzcGxpY2UiLCJhY3Rpb25zIiwiJGF1ZGlvT24iLCJjb21taXQiLCIkYXVkaW9FbWl0IiwiJGF1ZGlvT2ZmIl0sIm1hcHBpbmdzIjoibUpBQWU7QUFDZEEsT0FBSyxFQUFFO0FBQ05DLFVBQU0sRUFBRSxFQURGLENBQ007QUFETixHQURPO0FBSWQ7QUFDQUMsV0FBUyxFQUFFO0FBQ1Y7QUFDQUMsWUFGVSxvQkFFREgsS0FGQyxFQUVNSSxLQUZOLEVBRWE7QUFDdEI7QUFDQUosV0FBSyxDQUFDQyxNQUFOLENBQWFJLElBQWIsQ0FBa0JELEtBQWxCO0FBQ0EsS0FMUztBQU1WO0FBQ0FFLFdBUFUsbUJBT0ZOLEtBUEUsRUFPS08sTUFQTCxFQU9hO0FBQ3RCUCxXQUFLLENBQUNDLE1BQU4sQ0FBYU8sT0FBYixDQUFxQixVQUFBQyxDQUFDLEVBQUU7QUFDdkJBLFNBQUMsQ0FBQ0YsTUFBRCxDQUFEO0FBQ0EsT0FGRDtBQUdBLEtBWFM7QUFZVjtBQUNBRyxlQWJVLHVCQWFFVixLQWJGLEVBYVNJLEtBYlQsRUFhZ0I7QUFDekIsVUFBSU8sS0FBSyxHQUFHWCxLQUFLLENBQUNDLE1BQU4sQ0FBYVcsU0FBYixDQUF1QixVQUFBQyxJQUFJLFVBQUlBLElBQUksS0FBS1QsS0FBYixFQUEzQixDQUFaO0FBQ0E7QUFDQU8sV0FBSyxLQUFLLENBQUMsQ0FBWCxJQUFnQlgsS0FBSyxDQUFDQyxNQUFOLENBQWFhLE1BQWIsQ0FBb0JILEtBQXBCLEVBQTJCLENBQTNCLENBQWhCO0FBQ0EsS0FqQlMsRUFMRzs7QUF3QmQ7QUFDQUksU0FBTyxFQUFFO0FBQ1I7QUFDQUMsWUFGUSwwQkFFV1osS0FGWCxFQUVrQixLQUFoQmEsTUFBZ0IsUUFBaEJBLE1BQWdCO0FBQ3pCQSxZQUFNLENBQUMsVUFBRCxFQUFhYixLQUFiLENBQU47QUFDQSxLQUpPO0FBS1I7QUFDQWMsY0FOUSw2QkFNYVgsTUFOYixFQU1xQixLQUFqQlUsTUFBaUIsU0FBakJBLE1BQWlCO0FBQzVCQSxZQUFNLENBQUMsU0FBRCxFQUFZVixNQUFaLENBQU47QUFDQSxLQVJPO0FBU1I7QUFDQVksYUFWUSw0QkFVWWYsS0FWWixFQVVtQixLQUFoQmEsTUFBZ0IsU0FBaEJBLE1BQWdCO0FBQzFCLG1CQUFZLFVBQVosRUFBd0JiLEtBQXhCO0FBQ0FhLFlBQU0sQ0FBQyxhQUFELEVBQWdCYixLQUFoQixDQUFOO0FBQ0EsS0FiTyxFQXpCSyxFIiwiZmlsZSI6IjExLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQge1xyXG5cdHN0YXRlOiB7XHJcblx0XHRldmVudHM6IFtdXHRcdC8vIOWtmOaUvueahOmDveaYr0Z1bmN0aW9u55qE57G75Z6LLOebtOaOpeWKoCgp5bCx6IO96LCD55So5LqGXHJcblx0fSxcclxuXHQvLyDlkIzmraXmk43kvZzlhpnlnKjov5nph4xcclxuXHRtdXRhdGlvbnM6IHtcclxuXHRcdC8vIOazqOWGjOWFqOWxgOS6i+S7tlxyXG5cdFx0cmVnRXZlbnQoc3RhdGUsIGV2ZW50KSB7XHJcblx0XHRcdC8vIOWwhuimgeazqOWGjOeahOS6i+S7tuaOqOmAgeWIsOS6i+S7tuaVsOe7hOS4rVxyXG5cdFx0XHRzdGF0ZS5ldmVudHMucHVzaChldmVudClcclxuXHRcdH0sXHJcblx0XHQvLyDmiafooYzlhajlsYDkuovku7ZcclxuXHRcdGRvRXZlbnQoc3RhdGUsIHBhcmFtcykge1xyXG5cdFx0XHRzdGF0ZS5ldmVudHMuZm9yRWFjaChlPT57XHJcblx0XHRcdFx0ZShwYXJhbXMpXHJcblx0XHRcdH0pXHJcblx0XHR9LFxyXG5cdFx0Ly/ms6jplIDkuovku7ZcclxuXHRcdHJlbW92ZUV2ZW50KHN0YXRlLCBldmVudCkge1xyXG5cdFx0XHRsZXQgaW5kZXggPSBzdGF0ZS5ldmVudHMuZmluZEluZGV4KGl0ZW0gPT4gaXRlbSA9PT0gZXZlbnQgKVxyXG5cdFx0XHQvLyDmib7liLDkuoblsLHliKDpmaTkuovku7ZcclxuXHRcdFx0aW5kZXggIT09IC0xICYmIHN0YXRlLmV2ZW50cy5zcGxpY2UoaW5kZXgsIDEpXHJcblx0XHR9XHJcblx0fSxcclxuXHQvLyDlvILmraXmk43kvZzlhpnlnKjov5nph4xcclxuXHRhY3Rpb25zOiB7XHJcblx0XHQvLyDliIblj5Hms6jlhozlhajlsYDkuovku7ZcclxuXHRcdCRhdWRpb09uKHtjb21taXR9LCBldmVudCkge1xyXG5cdFx0XHRjb21taXQoJ3JlZ0V2ZW50JywgZXZlbnQpXHJcblx0XHR9LFxyXG5cdFx0Ly8g5YiG5Y+R5omn6KGM5YWo5bGA5Ye95pWwXHJcblx0XHQkYXVkaW9FbWl0KHtjb21taXR9LCBwYXJhbXMpIHtcclxuXHRcdFx0Y29tbWl0KCdkb0V2ZW50JywgcGFyYW1zKVxyXG5cdFx0fSxcclxuXHRcdC8vIOWIhuWPkeazqOmUgOWFqOWxgOS6i+S7tlxyXG5cdFx0JGF1ZGlvT2ZmKHtjb21taXR9LCBldmVudCkge1xyXG5cdFx0XHRjb25zb2xlLmxvZyhcIuazqOmUgOWFqOWxgOS6i+S7tjogXCIsIGV2ZW50KVxyXG5cdFx0XHRjb21taXQoJ3JlbW92ZUV2ZW50JywgZXZlbnQpXHJcblx0XHR9XHJcblx0fVxyXG59Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///11\n");
+
+/***/ }),
+/* 12 */
+/*!*********************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.log = log;exports.default = formatLog;function typof(v) {
+  var s = Object.prototype.toString.call(v);
+  return s.substring(8, s.length - 1);
+}
+
+function isDebugMode() {
+  /* eslint-disable no-undef */
+  return typeof __channelId__ === 'string' && __channelId__;
+}
+
+function jsonStringifyReplacer(k, p) {
+  switch (typof(p)) {
+    case 'Function':
+      return 'function() { [native code] }';
+    default:
+      return p;}
+
+}
+
+function log(type) {
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+  console[type].apply(console, args);
+}
+
+function formatLog() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+  var type = args.shift();
+  if (isDebugMode()) {
+    args.push(args.pop().replace('at ', 'uni-app:///'));
+    return console[type].apply(console, args);
+  }
+
+  var msgs = args.map(function (v) {
+    var type = Object.prototype.toString.call(v).toLowerCase();
+
+    if (type === '[object object]' || type === '[object array]') {
+      try {
+        v = '---BEGIN:JSON---' + JSON.stringify(v, jsonStringifyReplacer) + '---END:JSON---';
+      } catch (e) {
+        v = type;
+      }
+    } else {
+      if (v === null) {
+        v = '---NULL---';
+      } else if (v === undefined) {
+        v = '---UNDEFINED---';
+      } else {
+        var vType = typof(v).toUpperCase();
+
+        if (vType === 'NUMBER' || vType === 'BOOLEAN') {
+          v = '---BEGIN:' + vType + '---' + v + '---END:' + vType + '---';
+        } else {
+          v = String(v);
+        }
+      }
+    }
+
+    return v;
+  });
+  var msg = '';
+
+  if (msgs.length > 1) {
+    var lastMsg = msgs.pop();
+    msg = msgs.join('---COMMA---');
+
+    if (lastMsg.indexOf(' at ') === 0) {
+      msg += lastMsg;
+    } else {
+      msg += '---COMMA---' + lastMsg;
+    }
+  } else {
+    msg = msgs[0];
+  }
+
+  console[type](msg);
+}
 
 /***/ })
 /******/ ]);
