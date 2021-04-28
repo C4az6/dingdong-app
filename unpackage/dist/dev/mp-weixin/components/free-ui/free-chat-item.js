@@ -186,6 +186,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _time = _interopRequireDefault(__webpack_require__(/*! @/common/free-lib/time.js */ 65));
 var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 80));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeImage = function FreeImage() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-image */ "components/free-ui/free-image").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-image.vue */ 109));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
@@ -211,8 +215,9 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
 
   data: function data() {
     return {
-      innerAudioContext: null };
-
+      innerAudioContext: null,
+      audioPlaying: true // 音频是否播放
+    };
   },
   computed: {
     // 是否需要气泡样式
@@ -271,8 +276,6 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function _interopRequireDefault(
     // ...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
     // 监听播放音频全局事件
     handlePlayAudio: function handlePlayAudio(index) {
-      console.log("this.index: ", this.index);
-      console.log("--------------: ", index);
       if (this.innerAudioContext) {
         if (this.index !== index) {
           this.innerAudioContext.stop();

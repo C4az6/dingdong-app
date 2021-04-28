@@ -30,7 +30,17 @@
 				</FreeImage>
 				<!-- 语音部分 -->
 				<view v-else-if="item.type === 'audio'" class="flex align-center" @click="openAudio">
+					<image 
+						v-if="isSelf"
+						:src="!audioPlaying ? '/static/images/audio/audio3.png' : '/static/images/audio/audio.gif'" style="width: 50rpx; height: 50rpx;"
+						class="mx-1"
+					></image>
 					<text class="font">300'</text>
+					<image
+						v-if="!isSelf"
+						:src="!audioPlaying ? '/static/images/audio/audio3.png' : '/static/images/audio/audio.gif'" style="width: 50rpx; height: 50rpx;"
+						class="mx-1"
+					></image>
 				</view>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
@@ -66,7 +76,8 @@
 		},
 		data() {
 			return {
-				innerAudioContext: null
+				innerAudioContext: null,
+				audioPlaying: false		// 音频是否播放
 			}
 		},
 		computed: {
@@ -126,8 +137,6 @@
 			// ...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
 			// 监听播放音频全局事件
 			handlePlayAudio(index) {
-				console.log("this.index: ", this.index)
-				console.log("--------------: ", index)
 				if(this.innerAudioContext) {
 					if (this.index !== index) {
 						this.innerAudioContext.stop()
@@ -147,6 +156,23 @@
 					this.innerAudioContext.src = this.item.data;
 					// 播放音频
 					this.innerAudioContext.play()
+					
+					// 监听播放
+					this.innerAudioContext.onPlay(_=>{
+						this.audioPlaying = true
+					})
+					// 监听暂停
+					this.innerAudioContext.onPause(_=>{
+						this.audioPlaying = false
+					})
+					// 监听停止
+					this.innerAudioContext.onStop(_=>{
+						this.audioPlaying = false
+					})
+					// 监听错误
+					this.innerAudioContext.onError(_=>{
+						this.audioPlaying = false
+					})
 				}else {
 					// 重新播放
 					this.innerAudioContext.stop()
