@@ -232,6 +232,18 @@ export default {
 					data: '/static/audio/03.mp3',
 					create_time: 1616444941,
 					isRemove: false
+				},
+				{
+					avatar: "/static/images/demo/demo6.jpg",
+					user_id: 1,
+					nickname: "Alexander",
+					type: "video",	// image、audio、video
+					data: '/static/video/demo.mp4',
+					options: {
+						poster: "/static/video/demo.jpg"
+					},
+					create_time: 1616444941,
+					isRemove: false
 				}
 			],
 			emoticonList: []

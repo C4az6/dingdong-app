@@ -1,0 +1,51 @@
+<template>
+	<view class="position-relative">
+		<video :src="url" controls autoplay style="width: 750rpx;" :style="'height: ' + videoHeight + 'px;'" @ended="back"></video>
+		<view 
+			class="position-absolute flex justify-center align-center rounded" 
+			style="top: 50rpx;left: 20rpx;width: 80rpx;height: 80rpx; background-color: rgba(255,255,255,0.3);"
+			@click="back"
+		>
+			<!-- 关闭视频的按钮 -->
+			<text class="iconfont text-white font-lg">&#xe620;</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				videoHeight: 300,		// 视频高度
+				url: ''		// 视频播放地址
+			}
+		},
+		onLoad(params) {
+			console.log("params: ", params)
+			if(!params.url) {
+				this.back()
+				// 非法的url
+				return uni.showToast({
+					title: '非法视频',
+					icon: 'none'
+				});
+			}
+			this.url = params.url
+			// 动态获取屏幕高度以便设置视频高度
+			let res = uni.getSystemInfoSync()
+			this.videoHeight = res.windowHeight		// 注意动态获取的屏幕高度的单位是px
+		},
+		methods: {
+			// 返回上一级页面
+			back() {
+				uni.navigateBack({
+					delta: 1
+				})
+			}
+		}
+	}
+</script>
+
+<style scoped>
+
+</style>

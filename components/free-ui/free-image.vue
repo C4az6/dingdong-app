@@ -52,7 +52,6 @@ export default {
   mounted () {},
   methods: {
 		loadImage(e) {
-			console.log("loadImage", e)
 			let w = e.detail.width
 			let h = e.detail.height
 			
@@ -62,6 +61,10 @@ export default {
 			if (h <= maxH) {
 				this.h = h
 				this.w = w <= maxW ? w : maxW
+				this.$emit('load', {
+					w: this.w,
+					h: this.h
+				})
 				return
 			}
 			this.h = maxH
@@ -69,6 +72,10 @@ export default {
 			let w2 = maxH * (w / h)
 			// 如果等比例最大宽度小于之前定义的最大宽度则使用w2，否则使用之前定义的最大宽度
 			this.w = w2 <= maxW ? w2 : maxW
+			this.$emit('load', {
+				w: this.w,
+				h: this.h
+			})
 		}
 	}
 }

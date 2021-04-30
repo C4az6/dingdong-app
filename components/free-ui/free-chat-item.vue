@@ -42,6 +42,26 @@
 						class="mx-1"
 					></image>
 				</view>
+				
+				<!-- 视频 -->
+				<view 
+					v-else-if="item.type === 'video'"
+					class="position-relative rounded flex justify-center align-center"
+					@click="openVideo"
+				>
+					<!-- 视频封面 -->
+					<free-image 
+						:src="item.options.poster"
+						imageClass="rounded"
+						:maxWidth="350"
+						:maxHeight="350"
+						@load="loadPoster"
+					>
+					</free-image>
+					
+					<!-- 播放图标 -->
+					<text class="iconfont text-white position-absolute" style="font-size: 80rpx;width: 80rpx;height: 80rpx;" :style="posterIconStyle">&#xe737;</text>
+				</view>
 			</div>
 			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
@@ -77,10 +97,22 @@
 		data() {
 			return {
 				innerAudioContext: null,
-				audioPlaying: false		// 音频是否播放
+				audioPlaying: false,		// 音频是否播放
+				// 视频封面默认的宽高
+				poster: {
+					w: 100,
+					h: 100
+				}
 			}
 		},
 		computed: {
+			// 短视频封面图标位置
+			posterIconStyle () {
+				let w = (this.poster.w - uni.upx2px(80))/2
+				let h = (this.poster.h - uni.upx2px(80))/2
+				return `left: ${w}px;top: ${h}px;`
+			},
+			
 			// 是否需要气泡样式
 			hasLabelClass() {
 				// 短路运算，如果前者为true则返回前者的表达式，如果前者为false，则返回后者的表达式,只有 text 和 audio 类型才需要气泡
@@ -134,6 +166,24 @@
 			this.innerAudioContext && this.innerAudioContext.destroy()
 		},
 		methods: {
+			// 点击视频封面跳转视频播放页面函数
+			openVideo() {
+				console.log(111)
+				uni.navigateTo({
+					url: `/pages/chat/video/video?url=${this.item.data}`,
+					fail: e => {
+						console.log("error: ", e)
+					}
+				})
+			},
+			
+			// 封面图片加载完成函数
+			loadPoster (e) {
+				console.log("video poster loaded...", e)
+				this.poster.w = e.w
+				this.poster.h = e.h
+			},
+			
 			// ...mapActions(['$audioOn', '$audioEmit', '$audioOff']),
 			// 监听播放音频全局事件
 			handlePlayAudio(index) {
