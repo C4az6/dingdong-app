@@ -210,8 +210,11 @@ export default {
 					avatar: "/static/images/demo/demo5.jpg",
 					user_id: 1,
 					nickname: "Alexander",
-					type: "audio",	// image、audio、video
+					type: "audio",	// image、audio、video,
 					data: '/static/audio/01.mp3',
+					options: {
+						time: 40
+					},
 					create_time: 1616444341,
 					isRemove: false
 				},
@@ -219,8 +222,11 @@ export default {
 					avatar: "/static/images/demo/demo6.jpg",
 					user_id: 2,
 					nickname: "寻找阿诺泰的猪",
-					type: "audio",	// image、audio、video
+					type: "audio",	// image、audio、video,
 					data: '/static/audio/02.mp3',
+					options: {
+						time: 40
+					},
 					create_time: 1616444341,
 					isRemove: false
 				},
@@ -228,8 +234,11 @@ export default {
 					avatar: "/static/images/demo/demo5.jpg",
 					user_id: 1,
 					nickname: "Alexander",
-					type: "audio",	// image、audio、video
+					type: "audio",	// image、audio、video,
 					data: '/static/audio/03.mp3',
+					options: {
+						time: 40
+					},
 					create_time: 1616444941,
 					isRemove: false
 				},

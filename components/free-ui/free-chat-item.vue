@@ -17,7 +17,7 @@
 			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" />
 			<!-- 箭头图标 -->
 			<text v-if="hasLabelClass" class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
-			<div class="p-2 rounded" style="max-width: 500rpx;" :class="labelClass" @longpress="long">
+			<div class="p-2 rounded" style="max-width: 500rpx;" :style="labelStyle" :class="labelClass" @longpress="long">
 				<!-- 文字内容 -->
 				<text v-if="item.type === 'text'" class="font-md">{{item.data}}</text>
 				<!-- 表情包 -->
@@ -35,7 +35,7 @@
 						:src="!audioPlaying ? '/static/images/audio/audio3.png' : '/static/images/audio/audio.gif'" style="width: 50rpx; height: 50rpx;"
 						class="mx-1"
 					></image>
-					<text class="font">300'</text>
+					<text class="font">{{item.options.time}}"</text>
 					<image
 						v-if="!isSelf"
 						:src="!audioPlaying ? '/static/images/audio/audio3.png' : '/static/images/audio/audio.gif'" style="width: 50rpx; height: 50rpx;"
@@ -106,6 +106,22 @@
 			}
 		},
 		computed: {
+			// 根据语音长短动态设置气泡样式长度
+			labelStyle() {
+				// 只有类型为音频时才动态设置气泡样式
+				if (this.item.type === 'audio') {
+					let time = this.item.options.time || 0
+					/* 
+						下面代码解释：
+							这里做个约定，气泡最小宽度150rpx，最大宽度500rpx;
+							录制时间最大为60s;
+							60/500为一个比例,计算公式为: parseInt(time) / width = 60 / 500,求width即可。
+					 */
+					let width = parseInt(time) / (60/500)
+					width = width < 150 ? 150 : width
+					return `width:${width}rpx;`
+				}
+			},
 			// 短视频封面图标位置
 			posterIconStyle () {
 				let w = (this.poster.w - uni.upx2px(80))/2
