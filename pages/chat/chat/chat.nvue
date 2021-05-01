@@ -34,15 +34,18 @@
 		<!-- 底部输入框部分 -->
 		<view class="position-fixed left-0 right-0 flex border-top align-center" style="height: 105rpx;background-color: #F7F7F6;" :style="'bottom:'+KeyboardHeight+'px;'">
 			<!-- 语音输入 -->
-			<free-icon-button slot="right" :iconValue="'\ue606'" />
+			<free-icon-button :iconValue="(mode === 'audio') ? '\ue607' : '\ue606'" @click="handleChangeVoiceOrText" />
 			<!-- 输入框 -->
 			<view class="flex-1">
-				<textarea ref="textareaRef" :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" @focus="mode='text'"/>
+				<view class="bg-white rounded flex align-center justify-center" style="height: 80rpx;" v-if="mode === 'audio'">
+					<text class="font">按住 说话</text>
+				</view>
+				<textarea v-else ref="textareaRef" :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" @focus="mode='text'"/>
 			</view>
 			<!-- 表情包 -->
-			<free-icon-button slot="right" :iconValue="'\ue605'" @click="openActionOrEmoticon('emoticon')" />
+			<free-icon-button :iconValue="'\ue605'" @click="openActionOrEmoticon('emoticon')" />
 			<!-- 拓展菜单按钮 -->
-			<free-icon-button v-if="!text.length" slot="right" :iconValue="'\ue603'" @click="openActionOrEmoticon('action')" />
+			<free-icon-button v-if="!text.length" :iconValue="'\ue603'" @click="openActionOrEmoticon('action')" />
 			
 			<!-- 发送文字按钮 -->
 			<view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
@@ -65,11 +68,11 @@
 				<swiper :indicator-dots="emoticonOrActionList.length > 1" style="height: 510rpx;">
 					<swiper-item v-for="(item, index) in emoticonOrActionList" :key="index" class="row">
 						<view 
-						class="flex flex-column col-3 justify-center align-center" 
-						style="height: 255rpx;"
-						v-for="(item2, index2) in item" 
-						@click="handleActionClick(item2)"
-						:key="index2"
+							class="flex flex-column col-3 justify-center align-center" 
+							style="height: 255rpx;"
+							v-for="(item2, index2) in item" 
+							@click="handleActionClick(item2)"
+							:key="index2"
 						>
 							<image :src="item2.icon" mode="widthFix" style="width: 100rpx;height: 100rpx;"></image>
 							<text class="font-sm text-muted mt-2">{{item2.name}}</text>
@@ -347,6 +350,11 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 监听音频按钮切换
+		handleChangeVoiceOrText() {
+			this.mode = this.mode === 'audio' ? 'text': 'audio'
+		},
+		
 		handleAudioEmit(index) {
 			console.log("index: ", index)
 			this.$refs.chatItemRef.forEach(item => {
