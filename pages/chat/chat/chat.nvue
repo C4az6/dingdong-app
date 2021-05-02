@@ -37,8 +37,17 @@
 			<free-icon-button :iconValue="(mode === 'audio') ? '\ue607' : '\ue606'" @click="handleChangeVoiceOrText" />
 			<!-- 输入框 -->
 			<view class="flex-1">
-				<view class="bg-white rounded flex align-center justify-center" style="height: 80rpx;" v-if="mode === 'audio'">
-					<text class="font">按住 说话</text>
+				<view 
+					v-if="mode === 'audio'"
+					class="bg-white rounded flex align-center justify-center" 
+					style="height: 80rpx;" 
+					@touchstart="handleVoiceTouchstart"
+					@touchend="handleVoiceTouchend"
+					@touchcancel="handleVoiceTouchcancel"
+					@touchmove="handleVoiceTouchmove"
+					:class="isRecording ? 'bg-hover-light' : 'bg-white'"
+				>
+					<text class="font">{{isRecording ? '松开 结束' : '按住 说话'}}</text>
 				</view>
 				<textarea v-else ref="textareaRef" :adjust-position="false" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;" v-model.trim="text" @focus="mode='text'"/>
 			</view>
@@ -82,6 +91,14 @@
 			</view>
 		</free-popup>
 		
+		
+		<!-- 录音提示弹出层 -->
+		<view v-if="isRecording" class="position-fixed top-0 left-0 right-0 flex justify-center align-center" style="bottom: 105rpx;">
+			<view style="width: 360rpx; height: 360rpx;background-color: rgba(0,0,0,.5);" class="flex-column justify-center align-center">
+				<image src="/static/images/audio/recording.gif" style="width: 150rpx;height: 150rpx;"></image>
+				<text class="font text-white mt-3">{{isRecordCancel ? '松开手指, 取消发送': '手指上滑, 取消发送'}}</text>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -258,7 +275,10 @@ export default {
 					isRemove: false
 				}
 			],
-			emoticonList: []
+			emoticonList: [],
+			isRecording: false,	// 是否处于录音状态
+			isRecordCancel: false,		// 是否取消录音
+			voiceTouchstartY: 0		// 音频开始录制时的Y轴坐标
 		}
   },
   computed: {
@@ -350,6 +370,33 @@ export default {
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 	},
   methods: {
+		// 监听语音输入按钮触摸开始函数
+		handleVoiceTouchstart(e) {
+			// console.log("voice touchstart!");
+			this.isRecording = true
+			// 获取用户开始触摸语音录制按钮时的Y轴坐标
+			this.voiceTouchstartY = e.changedTouches[0].screenY
+		},
+		
+		// 监听语音输入按钮触摸结束函数
+		handleVoiceTouchend() {
+			this.isRecording = false
+			this.isRecordCancel = false
+		},
+		
+		// 监听语音输入按钮触摸取消函数
+		handleVoiceTouchcancel() {
+			this.isRecording = false
+		},
+		
+		// 监听语音输入按钮移动函数
+		handleVoiceTouchmove(e) {
+			// console.log("voice touchmove!")
+			let Y = Math.abs(e.changedTouches[0].screenY - this.voiceTouchstartY)
+			// 如果Y大于等于50就取消录音，isRecordCancel设置为true，否则不取消，设置为false
+			this.isRecordCancel = Y >= 50
+		},
+		
 		// 监听音频按钮切换
 		handleChangeVoiceOrText() {
 			this.mode = this.mode === 'audio' ? 'text': 'audio'
