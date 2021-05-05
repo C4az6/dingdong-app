@@ -139,7 +139,7 @@ export default {
 					},{
 						name:"拍摄",
 						icon:"/static/images/extends/video.png",
-						event:""
+						event:"uploadVideo"
 					},{
 						name:"收藏",
 						icon:"/static/images/extends/shoucan.png",
@@ -266,7 +266,7 @@ export default {
 					isRemove: false
 				},
 				{
-					avatar: "/static/images/demo/demo6.jpg",
+					avatar: "/static/images/demo/demo5.jpg",
 					user_id: 1,
 					nickname: "Alexander",
 					type: "video",	// image、audio、video
@@ -377,7 +377,6 @@ export default {
 		// 监听录音开始
 		RECORD.onStart( _ => {
 			this.recordTime = 0
-			console.log("录音时长: ", this.recordTime)
 			this.recordTimer = setInterval(_=>{
 				this.recordTime++
 			}, 1000)
@@ -398,7 +397,7 @@ export default {
 				this.isRecordCancel = true
 			}
 			if(!this.isRecordCancel) {
-				// 没有取消录音则发送录音
+				// 是否取消录音状态 为false的时候发送录音
 				this.send('audio', e.tempFilePath, {
 					time: this.recordTime
 				})
@@ -435,7 +434,6 @@ export default {
 		
 		// 监听语音输入按钮移动函数
 		handleVoiceTouchmove(e) {
-			// console.log("voice touchmove!")
 			let Y = Math.abs(e.changedTouches[0].screenY - this.voiceTouchstartY)
 			// 如果Y大于等于50就取消录音，isRecordCancel设置为true，否则不取消，设置为false
 			this.isRecordCancel = Y >= 50
@@ -447,7 +445,6 @@ export default {
 		},
 		
 		handleAudioEmit(index) {
-			console.log("index: ", index)
 			this.$refs.chatItemRef.forEach(item => {
 				if (item.item.type === 'audio' && item.index !== index && item.innerAudioContext) {
 					item.innerAudioContext.stop()
@@ -505,7 +502,6 @@ export default {
 					uni.chooseImage({		// 选择相册
 						count: 9,
 						success: res => {
-							console.log("uploadImage res: ", res)
 							res.tempFilePaths.forEach(item=>{
 								this.send('image', item)
 							})
@@ -513,13 +509,24 @@ export default {
 					})
 					break;
 				case 'sendEmoticon':	// 发送表情包
-				this.send('emoticon', e.icon)
+					this.send('emoticon', e.icon)
+					break;
+				case 'uploadVideo':		// 发送短视频
+					uni.chooseVideo({
+						maxDuration: 10,
+						success: res=>{
+							this.send('video', res.tempFilePath)
+							// 渲染页面
+							// 发送视频到服务端 （获取视频封面，返回url）
+							// 修改本地的发送状态
+						}
+					})
+					break;
 			}
 		},
 		
 		// 底部拓展菜单展示
 		openActionOrEmoticon(mode='action') {
-			console.log("mode: ", mode)
 			this.mode = mode,  // 修改模式为操作拓展菜单的模式
 			// 显示拓展菜单
 			this.$refs.textareaRef.blur()

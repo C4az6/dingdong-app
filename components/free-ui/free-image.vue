@@ -5,6 +5,7 @@
 		:style="setImageStyle"
 		@click="$emit('click')"
 		@load="loadImage"
+		class="bg-hover-light"
 	></image>
 </template>
 
