@@ -281,7 +281,9 @@ export default {
 			emoticonList: [],
 			isRecording: false,	// 是否处于录音状态
 			isRecordCancel: false,		// 是否取消录音
-			voiceTouchstartY: 0		// 音频开始录制时的Y轴坐标
+			voiceTouchstartY: 0,		// 音频开始录制时的Y轴坐标
+			recordTime: 0,		// 录音时长
+			recordTimer: null,	// 录音定时器
 		}
   },
   computed: {
@@ -372,38 +374,62 @@ export default {
 		// #endif
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 		
+		// 监听录音开始
+		RECORD.onStart( _ => {
+			this.recordTime = 0
+			console.log("录音时长: ", this.recordTime)
+			this.recordTimer = setInterval(_=>{
+				this.recordTime++
+			}, 1000)
+		})
+		
 		// 监听录音结束
 		RECORD.onStop(e => {
-			console.log('录音停止')
-			this.send('audio', e.tempFilePath, {
-				time: 10
-			})
+			if(this.recordTimer) {
+				clearInterval(this.recordTimer)
+				this.recordTimer = null
+			}
+			if(this.recordTime < 1) {
+				uni.showToast({
+					title: '说话时间太短!',
+					image: '/static/images/audio/kulian.png',
+					mask:true
+				})
+				this.isRecordCancel = true
+			}
+			if(!this.isRecordCancel) {
+				// 没有取消录音则发送录音
+				this.send('audio', e.tempFilePath, {
+					time: this.recordTime
+				})
+			}
 		})
 	},
   methods: {
 		// 监听语音输入按钮触摸开始函数
 		handleVoiceTouchstart(e) {
+			// 初始化操作
 			this.isRecording = true
 			// 获取用户开始触摸语音录制按钮时的Y轴坐标
 			this.voiceTouchstartY = e.changedTouches[0].screenY
+			this.isRecordCancel = false
 			// 开始录音，格式为mp3
 			RECORD.start({
 				format: "mp3"
 			})
 		},
 		
-		// 监听语音输入按钮触摸结束函数
+		// 监听语音输入按钮触摸结束函数(录音结束)
 		handleVoiceTouchend() {
 			this.isRecording = false
-			// 重置 是否取消录音状态
-			this.isRecordCancel = false
 			// 停止录音
 			RECORD.stop()
 		},
 		
-		// 监听语音输入按钮触摸取消函数
+		// 监听语音输入按钮触摸取消函数(录音被打断)
 		handleVoiceTouchcancel() {
 			this.isRecording = false
+			this.isRecordCancel = true
 			RECORD.stop()
 		},
 		
