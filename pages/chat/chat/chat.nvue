@@ -106,6 +106,9 @@
 // #ifdef APP-NVUE
 const dom = weex.requireModule('dom')
 // #endif
+// 取全局唯一的录音管理器
+const RECORD = uni.getRecorderManager()
+
 import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
@@ -368,25 +371,40 @@ export default {
 		this.statusBarHeight = plus.navigator.getStatusbarHeight()
 		// #endif
 		this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
+		
+		// 监听录音结束
+		RECORD.onStop(e => {
+			console.log('录音停止')
+			this.send('audio', e.tempFilePath, {
+				time: 10
+			})
+		})
 	},
   methods: {
 		// 监听语音输入按钮触摸开始函数
 		handleVoiceTouchstart(e) {
-			// console.log("voice touchstart!");
 			this.isRecording = true
 			// 获取用户开始触摸语音录制按钮时的Y轴坐标
 			this.voiceTouchstartY = e.changedTouches[0].screenY
+			// 开始录音，格式为mp3
+			RECORD.start({
+				format: "mp3"
+			})
 		},
 		
 		// 监听语音输入按钮触摸结束函数
 		handleVoiceTouchend() {
 			this.isRecording = false
+			// 重置 是否取消录音状态
 			this.isRecordCancel = false
+			// 停止录音
+			RECORD.stop()
 		},
 		
 		// 监听语音输入按钮触摸取消函数
 		handleVoiceTouchcancel() {
 			this.isRecording = false
+			RECORD.stop()
 		},
 		
 		// 监听语音输入按钮移动函数
@@ -486,23 +504,21 @@ export default {
 		},
 		
 		// 发送聊天信息
-		send(type, data = '') {
+		send(type, data='', options={}) {
 			let chatObj = {
 				avatar: "/static/images/demo/demo5.jpg",
 				user_id: 1,
 				nickname: "伤心的瘦子",
 				type: type,	// image、audio、video、emoticon
-				data: "",
+				data,
 				create_time: Date.now(),
-				isRemove: false
+				isRemove: false,
+				options
 			}
 			switch(type) {
 				case 'text':
 					chatObj.data = this.text
 					this.text = ''
-					break;
-				default:
-					chatObj.data = data
 					break;
 			}
 			this.list.push(chatObj)
