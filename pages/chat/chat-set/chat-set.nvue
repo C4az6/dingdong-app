@@ -18,6 +18,15 @@
 		
 		<!-- 聊天信息设置菜单 -->
 		<free-divider></free-divider>
+		<free-list-item title="群聊名称" rightIconShow :leftIconShow="false">
+			<text class="font text-muted" slot="right">Vue源码研讨群</text>
+		</free-list-item>
+		<free-list-item title="群二维码" rightIconShow :leftIconShow="false">
+			<text slot="right" class="iconfont font-md text-light-muted">&#xe647;</text>
+		</free-list-item>
+		<free-list-item title="群公告" rightIconShow :leftIconShow="false"></free-list-item>
+		
+		<free-divider></free-divider>
 		<free-list-item title="查找聊天记录" rightIconShow :leftIconShow="false"></free-list-item>
 		<free-divider></free-divider>
 		<free-list-item title="消息免打扰" rightIconShow :leftIconShow="false" :arrows="false">
@@ -30,9 +39,24 @@
 			<switch checked="false" color="#08C060" @change="" slot="right" />
 		</free-list-item>
 		<free-divider></free-divider>
+		
+		<free-list-item title="我在本群的昵称" rightIconShow :leftIconShow="false">
+			<text class="font text-muted" slot="right">伤心的瘦子灬</text>
+		</free-list-item>
+		<free-list-item title="显示群成员昵称" rightIconShow :leftIconShow="false" :arrows="false">
+			<switch checked="false" color="#08C060" @change="" slot="right" />
+		</free-list-item>
+		<free-divider></free-divider>
 		<free-list-item title="清空聊天记录" rightIconShow :leftIconShow="false"></free-list-item>
 		<free-divider></free-divider>
 		<free-list-item title="投诉" rightIconShow :leftIconShow="false"></free-list-item>
+		
+		<free-divider></free-divider>
+		<view class="flex justify-center align-center py-3 bg-white" hover-class="bg-light">
+			<text class="font-md text-danger">删除并退出</text>
+		</view>
+		
+		<view style="height: 200rpx;"></view>
 	</view>
 </template>
 
