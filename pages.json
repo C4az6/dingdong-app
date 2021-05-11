@@ -24,7 +24,16 @@
 			"path": "pages/chat/video/video",
 			"style": {}
 		}
-	],
+	    ,{
+            "path" : "pages/chat/chat-set/chat-set",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "叮咚",

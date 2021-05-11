@@ -14,8 +14,9 @@
 					<text v-if="title" class="font-md ml-3">{{titleValue}}</text>
 				</view>
 				<!-- 右边图标部分 -->
-				<view class="flex align-center">
+				<view class="flex align-center" v-if="showRight">
 					<slot name="right">
+						<!-- 下面的2个组件是 right 插槽默认的元素，如果其他组件手动设置slot=right则下面内容会被覆盖 -->
 						<free-icon-button :iconValue="'\ue6e3'" />
 						<free-icon-button @click="openPopup" :iconValue="'\ue682'" />
 					</slot>
@@ -27,6 +28,7 @@
 
 		<!-- 弹出层 拓展菜单 -->
 		<free-popup 
+			v-if="showRight"
 			ref="popupRef" 
 			:bodyWidth="320" 
 			:bodyHeight="525" 
@@ -77,6 +79,11 @@
 			showBack: {
 				type: Boolean,
 				default: false
+			},
+			// 是否显示右侧按钮
+			showRight: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {

@@ -2,7 +2,7 @@
 	<view>
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="CTO" showBack>
-			<free-icon-button slot="right" :iconValue="'\ue6fd'" />
+			<free-icon-button slot="right" :iconValue="'\ue6fd'" @click="openChatSet"/>
 		</free-nav-bar>
 
 		<!-- 聊天内容区域 -->
@@ -405,6 +405,13 @@ export default {
 		})
 	},
   methods: {
+		// 打开聊天信息设置页
+		openChatSet() {
+			uni.navigateTo({
+				url: '/pages/chat/chat-set/chat-set'
+			})
+		},
+		
 		// 监听语音输入按钮触摸开始函数
 		handleVoiceTouchstart(e) {
 			// 初始化操作
@@ -513,7 +520,7 @@ export default {
 					break;
 				case 'uploadVideo':		// 发送短视频
 					uni.chooseVideo({
-						maxDuration: 10,
+						maxDuration: 10, 
 						success: res=>{
 							this.send('video', res.tempFilePath)
 							// 渲染页面
