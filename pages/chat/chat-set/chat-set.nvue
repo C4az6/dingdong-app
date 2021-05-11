@@ -1,30 +1,52 @@
 <template>
-	<view>
+	<view style="background-color: #EDEDED;">
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="聊天信息" showBack :showRight="false"></free-nav-bar>
 		<!-- 聊天成员列表 -->
-		<view class="flex flex-wrap">
-			<view class="flex flex-column justify-center align-center mb-2" style="width: 150rpx; height: 150rpx;" v-for="i in 10">
+		<view class="flex flex-wrap bg-white">
+			<view class="flex flex-column justify-center align-center mb-2" style="width: 150rpx;" v-for="i in 10">
 				<free-avatar src='/static/avatar.jpg' size="110"></free-avatar>
-				<text class="font text-muted mt-1">Alexander</text>
+				<text class="font text-muted mt-2">昵称</text>
 			</view>
-			
-			<view class="flex flex-column justify-center align-center" style="width: 150rpx;">
-				<view class="flex flex-column justify-center align-center border" style="width: 120rpx; height: 120rpx;">
+			<!-- 添加成员图标按钮 -->
+			<view class="flex flex-column justify-center align-center mb-3" style="width: 150rpx;">
+				<view class="flex flex-column justify-center align-center border" hover-class="bg-light" style="width: 120rpx; height: 120rpx;">
 					<text class="text-light-muted" style="font-size: 100rpx;">+</text>
 				</view>
 			</view>
 		</view>
+		
+		<!-- 聊天信息设置菜单 -->
+		<free-divider></free-divider>
+		<free-list-item title="查找聊天记录" rightIconShow :leftIconShow="false"></free-list-item>
+		<free-divider></free-divider>
+		<free-list-item title="消息免打扰" rightIconShow :leftIconShow="false" :arrows="false">
+			<switch checked="false" color="#08C060" @change="" slot="right" />
+		</free-list-item>
+		<free-list-item title="置顶聊天" rightIconShow :leftIconShow="false" :arrows="false">
+			<switch checked="false" color="#08C060" @change="" slot="right" />
+		</free-list-item>
+		<free-list-item title="强提醒" rightIconShow :leftIconShow="false" :arrows="false">
+			<switch checked="false" color="#08C060" @change="" slot="right" />
+		</free-list-item>
+		<free-divider></free-divider>
+		<free-list-item title="清空聊天记录" rightIconShow :leftIconShow="false"></free-list-item>
+		<free-divider></free-divider>
+		<free-list-item title="投诉" rightIconShow :leftIconShow="false"></free-list-item>
 	</view>
 </template>
 
 <script>
 	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreeDivider from '@/components/free-ui/free-divider.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
 	export default {
 		components: {
 			FreeNavBar,
-			FreeAvatar
+			FreeAvatar,
+			FreeDivider,
+			FreeListItem
 		},
 		data() {
 			return {
