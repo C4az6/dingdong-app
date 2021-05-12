@@ -3,14 +3,14 @@
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="聊天信息" showBack :showRight="false"></free-nav-bar>
 		<!-- 聊天成员列表 -->
-		<view class="flex flex-wrap bg-white">
-			<view class="flex flex-column justify-center align-center mb-2" style="width: 150rpx;" v-for="i in 10">
-				<free-avatar src='/static/avatar.jpg' size="110"></free-avatar>
-				<text class="font text-muted mt-2">昵称</text>
+		<view class="flex flex-wrap py-3 bg-white">
+			<view class="flex flex-column justify-center align-center mb-2" style="width: 150rpx;">
+				<free-avatar src='/static/avatar.jpg' size="100"></free-avatar>
+				<text class="font text-muted mt-1">昵称</text>
 			</view>
 			<!-- 添加成员图标按钮 -->
-			<view class="flex flex-column justify-center align-center mb-3" style="width: 150rpx;">
-				<view class="flex flex-column justify-center align-center border" hover-class="bg-light" style="width: 120rpx; height: 120rpx;">
+			<view class="flex justify-center mb-2" style="width: 150rpx;">
+				<view class="flex justify-center align-center border" hover-class="bg-light" style="width: 120rpx; height: 120rpx;">
 					<text class="text-light-muted" style="font-size: 100rpx;">+</text>
 				</view>
 			</view>

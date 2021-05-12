@@ -1,0 +1,78 @@
+<template>
+	<view class="page">
+		<!-- 导航栏部分 -->
+		<free-nav-bar showBack bgColor="bg-white" >
+			<free-icon-button slot="right" :iconValue="'\ue6fd'" @click="openChatSet"/>
+		</free-nav-bar>
+		
+		<!-- 个人信息部分 -->
+		<view class="flex align-center bg-white py-4 px-2 border-bottom">
+			<free-avatar src="/static/avatar.jpg" size="120"></free-avatar>
+			<view class="ml-3">
+				<text class="font-lg font-weight-bold">伤心的瘦子灬</text>
+				<text class="font text-muted my-1">叮咚号: Alexander3714</text>
+				<text class="font text-muted">地区: 广东 广州</text>
+			</view>
+		</view>
+		
+		<!--　导航标签部分 -->
+		<free-list-item rightIconShow :leftIconShow="false">
+			<view class="flex align-center">
+				<text class="font-md text-dark mr-3">标签</text>
+				<text class="font text-light-muted">前端</text>
+			</view>
+		</free-list-item>
+		
+		<free-divider></free-divider>
+		
+		<free-list-item rightIconShow :leftIconShow="false">
+			<view class="flex align-center">
+				<text class="font-md text-dark mr-3">朋友圈</text>
+					<image 
+						src="/static/images/demo/cate_08.png" 
+						style="width: 90rpx;height: 90rpx;" 
+						class="border mr-3"
+						v-for="item in 3"
+					>
+					</image>
+			</view>
+		</free-list-item>
+		<free-list-item title="更多信息" rightIconShow :leftIconShow="false"></free-list-item>
+		
+		<free-divider></free-divider>
+		
+		<view class="flex justify-center align-center py-3 bg-white" hover-class="bg-light">
+			<text class="iconfont mr-1 text-primary">&#xe64e;</text>
+			<text class="font-md text-primary">发信息</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+	import FreeDivider from '@/components/free-ui/free-divider.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeIconButton,
+			FreeDivider,
+			FreeListItem,
+			FreeAvatar
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

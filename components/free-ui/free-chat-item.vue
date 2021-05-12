@@ -14,7 +14,7 @@
 			<text class="font-sm text-light-muted">你撤回了一条信息</text>
 		</view>
 		<view v-else :key="index" class="flex position-relative mb-3" :class="isSelf?'align-start justify-end ':'align-start justify-start'">
-			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" />
+			<free-avatar size="70" :src="item.avatar" v-if="!isSelf" clickType="navigate"/>
 			<!-- 箭头图标 -->
 			<text v-if="hasLabelClass" class="iconfont font-md position-absolute" :class="isSelf?'text-chat-item chat-right-icon':'text-white chat-left-icon'">{{isSelf?'&#xe640;':'&#xe609;'}}</text>
 			<div class="p-2 rounded" style="max-width: 500rpx;" :style="labelStyle" :class="labelClass" @longpress="long">
@@ -63,7 +63,7 @@
 					<text class="iconfont text-white position-absolute" style="font-size: 80rpx;width: 80rpx;height: 80rpx;" :style="posterIconStyle">&#xe737;</text>
 				</view>
 			</div>
-			<free-avatar size="70" :src="item.avatar" v-if="isSelf" />
+			<free-avatar clickType="navigate" size="70" :src="item.avatar" v-if="isSelf" />
 		</view>
 	</div>
 </template>
