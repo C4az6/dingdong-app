@@ -51,6 +51,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/mail/user-tag-set/user-tag-set",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -1,0 +1,112 @@
+<template>
+	<view>
+		<!-- 导航栏 -->
+		<free-nav-bar title titleValue="添加标签" showRight showBack bgColor="bg-white" >
+			<free-mail-button name="保存" slot="right" @click="save"></free-mail-button>
+		</free-nav-bar>
+		
+		<view class="px-3 pt-3 pb-2 border-bottom flex align-center flex-wrap">
+			<view 
+				v-for="(item, index) in tagList" 
+				class="border border-main rounded-circle py-1 px-2 flex align-center justify-center mr-1 mb-1" 
+				@click="handleRemoveTag(index)"
+			>
+				<text class="font main-text-color">{{item}}</text>
+			</view>
+			<input 
+				type="text" 
+				class="border bg-white font rounded-circle text-center" 
+				placeholder="添加标签" 
+				style="border-style: dashed;width: 180rpx;"
+				v-model.trim="tag"
+				@confirm="handleAddTag"
+				confirm-type="send"
+			>
+		</view>
+		
+		<!-- 所有标签 -->
+		<view class="flex flex-column">
+			<text class="font-sm text-secondary py-2 px-3">所有标签</text>
+			<view class="px-3 flex flex-wrap align-center pt-3 pb-2">
+				<view class="border rounded-circle bg-white px-2 py-1 mb-1 mr-1" v-for="(item, index) in allTagList" :key="index" @click="fastAddTag(item)">
+					<text class="font">{{item}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeMailButton from '@/components/free-ui/free-mail-button.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeMailButton
+		},
+		data() {
+			return {
+				allTagList: ["家人","亲戚","朋友","同学","闺蜜"],		// 所有标签
+				tagList: [],		// 标签列表数据
+				tag: ""		// 添加标签时输入的内容
+			}
+		},
+		methods: {
+			// 保存数据
+			save() {
+				uni.$emit('updateTag', this.tagList)
+				uni.navigateBack({
+					delta:1
+				})
+			},
+			
+			// 删除标签
+			handleRemoveTag(index) {
+				uni.showModal({
+					content: '是否删除该标签',
+					success: res => {
+						if(res.confirm) {
+							this.tagList.splice(index, 1)
+						}
+					}
+				});
+			},
+			
+			// 快速添加标签
+			fastAddTag(item) {
+				if(this.tagList.indexOf(item) !== -1) {
+					return uni.showToast({
+						title: '标签已存在!',
+						icon: 'none'
+					})
+				}
+				this.tagList.push(item)
+			},
+			
+			// 添加标签的函数
+			handleAddTag() {				
+				if(!this.tag) {
+					return
+				}else if(this.tagList.indexOf(this.tag) !== -1) {
+					uni.showToast({
+						title: '标签已存在!',
+						icon: 'none'
+					})
+				}else {
+					this.tagList.push(this.tag)
+				}
+				this.tag = ""
+			}
+		},
+		onLoad(e) {
+			console.log("e: ", e)
+			if(e.tagList) {
+				this.tagList = JSON.parse(e.tagList)
+			}
+		}
+	}
+</script>
+
+<style>
+
+</style>

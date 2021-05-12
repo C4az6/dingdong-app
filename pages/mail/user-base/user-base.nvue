@@ -9,17 +9,20 @@
 		<view class="flex align-center bg-white py-4 px-2 border-bottom">
 			<free-avatar src="/static/avatar.jpg" size="120"></free-avatar>
 			<view class="ml-3">
-				<text class="font-lg font-weight-bold">伤心的瘦子灬</text>
+				<text class="font-lg font-weight-bold">{{nickname}}</text>
 				<text class="font text-muted my-1">叮咚号: Alexander3714</text>
 				<text class="font text-muted">地区: 广东 广州</text>
 			</view>
 		</view>
 		
 		<!--　导航标签部分 -->
-		<free-list-item rightIconShow :leftIconShow="false">
+		<free-list-item rightIconShow :leftIconShow="false" @click="navigate('mail/user-remark-tag/user-remark-tag')">
 			<view class="flex align-center">
 				<text class="font-md text-dark mr-3">标签</text>
-				<text class="font text-light-muted">前端</text>
+					<text class="font text-light-muted pr-5" v-for="(item, index) in tagList">
+						{{item}}
+					</text>
+					<text class="font text-light-muted" v-if="!tagList.length">未设置</text>
 			</view>
 		</free-list-item>
 		
@@ -80,6 +83,8 @@
 		},
 		data() {
 			return {
+				nickname: "伤心的瘦子",		// 昵称
+				tagList: ['前端','后端'],		// 标签列表
 				actions: [
 					{
 						icon: "\ue6b3",
@@ -120,6 +125,16 @@
 					url: `/pages/${path}`
 				})
 			}
+		},
+		onLoad() {
+			uni.$on('saveRemarkTag', res => {
+				this.nickname = res.nickname
+				this.tagList = res.tagList
+			})
+		},
+		beforeDestroy() {
+			console.log("销毁...")
+			uni.$off('saveRemarkTag')
 		}
 	}
 </script>
