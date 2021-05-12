@@ -1,0 +1,46 @@
+<template>
+	<view>
+		<!-- 导航栏部分 -->
+		<free-nav-bar title titleValue="设置备注和标签" showRight showBack bgColor="bg-white" >
+			<free-mail-button name="完成" slot="right"></free-mail-button>
+		</free-nav-bar>
+		
+		<!-- 内容区域 -->
+		<view class="flex flex-column">
+			<text class="font-sm text-secondary py-2 px-3">备注名</text>
+			<input type="text" class="font-md border bg-white px-3" placeholder="请输入备注名" style="height: 100rpx;">
+		</view>
+		
+		<view class="flex flex-column">
+			<text class="font-sm text-secondary py-2 px-3">标签</text>
+			<view class="border bg-white px-3 flex flex-wrap align-center pt-3 pb-2">
+				<view class="border rounded-circle border-main px-2 py-1 mb-1 mr-1" v-for="i in 5">
+					<text class="main-text-color font">前端高手</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeMailButton from '@/components/free-ui/free-mail-button.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeMailButton
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

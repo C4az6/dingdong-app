@@ -2,7 +2,7 @@
 	<view class="page">
 		<!-- 导航栏部分 -->
 		<free-nav-bar showBack bgColor="bg-white" >
-			<free-icon-button slot="right" :iconValue="'\ue6fd'" @click="openChatSet"/>
+			<free-icon-button slot="right" :iconValue="'\ue6fd'" @click="openAction"/>
 		</free-nav-bar>
 		
 		<!-- 个人信息部分 -->
@@ -31,7 +31,7 @@
 					<image 
 						src="/static/images/demo/cate_08.png" 
 						style="width: 90rpx;height: 90rpx;" 
-						class="border mr-3"
+						class="mr-3"
 						v-for="item in 3"
 					>
 					</image>
@@ -45,6 +45,20 @@
 			<text class="iconfont mr-1 text-primary">&#xe64e;</text>
 			<text class="font-md text-primary">发信息</text>
 		</view>
+		
+		<!-- 操作菜单弹出层 -->
+		<free-popup ref="action" maskColor bottom transformOrigin="center bottom" @closePopup="onClosePopup">
+			<scroll-view scroll-y="true" style="height: 580rpx;" :show-scrollbar="false">
+				<free-list-item
+					v-for="(item, index) in actions" :key="index"
+					:borderBottom="false"
+					:title="item.title"
+					@click="navigate('mail/user-remark-tag/user-remark-tag')"
+					>
+					<text slot="icon" class="iconfont py-1 font-lg">{{item.icon}}</text>
+				</free-list-item>
+			</scroll-view>
+		</free-popup>
 	</view>
 </template>
 
@@ -54,21 +68,58 @@
 	import FreeDivider from '@/components/free-ui/free-divider.vue'
 	import FreeListItem from '@/components/free-ui/free-list-item.vue'
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreePopup from "@/components/free-ui/free-popup.vue"
 	export default {
 		components: {
 			FreeNavBar,
 			FreeIconButton,
 			FreeDivider,
 			FreeListItem,
-			FreeAvatar
+			FreeAvatar,
+			FreePopup
 		},
 		data() {
 			return {
-				
+				actions: [
+					{
+						icon: "\ue6b3",
+						title: '设置备注和标签'
+					},
+					{
+						icon: "\ue613",
+						title: '把他推荐给朋友'
+					},
+					{
+						icon: "\ue6b0",
+						title: '设为星标朋友'
+					},
+					{
+						icon: "\ue667",
+						title: '设置朋友圈的动态权限'
+					},
+					{
+						icon: "\ue638",
+						title: '加入黑名单'
+					},
+					{
+						icon: "\ue61c",
+						title: '投诉'
+					}
+				]
 			}
 		},
 		methods: {
-			
+			// 打开操作菜单弹出层
+			openAction() {
+				console.log(666)
+				this.$refs.action.show()
+			},
+			// 跳转页面
+			navigate(path) {
+				uni.navigateTo({
+					url: `/pages/${path}`
+				})
+			}
 		}
 	}
 </script>

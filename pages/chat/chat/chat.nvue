@@ -57,9 +57,11 @@
 			<free-icon-button v-if="!text.length" :iconValue="'\ue603'" @click="openActionOrEmoticon('action')" />
 			
 			<!-- 发送文字按钮 -->
-			<view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
+			<!-- <view v-else class="main-bg-color py-1 px-2 rounded mr-2" @click="send('text')">
 				<text class="font text-white">发送</text>
-			</view>
+			</view> -->
+			
+			<free-mail-button v-else name="发送" @click="send('text')"></free-mail-button>
 		</view>
 		
 		<!-- 长按聊天信息弹出层 -->
@@ -113,13 +115,15 @@ import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
 import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
 import FreeChatItem from '@/components/free-ui/free-chat-item.vue'
 import FreePopup from "@/components/free-ui/free-popup.vue"
+import FreeMailButton from "@/components/free-ui/free-mail-button.vue"
 export default {
   name: 'ChatIndex',
   components: {
 		FreeNavBar,
 		FreeIconButton,
 		FreeChatItem,
-		FreePopup
+		FreePopup,
+		FreeMailButton
 	},
   props: {},
   data () {

@@ -9,7 +9,7 @@
 		</view>
 
 		<!-- 右侧内容 -->
-		<view class="flex-1 flex align-center border-bottom justify-between pr-3 py-3 pl-3">
+		<view class="flex-1 flex align-center justify-between pr-3 py-3 pl-3" :class="borderBottom?'border-bottom':''">
 			<slot><text class="font-md text-dark">{{title}}</text></slot>
 			<view v-if="rightIconShow" class="flex align-center">
 				<!-- 朋友圈右侧头像 -->
@@ -26,6 +26,11 @@
 		name: 'FreeListItem',
 		components: {},
 		props: {
+			// 是否显示下边线
+			borderBottom: {
+				type: Boolean,
+				default: true
+			},
 			// 封面
 			cover: {
 				type: String,

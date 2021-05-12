@@ -195,7 +195,6 @@
 			
 			// 封面图片加载完成函数
 			loadPoster (e) {
-				console.log("video poster loaded...", e)
 				this.poster.w = e.w
 				this.poster.h = e.h
 			},

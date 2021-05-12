@@ -42,6 +42,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/mail/user-remark-tag/user-remark-tag",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
