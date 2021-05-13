@@ -54,7 +54,7 @@
 					v-for="(item, index) in actions" :key="index"
 					:borderBottom="false"
 					:title="item.title"
-					@click="navigate('mail/user-remark-tag/user-remark-tag')"
+					@click="handleActionEvent(item)"
 					>
 					<text slot="icon" class="iconfont py-1 font-lg">{{item.icon}}</text>
 				</free-list-item>
@@ -86,7 +86,9 @@
 				actions: [
 					{
 						icon: "\ue6b3",
-						title: '设置备注和标签'
+						title: '设置备注和标签',
+						type: 'navigate',
+						url: 'mail/user-remark-tag/user-remark-tag'
 					},
 					{
 						icon: "\ue613",
@@ -98,7 +100,9 @@
 					},
 					{
 						icon: "\ue667",
-						title: '设置朋友圈的动态权限'
+						title: '设置朋友圈的动态权限',
+						type: 'navigate',
+						url: 'mail/user-moments-auth/user-moments-auth'
 					},
 					{
 						icon: "\ue638",
@@ -112,6 +116,20 @@
 			}
 		},
 		methods: {
+			// 监听操作菜单点击事件
+			handleActionEvent(item) {
+				switch (item.type){
+					case "navigate":
+						// 跳转页面
+						uni.navigateTo({
+							url: `/pages/${item.url}`
+						})
+						break;
+					default:
+						break;
+				}
+			},
+			
 			// 打开操作菜单弹出层
 			openAction() {
 				console.log(666)
