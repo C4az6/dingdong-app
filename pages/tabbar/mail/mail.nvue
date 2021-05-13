@@ -3,18 +3,27 @@
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="通讯录" fixed @openPopup="handleOpenPopup" />
 
-		<!-- 通讯录列表组件 -->
-		<free-list-item v-for="(item, index) in topList" :key="index" :cover="item.cover" :title="item.title" />
-		
-		<!-- 通讯录列表 -->
-		<block v-for="(item, index) in list" :key="index">
-			<view v-if="item.data.length">
-				<view class="py-2 px-3 border-bottom bg-light">
-					<text class="font-sm text-dark">{{item.letter}}</text>
+		<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'">
+			<!-- 通讯录列表组件 -->
+			<free-list-item v-for="(item, index) in topList" :key="index" :cover="item.cover" :title="item.title" />
+			
+			<!-- 通讯录列表 -->
+			<block v-for="(item, index) in list" :key="index">
+				<view v-if="item.data.length">
+					<view class="py-2 px-3 border-bottom bg-light">
+						<text class="font-sm text-dark">{{item.letter}}</text>
+					</view>
+					<free-list-item v-for="(item2, index2) in item.data" :key="index2" :title="item2" cover="/static/avatar.jpg" />
 				</view>
-				<free-list-item v-for="(item2, index2) in item.data" :key="index2" :title="item2" cover="/static/avatar.jpg" />
+			</block>
+		</scroll-view>
+		
+		<!-- 通讯录索引列表 -->
+		<view class="position-fixed right-0 bottom-0  bg-light flex flex-column" style="width: 50rpx;" :style="'top:'+top+'px;'">
+			<view class="flex-1 flex align-center justify-center" v-for="(item, index) in list" :key="index">
+				<text class="font-sm text-muted">{{item.letter}}</text>
 			</view>
-		</block>
+		</view>
 	</view>
 </template>
 
@@ -215,11 +224,18 @@
 						"中卫",
 						"舟山",
 					]
-				}]
+				}],
+				top: 0,		// 状态栏 + 导航栏的高度
+				scrollHeight: 0
 			}
 		},
 		onLoad() {
-
+			// 计算this.top的值
+			let info = uni.getSystemInfoSync()
+			this.top = info.statusBarHeight + uni.upx2px(90)
+			// 计算scrollHeight的值
+			this.scrollHeight = info.windowHeight - this.top
+			console.log("...", this.scrollHeight)
 		},
 		methods: {
 
