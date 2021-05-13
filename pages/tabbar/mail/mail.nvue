@@ -3,23 +3,25 @@
 		<!-- 导航栏 -->
 		<free-nav-bar title titleValue="通讯录" fixed @openPopup="handleOpenPopup" />
 
-		<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'">
+		<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" :scroll-into-view="scrollInto">
 			<!-- 通讯录列表组件 -->
 			<free-list-item v-for="(item, index) in topList" :key="index" :cover="item.cover" :title="item.title" />
-			
+
 			<!-- 通讯录列表 -->
-			<block v-for="(item, index) in list" :key="index">
-				<view v-if="item.data.length">
+			<block v-for="(item, index) in list">
+				<view v-if="item.data.length" :key="index" :id="'item-'+item.letter">
 					<view class="py-2 px-3 border-bottom bg-light">
 						<text class="font-sm text-dark">{{item.letter}}</text>
 					</view>
-					<free-list-item v-for="(item2, index2) in item.data" :key="index2" :title="item2" cover="/static/avatar.jpg" />
+					<free-list-item v-for="(item2, index2) in item.data" :key="index2" :title="item2"
+						cover="/static/avatar.jpg" />
 				</view>
 			</block>
 		</scroll-view>
-		
+
 		<!-- 通讯录索引列表 -->
-		<view class="position-fixed right-0 bottom-0  bg-light flex flex-column" style="width: 50rpx;" :style="'top:'+top+'px;'">
+		<view class="position-fixed right-0 bottom-0  bg-light flex flex-column" style="width: 50rpx;"
+			:style="'top:'+top+'px;'" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
 			<view class="flex-1 flex align-center justify-center" v-for="(item, index) in list" :key="index">
 				<text class="font-sm text-muted">{{item.letter}}</text>
 			</view>
@@ -37,8 +39,7 @@
 		},
 		data() {
 			return {
-				topList: [
-					{
+				topList: [{
 						title: "新的朋友",
 						cover: "/static/images/mail/friend.png",
 						event: ""
@@ -225,8 +226,9 @@
 						"舟山",
 					]
 				}],
-				top: 0,		// 状态栏 + 导航栏的高度
-				scrollHeight: 0
+				top: 0, // 状态栏 + 导航栏的高度
+				scrollHeight: 0, // scrollview的高度
+				scrollInto: '' // 用于与索引列表数据联动
 			}
 		},
 		onLoad() {
@@ -235,10 +237,36 @@
 			this.top = info.statusBarHeight + uni.upx2px(90)
 			// 计算scrollHeight的值
 			this.scrollHeight = info.windowHeight - this.top
-			console.log("...", this.scrollHeight)
 		},
 		methods: {
+			touchstart(e) {
+				console.log("touchstart: ", e.touches[0].pageY)
+				// 获取用户触摸索引列表的Y坐标
+				let Y = e.touches[0].pageY
+				// 计算触摸的坐标的字母索引
+				let index = Math.floor(Y / this.itemHeight)
+				let item = this.list[index]
+				if (item) {
+					this.scrollInto = 'item-' + item.letter
+				}
 
+			},
+			touchmove(e) {
+
+			},
+			touchend(e) {
+
+			}
+		},
+		computed: {
+			// 每个索引的高度
+			itemHeight() {
+				let count = this.list.length
+				if (count < 1) {
+					return 0
+				}
+				return this.scrollHeight / count
+			}
 		}
 	}
 </script>
