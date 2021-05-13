@@ -8,8 +8,11 @@
 		<!-- 个人信息部分 -->
 		<view class="flex align-center bg-white py-4 px-2 border-bottom">
 			<free-avatar src="/static/avatar.jpg" size="120"></free-avatar>
-			<view class="ml-3">
-				<text class="font-lg font-weight-bold">{{nickname}}</text>
+			<view class="ml-3 flex-1">
+				<view class="flex justify-between align-center">
+					<text class="font-lg font-weight-bold">{{nickname}}</text>
+					<image v-if="star" src="/static/images/star.png" style="width: 40rpx;height: 40rpx;"></image>
+				</view>
 				<text class="font text-muted my-1">叮咚号: Alexander3714</text>
 				<text class="font text-muted">地区: 广东 广州</text>
 			</view>
@@ -19,8 +22,8 @@
 		<free-list-item rightIconShow :leftIconShow="false" @click="navigate('mail/user-remark-tag/user-remark-tag')">
 			<view class="flex align-center">
 				<text class="font-md text-dark mr-3">标签</text>
-				<text class="font-md text-light-muted mr-3" v-for="(item, index) in tagList">{{item}}</text>
-				<text class="font-md text-light-muted" v-if="!tagList.length">未设置</text>
+				<text class="font text-light-muted mr-3" v-for="(item, index) in tagList">{{item}}</text>
+				<text class="font text-light-muted" v-if="!tagList.length">未设置</text>
 			</view>
 		</free-list-item>
 		
@@ -81,6 +84,7 @@
 		},
 		data() {
 			return {
+				star: false,		// 是否设置为星标
 				nickname: "伤心的瘦子",		// 昵称
 				tagList: ['前端','后端'],		// 标签列表
 				actions: [
@@ -96,7 +100,9 @@
 					},
 					{
 						icon: "\ue6b0",
-						title: '设为星标朋友'
+						title: '设为星标朋友',
+						type: 'event',
+						event: 'setStart'
 					},
 					{
 						icon: "\ue667",
@@ -116,6 +122,12 @@
 			}
 		},
 		methods: {
+			// 设置/取消星标好友
+			setStart(e) {
+				this.star = !this.star
+				e.title = this.star ? '取消星标好友' : '设置星标好友'
+			},
+			
 			// 监听操作菜单点击事件
 			handleActionEvent(item) {
 				switch (item.type){
@@ -125,9 +137,11 @@
 							url: `/pages/${item.url}`
 						})
 						break;
-					default:
+					case "event":
+						this[item.event](item)
 						break;
 				}
+				this.$refs.action.hide()
 			},
 			
 			// 打开操作菜单弹出层
