@@ -45,9 +45,9 @@
 		
 		<free-divider></free-divider>
 		
-		<view class="flex justify-center align-center py-3 bg-white" hover-class="bg-light">
-			<text class="iconfont mr-1 text-primary">&#xe64e;</text>
-			<text class="font-md text-primary">发信息</text>
+		<view class="flex justify-center align-center py-3 bg-white" hover-class="bg-light" @click="handleSendMessage">
+			<text class="iconfont mr-1 text-primary" v-if="!isBlack">&#xe64e;</text>
+			<text class="font-md text-primary">{{isBlack ? '移出黑名单' : '发信息'}}</text>
 		</view>
 		
 		<!-- 操作菜单弹出层 -->
@@ -84,6 +84,7 @@
 		},
 		data() {
 			return {
+				isBlack: false,		// 是否加入黑名单
 				star: false,		// 是否设置为星标
 				nickname: "伤心的瘦子",		// 昵称
 				tagList: ['前端','后端'],		// 标签列表
@@ -112,7 +113,9 @@
 					},
 					{
 						icon: "\ue638",
-						title: '加入黑名单'
+						title: '加入黑名单',
+						type: 'event',
+						event: 'setBlack'
 					},
 					{
 						icon: "\ue61c",
@@ -122,6 +125,35 @@
 			}
 		},
 		methods: {
+			// 发送信息函数
+			handleSendMessage() {
+				if(this.isBlack) {
+					let item = this.actions.find(item => {
+						return (item.type==='event') && (item.event==='setBlack')
+					})
+					this.setBlack(item)
+				}
+			},
+			
+			// 加入/移出黑名单
+			setBlack(e) {
+				let msg = '加入黑名单'
+				this.isBlack && ( msg = '移出黑名单')
+				uni.showModal({
+					content: `是否要${msg}`,
+					success: res => {
+						if(res.confirm) {
+							this.isBlack = !this.isBlack
+							e.title = this.isBlack ? '移出黑名单' : '加入黑名单'
+							uni.showToast({
+								title: `${msg}成功`,
+								icon: 'none'
+							})
+						}
+					}
+				});
+			},
+			
 			// 设置/取消星标好友
 			setStart(e) {
 				this.star = !this.star
