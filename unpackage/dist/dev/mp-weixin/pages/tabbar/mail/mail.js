@@ -410,6 +410,7 @@ __webpack_require__.r(__webpack_exports__);
   onLoad: function onLoad() {
     // 计算this.top的值
     var info = uni.getSystemInfoSync();
+    console.log("info: ", info.statusBarHeight);
     this.top = info.statusBarHeight + uni.upx2px(90);
     // 计算scrollHeight的值
     this.scrollHeight = info.windowHeight - this.top;

@@ -97,7 +97,9 @@
 					},
 					{
 						icon: "\ue613",
-						title: '把他推荐给朋友'
+						title: '把他推荐给朋友',
+						type: 'navigate',
+						url: 'mail/send-card/send-card'
 					},
 					{
 						icon: "\ue6b0",

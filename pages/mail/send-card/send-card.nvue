@@ -1,0 +1,49 @@
+<template>
+	<view>
+			<!-- 导航栏 -->
+			<free-nav-bar title="选择" showBack :showRight="true">
+				<free-mail-button name="多选" slot="right"></free-mail-button>
+			</free-nav-bar>
+			
+			<!-- 搜索框 -->
+			<view class="p-3 bg-light position-fixed left-0 right-0" :style="'top:'+top+'px;'">
+				<input type="text" placeholder="搜索" class="bg-white rounded" placeholder-class="text-center" style="height: 80rpx;"/>
+			</view> 
+			<view style="height: 140rpx"></view>
+			<!-- 联系人列表 -->
+			<free-list-item title="更多联系人" :showLeftIcon="false" :border="false"></free-list-item>
+			<view class="px-2 py-1 bg-light">
+				<text class="font-sm text-muted">最近联系人</text>
+			</view>
+			<free-list-item title="昵称" v-for="i in 50" :key="i" cover="/static/images/mail/friend.png"></free-list-item>
+	</view>
+</template>
+
+<script>
+	import freeNavBar from '@/components/free-ui/free-nav-bar.vue';
+	import freeMailButton from '@/components/free-ui/free-mail-button.vue';
+	import freeListItem from '@/components/free-ui/free-list-item.vue';
+	export default {
+		components: {
+			freeNavBar,
+			freeMailButton,
+			freeListItem
+		},
+		data() {
+			return {
+				top: 0,		// 状态栏 + 导航栏的高度
+			}
+		},
+		methods: {
+			
+		},
+		onLoad() {
+			let res = uni.getSystemInfoSync()
+			this.top = res.statusBarHeight + uni.upx2px(90)
+		}
+	}
+</script>
+
+<style>
+
+</style>

@@ -10,7 +10,8 @@
     "pages/mail/user-base/user-base",
     "pages/mail/user-remark-tag/user-remark-tag",
     "pages/mail/user-tag-set/user-tag-set",
-    "pages/mail/user-moments-auth/user-moments-auth"
+    "pages/mail/user-moments-auth/user-moments-auth",
+    "pages/mail/send-cart/send-cart"
   ],
   "subPackages": [],
   "window": {
@@ -51,6 +52,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap21.json"
+  "usingComponents": {}
 }

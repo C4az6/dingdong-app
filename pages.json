@@ -69,6 +69,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/mail/send-card/send-card",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
