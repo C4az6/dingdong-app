@@ -2,7 +2,7 @@
 	<view>
 			<!-- 导航栏 -->
 			<free-nav-bar title="选择" showBack :showRight="true">
-				<free-mail-button name="多选" slot="right"></free-mail-button>
+				<free-mail-button :name="multiSelect ? '发送' : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
 			</free-nav-bar>
 			
 			<!-- 搜索框 -->
@@ -11,11 +11,16 @@
 			</view> 
 			<view style="height: 140rpx"></view>
 			<!-- 联系人列表 -->
-			<free-list-item title="更多联系人" :showLeftIcon="false" :border="false"></free-list-item>
+			<free-list-item title="更多联系人" :leftIconShow="false" :borderBottom="false"></free-list-item>
 			<view class="px-2 py-1 bg-light">
 				<text class="font-sm text-muted">最近联系人</text>
 			</view>
-			<free-list-item title="昵称" v-for="i in 50" :key="i" cover="/static/images/mail/friend.png"></free-list-item>
+			<free-list-item v-for="(item, index) in list" :key="index" :title="item.username"  :cover="item.avatar" rightIconShow :arrows="false" @click="selectItem(item)">
+				<view v-if="multiSelect" class="flex align-center justify-center rounded-circle border" slot="right" style="width: 40rpx;height:40rpx;">
+					<view v-if="item.checked" style="width: 30rpx; height: 30rpx;" class="main-bg-color rounded-circle">
+					</view>
+				</view>
+			</free-list-item>
 	</view>
 </template>
 
@@ -31,10 +36,33 @@
 		},
 		data() {
 			return {
+				multiSelect: false,		// 是否处于多选状态
 				top: 0,		// 状态栏 + 导航栏的高度
+				list: [
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					}
+				]
 			}
 		},
 		methods: {
+			// 监听导航栏点击事件
+			handleNavBarBtn() {
+				if(!this.multiSelect) {
+					// 如果此时不是多选状态则切换成多选状态
+					return this.multiSelect = true
+				}
+				// 执行发送逻辑
+			},
+			
+			// 选中 / 取消 选中
+			selectItem(item) {
+				if(this.multiSelect) {
+					item.checked = !item.checked
+				}
+			}
 			
 		},
 		onLoad() {

@@ -1315,7 +1315,11 @@ var render = function() {
             { attrs: { title: "选择", showBack: true, showRight: true } },
             [
               _c("free-mail-button", {
-                attrs: { slot: "right", name: "多选" },
+                attrs: {
+                  slot: "right",
+                  name: _vm.multiSelect ? "发送" : "多选"
+                },
+                on: { click: _vm.handleNavBarBtn },
                 slot: "right"
               })
             ],
@@ -1348,7 +1352,11 @@ var render = function() {
           ),
           _c("view", { staticStyle: { height: "140rpx" } }),
           _c("free-list-item", {
-            attrs: { title: "更多联系人", showLeftIcon: false, border: false }
+            attrs: {
+              title: "更多联系人",
+              leftIconShow: false,
+              borderBottom: false
+            }
           }),
           _c("view", { staticClass: ["px-2", "py-1", "bg-light"] }, [
             _c(
@@ -1361,11 +1369,51 @@ var render = function() {
               [_vm._v("最近联系人")]
             )
           ]),
-          _vm._l(50, function(i) {
-            return _c("free-list-item", {
-              key: i,
-              attrs: { title: "昵称", cover: "/static/images/mail/friend.png" }
-            })
+          _vm._l(_vm.list, function(item, index) {
+            return _c(
+              "free-list-item",
+              {
+                key: index,
+                attrs: {
+                  title: item.username,
+                  cover: item.avatar,
+                  rightIconShow: true,
+                  arrows: false
+                },
+                on: {
+                  click: function($event) {
+                    _vm.selectItem(item)
+                  }
+                }
+              },
+              [
+                _vm.multiSelect
+                  ? _c(
+                      "view",
+                      {
+                        staticClass: [
+                          "flex",
+                          "align-center",
+                          "justify-center",
+                          "rounded-circle",
+                          "border"
+                        ],
+                        staticStyle: { width: "40rpx", height: "40rpx" },
+                        attrs: { slot: "right" },
+                        slot: "right"
+                      },
+                      [
+                        item.checked
+                          ? _c("view", {
+                              staticClass: ["main-bg-color", "rounded-circle"],
+                              staticStyle: { width: "30rpx", height: "30rpx" }
+                            })
+                          : _vm._e()
+                      ]
+                    )
+                  : _vm._e()
+              ]
+            )
           })
         ],
         2
@@ -1399,7 +1447,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar _freeNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 22));\nvar _freeMailButton = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-mail-button.vue */ 39));\nvar _freeListItem = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default = { components: { freeNavBar: _freeNavBar.default, freeMailButton: _freeMailButton.default, freeListItem: _freeListItem.default }, data: function data() {return { top: 0 // 状态栏 + 导航栏的高度\n    };}, methods: {}, onLoad: function onLoad() {var res = uni.getSystemInfoSync();this.top = res.statusBarHeight + uni.upx2px(90);} };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWFpbC9zZW5kLWNhcmQvc2VuZC1jYXJkLm52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQXNCQTtBQUNBO0FBQ0EsbUg7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztlQUNBLEVBQ0EsY0FDQSwrQkFEQSxFQUVBLHVDQUZBLEVBR0EsbUNBSEEsRUFEQSxFQU1BLElBTkEsa0JBTUEsQ0FDQSxTQUNBLE1BREEsQ0FDQTtBQURBLE1BR0EsQ0FWQSxFQVdBLFdBWEEsRUFjQSxNQWRBLG9CQWNBLENBQ0Esa0NBQ0EsZ0RBQ0EsQ0FqQkEsRSIsImZpbGUiOiIyMS5qcyIsInNvdXJjZXNDb250ZW50IjpbIjx0ZW1wbGF0ZT5cblx0PHZpZXc+XHJcblx0XHRcdDwhLS0g5a+86Iiq5qCPIC0tPlxyXG5cdFx0XHQ8ZnJlZS1uYXYtYmFyIHRpdGxlPVwi6YCJ5oupXCIgc2hvd0JhY2sgOnNob3dSaWdodD1cInRydWVcIj5cclxuXHRcdFx0XHQ8ZnJlZS1tYWlsLWJ1dHRvbiBuYW1lPVwi5aSa6YCJXCIgc2xvdD1cInJpZ2h0XCI+PC9mcmVlLW1haWwtYnV0dG9uPlxyXG5cdFx0XHQ8L2ZyZWUtbmF2LWJhcj5cclxuXHRcdFx0XHJcblx0XHRcdDwhLS0g5pCc57Si5qGGIC0tPlxyXG5cdFx0XHQ8dmlldyBjbGFzcz1cInAtMyBiZy1saWdodCBwb3NpdGlvbi1maXhlZCBsZWZ0LTAgcmlnaHQtMFwiIDpzdHlsZT1cIid0b3A6Jyt0b3ArJ3B4OydcIj5cclxuXHRcdFx0XHQ8aW5wdXQgdHlwZT1cInRleHRcIiBwbGFjZWhvbGRlcj1cIuaQnOe0olwiIGNsYXNzPVwiYmctd2hpdGUgcm91bmRlZFwiIHBsYWNlaG9sZGVyLWNsYXNzPVwidGV4dC1jZW50ZXJcIiBzdHlsZT1cImhlaWdodDogODBycHg7XCIvPlxyXG5cdFx0XHQ8L3ZpZXc+IFxyXG5cdFx0XHQ8dmlldyBzdHlsZT1cImhlaWdodDogMTQwcnB4XCI+PC92aWV3PlxyXG5cdFx0XHQ8IS0tIOiBlOezu+S6uuWIl+ihqCAtLT5cclxuXHRcdFx0PGZyZWUtbGlzdC1pdGVtIHRpdGxlPVwi5pu05aSa6IGU57O75Lq6XCIgOnNob3dMZWZ0SWNvbj1cImZhbHNlXCIgOmJvcmRlcj1cImZhbHNlXCI+PC9mcmVlLWxpc3QtaXRlbT5cclxuXHRcdFx0PHZpZXcgY2xhc3M9XCJweC0yIHB5LTEgYmctbGlnaHRcIj5cclxuXHRcdFx0XHQ8dGV4dCBjbGFzcz1cImZvbnQtc20gdGV4dC1tdXRlZFwiPuacgOi/keiBlOezu+S6ujwvdGV4dD5cclxuXHRcdFx0PC92aWV3PlxyXG5cdFx0XHQ8ZnJlZS1saXN0LWl0ZW0gdGl0bGU9XCLmmLXnp7BcIiB2LWZvcj1cImkgaW4gNTBcIiA6a2V5PVwiaVwiIGNvdmVyPVwiL3N0YXRpYy9pbWFnZXMvbWFpbC9mcmllbmQucG5nXCI+PC9mcmVlLWxpc3QtaXRlbT5cblx0PC92aWV3PlxuPC90ZW1wbGF0ZT5cblxuPHNjcmlwdD5cclxuXHRpbXBvcnQgZnJlZU5hdkJhciBmcm9tICdAL2NvbXBvbmVudHMvZnJlZS11aS9mcmVlLW5hdi1iYXIudnVlJztcclxuXHRpbXBvcnQgZnJlZU1haWxCdXR0b24gZnJvbSAnQC9jb21wb25lbnRzL2ZyZWUtdWkvZnJlZS1tYWlsLWJ1dHRvbi52dWUnO1xyXG5cdGltcG9ydCBmcmVlTGlzdEl0ZW0gZnJvbSAnQC9jb21wb25lbnRzL2ZyZWUtdWkvZnJlZS1saXN0LWl0ZW0udnVlJztcblx0ZXhwb3J0IGRlZmF1bHQge1xyXG5cdFx0Y29tcG9uZW50czoge1xyXG5cdFx0XHRmcmVlTmF2QmFyLFxyXG5cdFx0XHRmcmVlTWFpbEJ1dHRvbixcclxuXHRcdFx0ZnJlZUxpc3RJdGVtXHJcblx0XHR9LFxuXHRcdGRhdGEoKSB7XG5cdFx0XHRyZXR1cm4ge1xuXHRcdFx0XHR0b3A6IDAsXHRcdC8vIOeKtuaAgeagjyArIOWvvOiIquagj+eahOmrmOW6plxuXHRcdFx0fVxuXHRcdH0sXG5cdFx0bWV0aG9kczoge1xuXHRcdFx0XG5cdFx0fSxcclxuXHRcdG9uTG9hZCgpIHtcclxuXHRcdFx0bGV0IHJlcyA9IHVuaS5nZXRTeXN0ZW1JbmZvU3luYygpXHJcblx0XHRcdHRoaXMudG9wID0gcmVzLnN0YXR1c0JhckhlaWdodCArIHVuaS51cHgycHgoOTApXHJcblx0XHR9XG5cdH1cbjwvc2NyaXB0PlxuXG48c3R5bGU+XG5cbjwvc3R5bGU+XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///21\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar _freeNavBar = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 22));\nvar _freeMailButton = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-mail-button.vue */ 39));\nvar _freeListItem = _interopRequireDefault(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 44));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\nvar _default = { components: { freeNavBar: _freeNavBar.default, freeMailButton: _freeMailButton.default, freeListItem: _freeListItem.default }, data: function data() {return { multiSelect: false, // 是否处于多选状态\n      top: 0, // 状态栏 + 导航栏的高度\n      list: [{ username: 'alexander', avatar: '/static/images/mail/friend.png', checked: false }] };}, methods: { // 监听导航栏点击事件\n    handleNavBarBtn: function handleNavBarBtn() {if (!this.multiSelect) {// 如果此时不是多选状态则切换成多选状态\n        return this.multiSelect = true;} // 执行发送逻辑\n    }, // 选中 / 取消 选中\n    selectItem: function selectItem(item) {if (this.multiSelect) {\n        item.checked = !item.checked;\n      }\n    } },\n\n\n  onLoad: function onLoad() {\n    var res = uni.getSystemInfoSync();\n    this.top = res.statusBarHeight + uni.upx2px(90);\n  } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWFpbC9zZW5kLWNhcmQvc2VuZC1jYXJkLm52dWUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBMkJBO0FBQ0E7QUFDQSxtSDs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7ZUFDQSxFQUNBLGNBQ0EsK0JBREEsRUFFQSx1Q0FGQSxFQUdBLG1DQUhBLEVBREEsRUFNQSxJQU5BLGtCQU1BLENBQ0EsU0FDQSxrQkFEQSxFQUNBO0FBQ0EsWUFGQSxFQUVBO0FBQ0EsYUFDQSxFQUNBLHFCQURBLEVBRUEsd0NBRkEsRUFHQSxjQUhBLEVBREEsQ0FIQSxHQVdBLENBbEJBLEVBbUJBLFdBQ0E7QUFDQSxtQkFGQSw2QkFFQSxDQUNBLHdCQUNBO0FBQ0EsdUNBQ0EsQ0FKQSxDQUtBO0FBQ0EsS0FSQSxFQVVBO0FBQ0EsY0FYQSxzQkFXQSxJQVhBLEVBV0EsQ0FDQTtBQUNBO0FBQ0E7QUFDQSxLQWZBLEVBbkJBOzs7QUFxQ0EsUUFyQ0Esb0JBcUNBO0FBQ0E7QUFDQTtBQUNBLEdBeENBLEUiLCJmaWxlIjoiMjEuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8dGVtcGxhdGU+XG5cdDx2aWV3PlxyXG5cdFx0XHQ8IS0tIOWvvOiIquagjyAtLT5cclxuXHRcdFx0PGZyZWUtbmF2LWJhciB0aXRsZT1cIumAieaLqVwiIHNob3dCYWNrIDpzaG93UmlnaHQ9XCJ0cnVlXCI+XHJcblx0XHRcdFx0PGZyZWUtbWFpbC1idXR0b24gOm5hbWU9XCJtdWx0aVNlbGVjdCA/ICflj5HpgIEnIDogJ+WkmumAiSdcIiBzbG90PVwicmlnaHRcIiBAY2xpY2s9XCJoYW5kbGVOYXZCYXJCdG5cIj48L2ZyZWUtbWFpbC1idXR0b24+XHJcblx0XHRcdDwvZnJlZS1uYXYtYmFyPlxyXG5cdFx0XHRcclxuXHRcdFx0PCEtLSDmkJzntKLmoYYgLS0+XHJcblx0XHRcdDx2aWV3IGNsYXNzPVwicC0zIGJnLWxpZ2h0IHBvc2l0aW9uLWZpeGVkIGxlZnQtMCByaWdodC0wXCIgOnN0eWxlPVwiJ3RvcDonK3RvcCsncHg7J1wiPlxyXG5cdFx0XHRcdDxpbnB1dCB0eXBlPVwidGV4dFwiIHBsYWNlaG9sZGVyPVwi5pCc57SiXCIgY2xhc3M9XCJiZy13aGl0ZSByb3VuZGVkXCIgcGxhY2Vob2xkZXItY2xhc3M9XCJ0ZXh0LWNlbnRlclwiIHN0eWxlPVwiaGVpZ2h0OiA4MHJweDtcIi8+XHJcblx0XHRcdDwvdmlldz4gXHJcblx0XHRcdDx2aWV3IHN0eWxlPVwiaGVpZ2h0OiAxNDBycHhcIj48L3ZpZXc+XHJcblx0XHRcdDwhLS0g6IGU57O75Lq65YiX6KGoIC0tPlxyXG5cdFx0XHQ8ZnJlZS1saXN0LWl0ZW0gdGl0bGU9XCLmm7TlpJrogZTns7vkurpcIiA6bGVmdEljb25TaG93PVwiZmFsc2VcIiA6Ym9yZGVyQm90dG9tPVwiZmFsc2VcIj48L2ZyZWUtbGlzdC1pdGVtPlxyXG5cdFx0XHQ8dmlldyBjbGFzcz1cInB4LTIgcHktMSBiZy1saWdodFwiPlxyXG5cdFx0XHRcdDx0ZXh0IGNsYXNzPVwiZm9udC1zbSB0ZXh0LW11dGVkXCI+5pyA6L+R6IGU57O75Lq6PC90ZXh0PlxyXG5cdFx0XHQ8L3ZpZXc+XHJcblx0XHRcdDxmcmVlLWxpc3QtaXRlbSB2LWZvcj1cIihpdGVtLCBpbmRleCkgaW4gbGlzdFwiIDprZXk9XCJpbmRleFwiIDp0aXRsZT1cIml0ZW0udXNlcm5hbWVcIiAgOmNvdmVyPVwiaXRlbS5hdmF0YXJcIiByaWdodEljb25TaG93IDphcnJvd3M9XCJmYWxzZVwiIEBjbGljaz1cInNlbGVjdEl0ZW0oaXRlbSlcIj5cclxuXHRcdFx0XHQ8dmlldyB2LWlmPVwibXVsdGlTZWxlY3RcIiBjbGFzcz1cImZsZXggYWxpZ24tY2VudGVyIGp1c3RpZnktY2VudGVyIHJvdW5kZWQtY2lyY2xlIGJvcmRlclwiIHNsb3Q9XCJyaWdodFwiIHN0eWxlPVwid2lkdGg6IDQwcnB4O2hlaWdodDo0MHJweDtcIj5cclxuXHRcdFx0XHRcdDx2aWV3IHYtaWY9XCJpdGVtLmNoZWNrZWRcIiBzdHlsZT1cIndpZHRoOiAzMHJweDsgaGVpZ2h0OiAzMHJweDtcIiBjbGFzcz1cIm1haW4tYmctY29sb3Igcm91bmRlZC1jaXJjbGVcIj5cclxuXHRcdFx0XHRcdDwvdmlldz5cclxuXHRcdFx0XHQ8L3ZpZXc+XHJcblx0XHRcdDwvZnJlZS1saXN0LWl0ZW0+XG5cdDwvdmlldz5cbjwvdGVtcGxhdGU+XG5cbjxzY3JpcHQ+XHJcblx0aW1wb3J0IGZyZWVOYXZCYXIgZnJvbSAnQC9jb21wb25lbnRzL2ZyZWUtdWkvZnJlZS1uYXYtYmFyLnZ1ZSc7XHJcblx0aW1wb3J0IGZyZWVNYWlsQnV0dG9uIGZyb20gJ0AvY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtbWFpbC1idXR0b24udnVlJztcclxuXHRpbXBvcnQgZnJlZUxpc3RJdGVtIGZyb20gJ0AvY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtbGlzdC1pdGVtLnZ1ZSc7XG5cdGV4cG9ydCBkZWZhdWx0IHtcclxuXHRcdGNvbXBvbmVudHM6IHtcclxuXHRcdFx0ZnJlZU5hdkJhcixcclxuXHRcdFx0ZnJlZU1haWxCdXR0b24sXHJcblx0XHRcdGZyZWVMaXN0SXRlbVxyXG5cdFx0fSxcblx0XHRkYXRhKCkge1xuXHRcdFx0cmV0dXJuIHtcclxuXHRcdFx0XHRtdWx0aVNlbGVjdDogZmFsc2UsXHRcdC8vIOaYr+WQpuWkhOS6juWkmumAieeKtuaAgVxuXHRcdFx0XHR0b3A6IDAsXHRcdC8vIOeKtuaAgeagjyArIOWvvOiIquagj+eahOmrmOW6plxyXG5cdFx0XHRcdGxpc3Q6IFtcclxuXHRcdFx0XHRcdHtcclxuXHRcdFx0XHRcdFx0dXNlcm5hbWU6ICdhbGV4YW5kZXInLFxyXG5cdFx0XHRcdFx0XHRhdmF0YXI6ICcvc3RhdGljL2ltYWdlcy9tYWlsL2ZyaWVuZC5wbmcnLFxyXG5cdFx0XHRcdFx0XHRjaGVja2VkOiBmYWxzZVxyXG5cdFx0XHRcdFx0fVxyXG5cdFx0XHRcdF1cblx0XHRcdH1cblx0XHR9LFxuXHRcdG1ldGhvZHM6IHtcclxuXHRcdFx0Ly8g55uR5ZCs5a+86Iiq5qCP54K55Ye75LqL5Lu2XHJcblx0XHRcdGhhbmRsZU5hdkJhckJ0bigpIHtcclxuXHRcdFx0XHRpZighdGhpcy5tdWx0aVNlbGVjdCkge1xyXG5cdFx0XHRcdFx0Ly8g5aaC5p6c5q2k5pe25LiN5piv5aSa6YCJ54q25oCB5YiZ5YiH5o2i5oiQ5aSa6YCJ54q25oCBXHJcblx0XHRcdFx0XHRyZXR1cm4gdGhpcy5tdWx0aVNlbGVjdCA9IHRydWVcclxuXHRcdFx0XHR9XHJcblx0XHRcdFx0Ly8g5omn6KGM5Y+R6YCB6YC76L6RXHJcblx0XHRcdH0sXHJcblx0XHRcdFxyXG5cdFx0XHQvLyDpgInkuK0gLyDlj5bmtogg6YCJ5LitXHJcblx0XHRcdHNlbGVjdEl0ZW0oaXRlbSkge1xyXG5cdFx0XHRcdGlmKHRoaXMubXVsdGlTZWxlY3QpIHtcclxuXHRcdFx0XHRcdGl0ZW0uY2hlY2tlZCA9ICFpdGVtLmNoZWNrZWRcclxuXHRcdFx0XHR9XHJcblx0XHRcdH1cblx0XHRcdFxuXHRcdH0sXHJcblx0XHRvbkxvYWQoKSB7XHJcblx0XHRcdGxldCByZXMgPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKVxyXG5cdFx0XHR0aGlzLnRvcCA9IHJlcy5zdGF0dXNCYXJIZWlnaHQgKyB1bmkudXB4MnB4KDkwKVxyXG5cdFx0fVxuXHR9XG48L3NjcmlwdD5cblxuPHN0eWxlPlxuXG48L3N0eWxlPlxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///21\n");
 
 /***/ }),
 /* 22 */
