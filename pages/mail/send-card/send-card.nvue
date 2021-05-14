@@ -2,7 +2,7 @@
 	<view>
 			<!-- 导航栏 -->
 			<free-nav-bar title="选择" showBack :showRight="true">
-				<free-mail-button :name="multiSelect ? '发送' : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
+				<free-mail-button :name="multiSelect ? `发送(${selectCount})`  : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
 			</free-nav-bar>
 			
 			<!-- 搜索框 -->
@@ -43,6 +43,60 @@
 						username: 'alexander',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
+					},
+					{
+						username: 'alexander',
+						avatar: '/static/images/mail/friend.png',
+						checked: false
 					}
 				]
 			}
@@ -60,6 +114,13 @@
 			// 选中 / 取消 选中
 			selectItem(item) {
 				if(this.multiSelect) {
+					// 选中的情况需要判断选中的数量，最大选中数量为9
+					if(!item.checked && this.selectCount === 9) {
+						return uni.showToast({
+							title: '最多选中9个',
+							icon: 'none'
+						});
+					}
 					item.checked = !item.checked
 				}
 			}
@@ -68,6 +129,16 @@
 		onLoad() {
 			let res = uni.getSystemInfoSync()
 			this.top = res.statusBarHeight + uni.upx2px(90)
+		},
+		computed: {
+			// 选中列表
+			selectList() {
+				return this.list.filter(item => item.checked)
+			},
+			// 选中数量
+			selectCount() {
+				return this.selectList.length
+			}
 		}
 	}
 </script>
