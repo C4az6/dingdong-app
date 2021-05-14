@@ -26,6 +26,16 @@
 				<text class="font-sm text-muted">{{item.letter}}</text>
 			</view>
 		</view>
+		
+		<!-- 提示的索引字母 -->
+		<view 
+			v-if="current"
+			class="position-fixed rounded-circle bg-light border flex justify-center align-center" 
+			style="width: 150rpx;height: 150rpx;left: 300rpx;" 
+			:style="'top:' + modalTop + 'px;'"
+		>
+			<text class="font-lg">{{current}}</text>
+		</view>
 	</view>
 </template>
 
@@ -228,7 +238,8 @@
 				}],
 				top: 0, // 状态栏 + 导航栏的高度
 				scrollHeight: 0, // scrollview的高度
-				scrollInto: '' // 用于与索引列表数据联动
+				scrollInto: '', // 用于与索引列表数据联动
+				current: ''		// 当前显示的索引字母
 			}
 		},
 		onLoad() {
@@ -239,23 +250,31 @@
 			this.scrollHeight = info.windowHeight - this.top
 		},
 		methods: {
-			touchstart(e) {
-				console.log("touchstart: ", e.touches[0].pageY)
+			// 数据联动
+			changeScrollInto(e) {
 				// 获取用户触摸索引列表的Y坐标
 				let Y = e.touches[0].pageY
+				// #ifdef MP
+				Y = Y - this.top
+				// #endif
+				
 				// 计算触摸的坐标的字母索引
 				let index = Math.floor(Y / this.itemHeight)
 				let item = this.list[index]
 				if (item) {
 					this.scrollInto = 'item-' + item.letter
+					this.current = item.letter
 				}
-
+			},
+			
+			touchstart(e) {
+				this.changeScrollInto(e)
 			},
 			touchmove(e) {
-
+				this.changeScrollInto(e)
 			},
 			touchend(e) {
-
+				this.current = ''
 			}
 		},
 		computed: {
@@ -266,11 +285,15 @@
 					return 0
 				}
 				return this.scrollHeight / count
+			},
+			
+			// 弹出框高度
+			modalTop() {
+				return (this.scrollHeight - uni.upx2px(150)) / 2
 			}
 		}
 	}
 </script>
 
-<style>
-
+<style lang="scss">
 </style>

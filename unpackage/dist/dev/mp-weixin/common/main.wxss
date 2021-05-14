@@ -468,33 +468,25 @@
 .border-dark {border-color: #343a40;}
 .border-white {border-color: #FFFFFF;}
 /* 圆角 */
-.rounded { -webkit-border-radius: 8rpx; border-radius: 8rpx;}
+.rounded { border-radius: 8rpx;}
 .rounded-top {
-  -webkit-border-top-left-radius: 8rpx;
-          border-top-left-radius: 8rpx;
-  -webkit-border-top-right-radius: 8rpx;
-          border-top-right-radius: 8rpx;
+  border-top-left-radius: 8rpx;
+  border-top-right-radius: 8rpx;
 }
 .rounded-right {
-  -webkit-border-top-right-radius: 8rpx;
-          border-top-right-radius: 8rpx;
-  -webkit-border-bottom-right-radius: 8rpx;
-          border-bottom-right-radius: 8rpx;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
 }
 .rounded-bottom {
-  -webkit-border-bottom-right-radius: 8rpx;
-          border-bottom-right-radius: 8rpx;
-  -webkit-border-bottom-left-radius: 8rpx;
-          border-bottom-left-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
 }
 .rounded-left {
-  -webkit-border-top-left-radius: 8rpx;
-          border-top-left-radius: 8rpx;
-  -webkit-border-bottom-left-radius: 8rpx;
-          border-bottom-left-radius: 8rpx;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
 }
-.rounded-circle { -webkit-border-radius: 100rpx; border-radius: 100rpx;}
-.rounded-0 { -webkit-border-radius: 0; border-radius: 0;}
+.rounded-circle { border-radius: 100rpx;}
+.rounded-0 { border-radius: 0;}
 /* 显示 */
 .d-none{ display: none;
 }
@@ -534,9 +526,9 @@
 .bottom-0 { bottom: 0;
 }
 /* 阴影 */
-.shadow { -webkit-box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.15); box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.15);}
-.shadow-lg { -webkit-box-shadow: 0rpx 40rpx 100rpx 0rpx rgba(0, 0, 0, 0.175); box-shadow: 0rpx 40rpx 100rpx 0rpx rgba(0, 0, 0, 0.175);}
-.shadow-none { -webkit-box-shadow: none !important; box-shadow: none !important;}
+.shadow { box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.15);}
+.shadow-lg { box-shadow: 0rpx 40rpx 100rpx 0rpx rgba(0, 0, 0, 0.175);}
+.shadow-none { box-shadow: none !important;}
 
 /* 页面背景色 */
 .page {
@@ -552,6 +544,9 @@
 /* 主文字色 */
 .main-text-color {
 	color: #08C060;
+}
+.border-main {
+	border-color: #08C060!important;
 }
 .bg-chat-item{
 	background-color: #6BEE68;

@@ -1,1 +1,1 @@
-<image class="{{['data-v-405fcf75',type]}}" style="{{(getStyle)}}" src="{{src}}" mode="widthFix"></image>
+<image class="{{['data-v-405fcf75',type]}}" style="{{(getStyle)}}" src="{{src}}" mode="widthFix" data-event-opts="{{[['tap',[['handleClickEvent',['$event']]]]]}}" bindtap="__e"></image>

@@ -1,1 +1,1 @@
-<image class="{{['data-v-210675ef',imageClass]}}" style="{{(setImageStyle)}}" src="{{src}}" data-event-opts="{{[['tap',[['$emit',['click']]]],['load',[['loadImage',['$event']]]]]}}" bindtap="__e" bindload="__e"></image>
+<image class="{{['bg-hover-light data-v-210675ef',imageClass]}}" style="{{(setImageStyle)}}" src="{{src}}" data-event-opts="{{[['tap',[['$emit',['click']]]],['load',[['loadImage',['$event']]]]]}}" bindtap="__e" bindload="__e"></image>

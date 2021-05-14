@@ -135,125 +135,151 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 54));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 90));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {Promise.all(/*! require.ensure | components/free-ui/free-chat-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-chat-item")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 95));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 68));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+// 取全局唯一的录音管理器
+var RECORD = uni.getRecorderManager();var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeChatItem = function FreeChatItem() {Promise.all(/*! require.ensure | components/free-ui/free-chat-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/free-ui/free-chat-item")]).then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-chat-item.vue */ 143));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeMailButton = function FreeMailButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-mail-button */ "components/free-ui/free-mail-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-mail-button.vue */ 150));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -266,7 +292,8 @@ __webpack_require__.r(__webpack_exports__);
     FreeNavBar: FreeNavBar,
     FreeIconButton: FreeIconButton,
     FreeChatItem: FreeChatItem,
-    FreePopup: FreePopup },
+    FreePopup: FreePopup,
+    FreeMailButton: FreeMailButton },
 
   props: {},
   data: function data() {
@@ -286,7 +313,7 @@ __webpack_require__.r(__webpack_exports__);
       {
         name: "拍摄",
         icon: "/static/images/extends/video.png",
-        event: "" },
+        event: "uploadVideo" },
       {
         name: "收藏",
         icon: "/static/images/extends/shoucan.png",
@@ -380,8 +407,11 @@ __webpack_require__.r(__webpack_exports__);
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1,
         nickname: "Alexander",
-        type: "audio", // image、audio、video
+        type: "audio", // image、audio、video,
         data: '/static/audio/01.mp3',
+        options: {
+          time: 40 },
+
         create_time: 1616444341,
         isRemove: false },
 
@@ -389,8 +419,11 @@ __webpack_require__.r(__webpack_exports__);
         avatar: "/static/images/demo/demo6.jpg",
         user_id: 2,
         nickname: "寻找阿诺泰的猪",
-        type: "audio", // image、audio、video
+        type: "audio", // image、audio、video,
         data: '/static/audio/02.mp3',
+        options: {
+          time: 40 },
+
         create_time: 1616444341,
         isRemove: false },
 
@@ -398,14 +431,34 @@ __webpack_require__.r(__webpack_exports__);
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1,
         nickname: "Alexander",
-        type: "audio", // image、audio、video
+        type: "audio", // image、audio、video,
         data: '/static/audio/03.mp3',
+        options: {
+          time: 40 },
+
+        create_time: 1616444941,
+        isRemove: false },
+
+      {
+        avatar: "/static/images/demo/demo5.jpg",
+        user_id: 1,
+        nickname: "Alexander",
+        type: "video", // image、audio、video
+        data: '/static/video/demo.mp4',
+        options: {
+          poster: "/static/video/demo.jpg" },
+
         create_time: 1616444941,
         isRemove: false }],
 
 
-      emoticonList: [] };
-
+      emoticonList: [],
+      isRecording: false, // 是否处于录音状态
+      isRecordCancel: false, // 是否取消录音
+      voiceTouchstartY: 0, // 音频开始录制时的Y轴坐标
+      recordTime: 0, // 录音时长
+      recordTimer: null // 录音定时器
+    };
   },
   computed: {
     // 计算预览图片的列表
@@ -494,10 +547,85 @@ __webpack_require__.r(__webpack_exports__);
 
 
     this.navBarHeight = this.statusBarHeight + uni.upx2px(90);
+
+    // 监听录音开始
+    RECORD.onStart(function (_) {
+      _this2.recordTime = 0;
+      _this2.recordTimer = setInterval(function (_) {
+        _this2.recordTime++;
+      }, 1000);
+    });
+
+    // 监听录音结束
+    RECORD.onStop(function (e) {
+      if (_this2.recordTimer) {
+        clearInterval(_this2.recordTimer);
+        _this2.recordTimer = null;
+      }
+      if (_this2.recordTime < 1) {
+        uni.showToast({
+          title: '说话时间太短!',
+          image: '/static/images/audio/kulian.png',
+          mask: true });
+
+        _this2.isRecordCancel = true;
+      }
+      if (!_this2.isRecordCancel) {
+        // 是否取消录音状态 为false的时候发送录音
+        _this2.send('audio', e.tempFilePath, {
+          time: _this2.recordTime });
+
+      }
+    });
   },
   methods: {
+    // 打开聊天信息设置页
+    openChatSet: function openChatSet() {
+      uni.navigateTo({
+        url: '/pages/chat/chat-set/chat-set' });
+
+    },
+
+    // 监听语音输入按钮触摸开始函数
+    handleVoiceTouchstart: function handleVoiceTouchstart(e) {
+      // 初始化操作
+      this.isRecording = true;
+      // 获取用户开始触摸语音录制按钮时的Y轴坐标
+      this.voiceTouchstartY = e.changedTouches[0].screenY;
+      this.isRecordCancel = false;
+      // 开始录音，格式为mp3
+      RECORD.start({
+        format: "mp3" });
+
+    },
+
+    // 监听语音输入按钮触摸结束函数(录音结束)
+    handleVoiceTouchend: function handleVoiceTouchend() {
+      this.isRecording = false;
+      // 停止录音
+      RECORD.stop();
+    },
+
+    // 监听语音输入按钮触摸取消函数(录音被打断)
+    handleVoiceTouchcancel: function handleVoiceTouchcancel() {
+      this.isRecording = false;
+      this.isRecordCancel = true;
+      RECORD.stop();
+    },
+
+    // 监听语音输入按钮移动函数
+    handleVoiceTouchmove: function handleVoiceTouchmove(e) {
+      var Y = Math.abs(e.changedTouches[0].screenY - this.voiceTouchstartY);
+      // 如果Y大于等于50就取消录音，isRecordCancel设置为true，否则不取消，设置为false
+      this.isRecordCancel = Y >= 50;
+    },
+
+    // 监听音频按钮切换
+    handleChangeVoiceOrText: function handleChangeVoiceOrText() {
+      this.mode = this.mode === 'audio' ? 'text' : 'audio';
+    },
+
     handleAudioEmit: function handleAudioEmit(index) {
-      console.log("index: ", index);
       this.$refs.chatItemRef.forEach(function (item) {
         if (item.item.type === 'audio' && item.index !== index && item.innerAudioContext) {
           item.innerAudioContext.stop();
@@ -555,7 +683,6 @@ __webpack_require__.r(__webpack_exports__);
           uni.chooseImage({ // 选择相册
             count: 9,
             success: function success(res) {
-              console.log("uploadImage res: ", res);
               res.tempFilePaths.forEach(function (item) {
                 _this3.send('image', item);
               });
@@ -563,13 +690,24 @@ __webpack_require__.r(__webpack_exports__);
 
           break;
         case 'sendEmoticon': // 发送表情包
-          this.send('emoticon', e.icon);}
+          this.send('emoticon', e.icon);
+          break;
+        case 'uploadVideo': // 发送短视频
+          uni.chooseVideo({
+            maxDuration: 10,
+            success: function success(res) {
+              _this3.send('video', res.tempFilePath);
+              // 渲染页面
+              // 发送视频到服务端 （获取视频封面，返回url）
+              // 修改本地的发送状态
+            } });
+
+          break;}
 
     },
 
     // 底部拓展菜单展示
     openActionOrEmoticon: function openActionOrEmoticon() {var mode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'action';
-      console.log("mode: ", mode);
       this.mode = mode, // 修改模式为操作拓展菜单的模式
       // 显示拓展菜单
       this.$refs.textareaRef.blur();
@@ -580,23 +718,21 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     // 发送聊天信息
-    send: function send(type) {var _this4 = this;var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    send: function send(type) {var _this4 = this;var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var chatObj = {
         avatar: "/static/images/demo/demo5.jpg",
         user_id: 1,
         nickname: "伤心的瘦子",
         type: type, // image、audio、video、emoticon
-        data: "",
+        data: data,
         create_time: Date.now(),
-        isRemove: false };
+        isRemove: false,
+        options: options };
 
       switch (type) {
         case 'text':
           chatObj.data = this.text;
           this.text = '';
-          break;
-        default:
-          chatObj.data = data;
           break;}
 
       this.list.push(chatObj);

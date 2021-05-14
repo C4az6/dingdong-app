@@ -130,7 +130,28 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 54));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeListItem = function FreeListItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-list-item */ "components/free-ui/free-list-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 75));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeListItem = function FreeListItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-list-item */ "components/free-ui/free-list-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 123));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -193,8 +214,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      topList: [
-      {
+      topList: [{
         title: "新的朋友",
         cover: "/static/images/mail/friend.png",
         event: "" },
@@ -378,15 +398,65 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         "昭通",
         "芷江",
         "中卫",
-        "舟山"] }] };
+        "舟山"] }],
 
 
-
+      top: 0, // 状态栏 + 导航栏的高度
+      scrollHeight: 0, // scrollview的高度
+      scrollInto: '', // 用于与索引列表数据联动
+      current: '' // 当前显示的索引字母
+    };
   },
   onLoad: function onLoad() {
-
+    // 计算this.top的值
+    var info = uni.getSystemInfoSync();
+    this.top = info.statusBarHeight + uni.upx2px(90);
+    // 计算scrollHeight的值
+    this.scrollHeight = info.windowHeight - this.top;
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // 数据联动
+    changeScrollInto: function changeScrollInto(e) {
+      // 获取用户触摸索引列表的Y坐标
+      var Y = e.touches[0].pageY;
+
+      Y = Y - this.top;
+
+
+      // 计算触摸的坐标的字母索引
+      var index = Math.floor(Y / this.itemHeight);
+      var item = this.list[index];
+      if (item) {
+        this.scrollInto = 'item-' + item.letter;
+        this.current = item.letter;
+      }
+    },
+
+    touchstart: function touchstart(e) {
+      this.changeScrollInto(e);
+    },
+    touchmove: function touchmove(e) {
+      this.changeScrollInto(e);
+    },
+    touchend: function touchend(e) {
+      this.current = '';
+    } },
+
+  computed: {
+    // 每个索引的高度
+    itemHeight: function itemHeight() {
+      var count = this.list.length;
+      if (count < 1) {
+        return 0;
+      }
+      return this.scrollHeight / count;
+    },
+
+    // 弹出框高度
+    modalTop: function modalTop() {
+      return (this.scrollHeight - uni.upx2px(150)) / 2;
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
