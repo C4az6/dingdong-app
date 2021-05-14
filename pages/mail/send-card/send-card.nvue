@@ -7,20 +7,24 @@
 			
 			<!-- 搜索框 -->
 			<view class="p-3 bg-light position-fixed left-0 right-0" :style="'top:'+top+'px;'">
-				<input type="text" placeholder="搜索" class="bg-white rounded" placeholder-class="text-center" style="height: 80rpx;"/>
+				<input type="text" v-model.trim="searchValue" placeholder="搜索" class="bg-white rounded" placeholder-class="text-center" style="height: 80rpx;"/>
 			</view> 
 			<view style="height: 140rpx"></view>
 			<!-- 联系人列表 -->
 			<free-list-item title="更多联系人" :leftIconShow="false" :borderBottom="false"></free-list-item>
 			<view class="px-2 py-1 bg-light">
-				<text class="font-sm text-muted">最近联系人</text>
+				<text class="font-sm text-muted">{{searchValue ? '搜索结果' : '最近联系人'}}</text>
 			</view>
-			<free-list-item v-for="(item, index) in list" :key="index" :title="item.username"  :cover="item.avatar" rightIconShow :arrows="false" @click="selectItem(item)">
+			<free-list-item v-for="(item, index) in searchList" :key="index" :title="item.username"  :cover="item.avatar" rightIconShow :arrows="false" @click="selectItem(item)">
 				<view v-if="multiSelect" class="flex align-center justify-center rounded-circle border" slot="right" style="width: 40rpx;height:40rpx;">
 					<view v-if="item.checked" style="width: 30rpx; height: 30rpx;" class="main-bg-color rounded-circle">
 					</view>
 				</view>
 			</free-list-item>
+			<!-- 无搜索结果 -->
+			<view class="flex justify-center align-center" v-if="searchValue && !searchList.length" style="height: 100rpx;">
+				<text class="font text-light-muted">暂无搜索结果</text>
+			</view>
 	</view>
 </template>
 
@@ -40,65 +44,66 @@
 				top: 0,		// 状态栏 + 导航栏的高度
 				list: [
 					{
-						username: 'alexander',
+						username: 'alexander1',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander2',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander3',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander4',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},					{
-						username: 'alexander',
+						username: 'alexander5',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexande6r',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander7',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander8',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander9',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander10',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander11',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					},
 					{
-						username: 'alexander',
+						username: 'alexander12',
 						avatar: '/static/images/mail/friend.png',
 						checked: false
 					}
-				]
+				],
+				searchValue: "",		// 搜索的数据
 			}
 		},
 		methods: {
@@ -124,13 +129,21 @@
 					item.checked = !item.checked
 				}
 			}
-			
+			 
 		},
 		onLoad() {
 			let res = uni.getSystemInfoSync()
 			this.top = res.statusBarHeight + uni.upx2px(90)
 		},
 		computed: {
+			// 搜索列表
+			searchList() {
+				if(!this.searchValue) {
+					return this.list
+				}
+				return this.list.filter(item => item.username.includes(this.searchValue))
+			},
+			
 			// 选中列表
 			selectList() {
 				return this.list.filter(item => item.checked)
