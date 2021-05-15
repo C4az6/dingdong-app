@@ -2,7 +2,7 @@
 	<view>
 			<!-- 导航栏 -->
 			<free-nav-bar title="选择" showBack :showRight="true">
-				<free-mail-button :name="multiSelect ? `发送(${selectCount})`  : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
+				<free-mail-button :name="multiSelect ? `发送2(${selectCount})`  : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
 			</free-nav-bar>
 			
 			<!-- 搜索框 -->
@@ -25,6 +25,10 @@
 			<view class="flex justify-center align-center" v-if="searchValue && !searchList.length" style="height: 100rpx;">
 				<text class="font text-light-muted">暂无搜索结果</text>
 			</view>
+			
+			<!-- 发送给好友弹出层 -->
+			<FreeConfirm ref="confirm"></FreeConfirm>
+
 	</view>
 </template>
 
@@ -32,11 +36,17 @@
 	import freeNavBar from '@/components/free-ui/free-nav-bar.vue';
 	import freeMailButton from '@/components/free-ui/free-mail-button.vue';
 	import freeListItem from '@/components/free-ui/free-list-item.vue';
+	import FreePopup from '@/components/free-ui/free-popup.vue';
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreeConfirm from '@/components/free-ui/free-confirm.vue'
 	export default {
 		components: {
 			freeNavBar,
 			freeMailButton,
-			freeListItem
+			freeListItem,
+			FreePopup,
+			FreeAvatar,
+			FreeConfirm
 		},
 		data() {
 			return {
@@ -132,6 +142,7 @@
 			 
 		},
 		onLoad() {
+			console.log("send-card onload...")
 			let res = uni.getSystemInfoSync()
 			this.top = res.statusBarHeight + uni.upx2px(90)
 		},

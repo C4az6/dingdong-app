@@ -30,6 +30,11 @@
 				type: Boolean,
 				default: true
 			},
+			// 是否居中
+			center: {
+				type: Boolean,
+				default: false
+			},
 			// 是否处于底部
 			bottom: {
 				type: Boolean,
@@ -78,6 +83,10 @@
 			},
 			// 设置蒙版层是否底部显示的计算属性
 			setBodyClass() {
+				console.log("center: ", this.center)
+				if(this.center) {
+					return 'top-0 left-0 bottom-0 right-0 flex justify-center align-center'
+				}
 				let bottom = this.bottom ? 'left-0 right-0 bottom-0' : 'rounded border'
 				return `${bottom} ${this.bgColor}`
 			},
