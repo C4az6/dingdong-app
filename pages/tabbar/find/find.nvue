@@ -3,7 +3,7 @@
 		<free-nav-bar title titleValue="发现" />
 		
 		<!-- 列表 -->
-		<free-list-item title="朋友圈" rightIconShow>
+		<free-list-item title="朋友圈" rightIconShow @click="openMoments">
 			<text slot="icon" class="iconfont py-1 font-lg main-text-color">&#58983;</text>
 			<view slot="right" class="position-relative p-1">
 				<free-avatar src="/static/avatar.jpg" size="55"/>
@@ -61,7 +61,13 @@
 			
 		},
 		methods: {
-
+			// 跳转朋友圈页面
+			openMoments() {
+				console.log(111)
+				uni.navigateTo({
+					url: '/pages/find/moments/moments'
+				})
+			}
 		}
 	}
 </script>

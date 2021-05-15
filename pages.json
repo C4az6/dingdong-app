@@ -82,6 +82,15 @@
             "path" : "pages/mail/user-report/user-report"
             
         }
+        ,{
+            "path" : "pages/find/moments/moments",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

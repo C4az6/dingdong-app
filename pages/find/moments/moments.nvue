@@ -1,0 +1,36 @@
+<template>
+	<view class="bg-dark">
+		<free-transparent-bar :scrollTop="scrollTop"/>
+		<view class="position-relative" style="height: 620rpx;">
+			<image src="/static/images/demo/1.jpg" mode="aspectFill" style="height: 590rpx;" class="bg-secondary"></image>
+			<image src="/static/images/demo/demo5.jpg" style="width: 120rpx;height: 120rpx;right: 30rpx;" class="bg-secondary rounded position-absolute bottom-0"></image>
+			<text class="position-absolute text-white font-md" style="bottom: 45rpx;right: 160rpx;">nickname</text>
+		</view>
+		
+		<view style="height: 1000px;"></view>
+	</view>
+</template>
+
+<script>
+	import FreeTransparentBar from '@/components/free-ui/free-transparent-bar.vue'
+	export default {
+		components: {
+			FreeTransparentBar
+		},
+		data() {
+			return {
+				scrollTop: 0
+			}
+		},
+		methods: {
+			
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop
+		}
+	}
+</script>
+
+<style>
+
+</style>
