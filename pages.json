@@ -78,6 +78,10 @@
             }
             
         }
+        ,{
+            "path" : "pages/mail/user-report/user-report"
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

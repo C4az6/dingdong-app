@@ -140,7 +140,6 @@
 			},
 			hide(options='') {
 				if(!this.closeOnClickMask && options !== 'clickCancelBtn') {
-					console.log("closeOnClickMask: ", this.closeOnClickMask)
 					return
 				}
 				this.$emit('closePopup')

@@ -121,7 +121,9 @@
 					},
 					{
 						icon: "\ue61c",
-						title: '投诉'
+						title: '投诉',
+						type: 'navigate',
+						url: 'mail/user-report/user-report'
 					}
 				]
 			}
@@ -166,6 +168,7 @@
 			handleActionEvent(item) {
 				switch (item.type){
 					case "navigate":
+						console.log(`/pages/${item.url}`)
 						// 跳转页面
 						uni.navigateTo({
 							url: `/pages/${item.url}`
@@ -180,7 +183,6 @@
 			
 			// 打开操作菜单弹出层
 			openAction() {
-				console.log(666)
 				this.$refs.action.show()
 			},
 			// 跳转页面

@@ -150,7 +150,6 @@
 			 
 		},
 		onLoad() {
-			console.log("send-card onload...")
 			let res = uni.getSystemInfoSync()
 			this.top = res.statusBarHeight + uni.upx2px(90)
 		},
