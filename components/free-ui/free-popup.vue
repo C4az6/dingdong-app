@@ -20,6 +20,12 @@
 		name: 'FreePopup',
 		components: {},
 		props: {
+			// 是否允许点击蒙板层关闭弹出层
+			closeOnClickMask: {
+				type: Boolean,
+				default: true
+			},
+			
 			// 是否开启蒙版层颜色
 			maskColor: {
 				type: Boolean,
@@ -83,7 +89,6 @@
 			},
 			// 设置蒙版层是否底部显示的计算属性
 			setBodyClass() {
-				console.log("center: ", this.center)
 				if(this.center) {
 					return 'top-0 left-0 bottom-0 right-0 flex justify-center align-center'
 				}
@@ -133,7 +138,11 @@
 				})
 				// #endif
 			},
-			hide() {
+			hide(options='') {
+				if(!this.closeOnClickMask && options !== 'clickCancelBtn') {
+					console.log("closeOnClickMask: ", this.closeOnClickMask)
+					return
+				}
 				this.$emit('closePopup')
 				// #ifdef APP-NVUE
 				animation.transition(this.$refs.popup, {

@@ -2,7 +2,7 @@
 	<view>
 			<!-- 导航栏 -->
 			<free-nav-bar title="选择" showBack :showRight="true">
-				<free-mail-button :name="multiSelect ? `发送2(${selectCount})`  : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
+				<free-mail-button :name="multiSelect ? `发送(${selectCount})`  : '多选'" slot="right" @click="handleNavBarBtn"></free-mail-button>
 			</free-nav-bar>
 			
 			<!-- 搜索框 -->
@@ -27,7 +27,14 @@
 			</view>
 			
 			<!-- 发送给好友弹出层 -->
-			<FreeConfirm ref="confirm"></FreeConfirm>
+			<free-confirm ref="confirm" title="发送给: ">
+				<scroll-view scroll-x="true" class="flex" :show-scrollbar="false">
+					<free-avatar src="/static/images/mail/friend.png" size="60" class="mr-1" v-for="i in 10">
+					</free-avatar>
+				</scroll-view>
+				<text class="font text-muted my-3 rounded p-2 bg-light">[个人名片] 张波</text>
+				<input type="text" placeholder="给朋友留言" class="font-md text-muted border-bottom" style="height: 60rpx;">
+			</free-confirm>
 
 	</view>
 </template>
@@ -36,7 +43,6 @@
 	import freeNavBar from '@/components/free-ui/free-nav-bar.vue';
 	import freeMailButton from '@/components/free-ui/free-mail-button.vue';
 	import freeListItem from '@/components/free-ui/free-list-item.vue';
-	import FreePopup from '@/components/free-ui/free-popup.vue';
 	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
 	import FreeConfirm from '@/components/free-ui/free-confirm.vue'
 	export default {
@@ -44,7 +50,6 @@
 			freeNavBar,
 			freeMailButton,
 			freeListItem,
-			FreePopup,
 			FreeAvatar,
 			FreeConfirm
 		},
@@ -137,6 +142,9 @@
 						});
 					}
 					item.checked = !item.checked
+					this.$refs.confirm.show(close=>{
+						close()
+					})
 				}
 			}
 			 
