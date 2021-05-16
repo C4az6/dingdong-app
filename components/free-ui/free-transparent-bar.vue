@@ -72,6 +72,7 @@
 					// 用户滑动到了需要开始渐变的位置  计算透明度比例公式：(用户已滚动的距离 - 开始渐变距离) / 渐变距离差(结束渐变距离 - 开始渐变距离)
 					num = (this.scrollTop - start) / h
 				}
+				console.log("num: ", num)
 				return num > 1 ? 1 : num
 			},
 			
