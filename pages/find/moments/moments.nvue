@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="bg-white">
 		<free-transparent-bar :scrollTop="scrollTop"/>
 		<view class="position-relative" style="height: 620rpx;">
 			<image src="/static/images/demo/1.jpg" mode="aspectFill" style="height: 590rpx;" class="bg-secondary"></image>
@@ -44,7 +44,7 @@
 					comments:[{
 						id:1,
 						username:"张波",
-						content:"评论内容"
+						content:"我要进大厂,我要变强!!!我要进大厂,我要变强!!!我要进大厂,我要变强!!!我要进大厂,我要变强!!!"
 					}]
 				},{
 					id:2,
@@ -80,7 +80,7 @@
 					image:[],
 					video:{
 						src:"/static/video/demo.mp4",
-						poster:"/static/images/demo/1.jpg"
+						poster:"https://douyinzcmcss.oss-cn-shenzhen.aliyuncs.com/shengchengqi/datapic/1.jpg"
 					},
 					create_time:1567481668,
 					supports:[],
