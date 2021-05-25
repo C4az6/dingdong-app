@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeDivider = function FreeDivider() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-divider */ "components/free-ui/free-divider").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-divider.vue */ 133));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeListItem = function FreeListItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-list-item */ "components/free-ui/free-list-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 123));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 128));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 116));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 126));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeIconButton = function FreeIconButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-icon-button */ "components/free-ui/free-icon-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-icon-button.vue */ 162));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeDivider = function FreeDivider() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-divider */ "components/free-ui/free-divider").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-divider.vue */ 157));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeListItem = function FreeListItem() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-list-item */ "components/free-ui/free-list-item").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-list-item.vue */ 147));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeAvatar = function FreeAvatar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-avatar */ "components/free-ui/free-avatar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-avatar.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreePopup = function FreePopup() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-popup */ "components/free-ui/free-popup").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-popup.vue */ 140));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -262,7 +262,9 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         icon: "\uE613",
-        title: '把他推荐给朋友' },
+        title: '把他推荐给朋友',
+        type: 'navigate',
+        url: 'mail/send-card/send-card' },
 
       {
         icon: "\uE6B0",
@@ -284,7 +286,9 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         icon: "\uE61C",
-        title: '投诉' }] };
+        title: '投诉',
+        type: 'navigate',
+        url: 'mail/user-report/user-report' }] };
 
 
 
@@ -329,6 +333,7 @@ __webpack_require__.r(__webpack_exports__);
     handleActionEvent: function handleActionEvent(item) {
       switch (item.type) {
         case "navigate":
+          console.log("/pages/".concat(item.url));
           // 跳转页面
           uni.navigateTo({
             url: "/pages/".concat(item.url) });
@@ -343,7 +348,6 @@ __webpack_require__.r(__webpack_exports__);
 
     // 打开操作菜单弹出层
     openAction: function openAction() {
-      console.log(666);
       this.$refs.action.show();
     },
     // 跳转页面

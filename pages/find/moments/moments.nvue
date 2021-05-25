@@ -3,58 +3,89 @@
 		<free-transparent-bar :scrollTop="scrollTop"/>
 		<view class="position-relative" style="height: 620rpx;">
 			<image src="/static/images/demo/1.jpg" mode="aspectFill" style="height: 590rpx;" class="bg-secondary"></image>
-			<image src="/static/images/demo/demo5.jpg" style="width: 120rpx;height: 120rpx;right: 30rpx;" class="bg-secondary rounded position-absolute bottom-0"></image>
-			<text class="position-absolute text-white font-md" style="bottom: 45rpx;right: 160rpx;">伤心的瘦子</text>
+			<image src="/static/images/demo/demo6.jpg" style="width: 120rpx;height: 120rpx;right: 30rpx;" class="bg-secondary rounded position-absolute bottom-0"></image>
+			<text class="position-absolute text-white font-md" style="bottom: 45rpx;right: 160rpx;">张波</text>
 		</view>
 		
 		<!-- 朋友圈列表 -->
-		<view class="p-2 flex align-start border-bottom border-light-secondary" v-for="i in 5">
-			<!-- 左侧头像 -->
-			<free-avatar size="80" src="/static/images/demo/demo5.jpg"></free-avatar>
-			
-			<!-- 右侧内容 -->
-			<view class="pl-2 flex flex-1 flex-column">
-				<!-- 昵称 -->
-				<text class="text-hover-primary font-md mb-1">昵称</text>
-				<!-- 内容 -->
-				<text class="font-md text-dark mb-1">好好学习,天天向上;少壮不努力,老大徒伤悲，学好前端很重要的，马上行动吧。</text>
-				<!-- 单图 -->
-				<!-- <free-image src="/static/images/demo/1.jpg" mode="aspectFill"></free-image> -->
-				<!-- 多图 -->
-				<view class="py-2 flex flex-wrap">
-					<image 
-						src="/static/images/demo/1.jpg" 
-						mode="aspectFill" 
-						style="width: 180rpx;height: 180rpx;" 
-						v-for="(item, index) in 5"
-						:key="index"
-						class="mr-2 mb-2 rounded"
-					>
-					</image>
-				</view>
-				<!-- 时间和操作按钮 -->
-				<view class="flex justify-between align-center">
-					<text class="text-light-muted font-sm">2021-5-16 13:30:58</text>
-					<text class="text-hover-primary iconfont font p-1">{{'\ue6fd'}}</text>
-				</view>
-			</view>
-		</view>
+		<free-moment-list 
+			v-for="(item, index) in list"
+			:key="index"
+			:item="item"
+			:index="index"
+		></free-moment-list>
 	</view>
 </template>
 
 <script>
 	import FreeTransparentBar from '@/components/free-ui/free-transparent-bar.vue'
-	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
-	import FreeImage from '@/components/free-ui/free-image.vue'
+	import FreeMomentList from '@/components/free-ui/free-moment-list.vue'
 	export default {
 		components: {
 			FreeTransparentBar,
-			FreeAvatar,
-			FreeImage
+			FreeMomentList
 		},
 		data() {
 			return {
-				scrollTop: 0
+				scrollTop: 0,
+				list:[{
+					id:2,
+					avatar:'/static/images/demo/demo6.jpg',
+					username:'张波',
+					context:'靓仔，听说这个月会上线：外卖配送系统全栈教程，在线点播全栈教程，多端客服系统，企业网盘系统',
+					image:[],
+					video:false,
+					create_time:1567481668,
+					supports:[{
+						id:1,
+						username:"张波",
+						avatar:'/static/images/demo/demo6.jpg',
+					}],
+					comments:[{
+						id:1,
+						username:"张波",
+						content:"评论内容"
+					}]
+				},{
+					id:2,
+					avatar:'/static/images/demo/demo6.jpg',
+					username:'张波',
+					context:'靓仔，听说这个月会上线：外卖配送系统全栈教程，在线点播全栈教程，多端客服系统，企业网盘系统',
+					image:[{
+						src:"/static/images/demo/1.jpg"
+					}],
+					video:false,
+					create_time:1567481668,
+					supports:[],
+					comments:[]
+				},{
+					id:2,
+					avatar:'/static/images/demo/demo6.jpg',
+					username:'张波',
+					context:'靓仔，听说这个月会上线：外卖配送系统全栈教程，在线点播全栈教程，多端客服系统，企业网盘系统',
+					image:[{
+						src:"/static/images/demo/1.jpg"
+					},{
+						src:"/static/images/demo/1.jpg"
+					}],
+					video:false,
+					create_time:1567481668,
+					supports:[],
+					comments:[]
+				},{
+					id:2,
+					avatar:'/static/images/demo/demo6.jpg',
+					username:'张波',
+					context:'靓仔，听说这个月会上线：外卖配送系统全栈教程，在线点播全栈教程，多端客服系统，企业网盘系统',
+					image:[],
+					video:{
+						src:"/static/video/demo.mp4",
+						poster:"/static/images/demo/1.jpg"
+					},
+					create_time:1567481668,
+					supports:[],
+					comments:[]
+				}]
 			}
 		},
 		methods: {

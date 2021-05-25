@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 102));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeMailButton = function FreeMailButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-mail-button */ "components/free-ui/free-mail-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-mail-button.vue */ 150));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var FreeNavBar = function FreeNavBar() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-nav-bar */ "components/free-ui/free-nav-bar").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-nav-bar.vue */ 126));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var FreeMailButton = function FreeMailButton() {__webpack_require__.e(/*! require.ensure | components/free-ui/free-mail-button */ "components/free-ui/free-mail-button").then((function () {return resolve(__webpack_require__(/*! @/components/free-ui/free-mail-button.vue */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "free-transparent-bar": "/components/free-ui/free-transparent-bar",
+    "free-avatar": "/components/free-ui/free-avatar",
+    "free-image": "/components/free-ui/free-image"
+  }
+}

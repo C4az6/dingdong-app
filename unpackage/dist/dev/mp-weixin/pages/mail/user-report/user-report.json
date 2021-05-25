@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "free-nav-bar": "/components/free-ui/free-nav-bar",
+    "free-mail-button": "/components/free-ui/free-mail-button",
+    "free-list-item": "/components/free-ui/free-list-item"
+  }
+}

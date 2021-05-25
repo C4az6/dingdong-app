@@ -11,7 +11,9 @@
     "pages/mail/user-remark-tag/user-remark-tag",
     "pages/mail/user-tag-set/user-tag-set",
     "pages/mail/user-moments-auth/user-moments-auth",
-    "pages/mail/send-cart/send-cart"
+    "pages/mail/send-card/send-card",
+    "pages/mail/user-report/user-report",
+    "pages/find/moments/moments"
   ],
   "subPackages": [],
   "window": {
@@ -52,5 +54,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap26.json"
 }
