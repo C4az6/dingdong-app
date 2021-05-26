@@ -20,9 +20,17 @@
 		<free-popup ref="action" maskColor bottom transformOrigin="center bottom" >
 			<view class="bg-light border-top flex align-center px-3" style="height: 105rpx;">
 				<textarea ref="textareaRef" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;width: 520rpx;" v-model.trim="content" focus/>
-				<free-icon-button :iconValue="'\ue605'" />
-				<free-mail-button name="发送"></free-mail-button>
+				<free-icon-button :iconValue="'\ue605'" @click="changeFaceModal" />
+				<free-mail-button :disabled="content.length===0" name="发送" @click="send"></free-mail-button>
 			</view>
+			<!-- 表情包部分 -->
+			<scroll-view v-if="faceModal" scroll-y style="height: 350rpx;">
+				<view class="bg-light flex flex-wrap">
+					<view class="flex justify-center align-center" style="width: 107rpx;height: 107rpx;" hover-class="bg-white" v-for="(item,index) in faceList" :key="index">
+						<text @click="handleFaceClick(item)">{{item}}</text>
+					</view>
+				</view>
+			</scroll-view>
 		</free-popup>
 	</view>
 </template>
@@ -103,10 +111,40 @@
 					comments:[]
 				}],
 				content: '',		// 评论输入框内容
-				isSupports: false		// 是否已点赞
+				isSupports: false,	// 是否已点赞
+				faceModal: false,		// 是否显示表情包
+				faceList:["😀","😁","😂","😃","😄","😅","😆","😉","😊","😋","😎","😍","😘","😗","😙","😚","😇","😐","😑","😶","😏","😣","😥","😮","😯","😪","😫","😴","😌","😛","😜","😝","😒","😓","😔","😕","😲","😷","😖","😞","😟","😤","😢","😭","😦","😧","😨","😬","😰","😱","😳","😵","😡","😠"],
+				commentIndex: -1		// 评论对象索引
 			}
 		},
 		methods: {
+			// 开启/关闭表情包面板
+			changeFaceModal() {
+				uni.hideKeyboard()
+				setTimeout(_=>{
+					this.faceModal = !this.faceModal
+				}, 100)
+			},
+			
+			// 评论列表表情包点击事件
+			handleFaceClick(item) {
+				// 将表情包添加到输入框
+				this.content += item
+			},
+			
+			// 发送评论事件
+			send() {
+				this.list[this.commentIndex].comments.push({
+					id:22,
+					username:"Jack",
+					content: this.content
+				})
+				uni.showToast({
+					title: '评论成功!'
+				})
+				this.$refs.action.hide()
+			},
+			
 			// 点赞操作
 			doSupports(e) {
 				const {item, index} = e
@@ -137,6 +175,9 @@
 							this.doSupports(e)
 						}else {
 							// 评论操作
+							this.commentIndex = e.index
+							this.content = ''
+							this.faceModal = false
 							this.$refs.action.show()
 						}
 					}

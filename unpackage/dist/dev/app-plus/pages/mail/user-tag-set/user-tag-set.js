@@ -1772,18 +1772,16 @@ var render = function() {
   return _c(
     "view",
     {
-      staticClass: ["main-bg-color", "py-1", "px-2", "rounded", "mr-2"],
-      on: {
-        click: function($event) {
-          _vm.$emit("click")
-        }
-      }
+      staticClass: ["py-1", "px-2", "rounded", "mr-2"],
+      class: _vm.disabled ? "bg-light border" : "main-bg-color",
+      on: { click: _vm.clickEvent }
     },
     [
       _c(
         "u-text",
         {
-          staticClass: ["font", "text-white"],
+          staticClass: ["font"],
+          class: _vm.disabled ? "text-light-muted" : "text-white",
           appendAsTree: true,
           attrs: { append: "tree" }
         },
@@ -1818,7 +1816,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; //\n//\n//\n//\n//\n//\nvar _default =\n{\n  props: {\n    name: {\n      type: String,\n      default: \"\" } },\n\n\n  data: function data() {\n    return {};\n  } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtbWFpbC1idXR0b24udnVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFPQTtBQUNBO0FBQ0E7QUFDQSxrQkFEQTtBQUVBLGlCQUZBLEVBREEsRUFEQTs7O0FBT0EsTUFQQSxrQkFPQTtBQUNBO0FBQ0EsR0FUQSxFIiwiZmlsZSI6IjcwLmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwibWFpbi1iZy1jb2xvciBweS0xIHB4LTIgcm91bmRlZCBtci0yXCIgQGNsaWNrPVwiJGVtaXQoJ2NsaWNrJylcIj5cclxuXHRcdDx0ZXh0IGNsYXNzPVwiZm9udCB0ZXh0LXdoaXRlXCI+e3tuYW1lfX08L3RleHQ+XHJcblx0PC92aWV3PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdD5cclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRwcm9wczoge1xyXG5cdFx0XHRuYW1lOiB7XHJcblx0XHRcdFx0dHlwZTogU3RyaW5nLFxyXG5cdFx0XHRcdGRlZmF1bHQ6IFwiXCJcclxuXHRcdFx0fVxyXG5cdFx0fSxcclxuXHRcdGRhdGEoKSB7XHJcblx0XHRcdHJldHVybiB7fVxyXG5cdFx0fVxyXG5cdH1cclxuPC9zY3JpcHQ+XHJcblxyXG48c3R5bGUgc2NvcGVkPlxyXG5cclxuPC9zdHlsZT4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///70\n");
+eval("Object.defineProperty(exports, \"__esModule\", { value: true });exports.default = void 0; //\n//\n//\n//\n//\n//\nvar _default =\n{\n  props: {\n    name: {\n      type: String,\n      default: \"\" },\n\n    disabled: { // 是否禁用发送按钮\n      type: Boolean,\n      default: false } },\n\n\n  data: function data() {\n    return {};\n  },\n  methods: {\n    clickEvent: function clickEvent() {\n      // 禁用状态为false的时候才发送点击事件给父组件\n      if (!this.disabled) {\n        this.$emit('click');\n      }\n    } } };exports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vY29tcG9uZW50cy9mcmVlLXVpL2ZyZWUtbWFpbC1idXR0b24udnVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFPQTtBQUNBO0FBQ0E7QUFDQSxrQkFEQTtBQUVBLGlCQUZBLEVBREE7O0FBS0E7QUFDQSxtQkFEQTtBQUVBLG9CQUZBLEVBTEEsRUFEQTs7O0FBV0EsTUFYQSxrQkFXQTtBQUNBO0FBQ0EsR0FiQTtBQWNBO0FBQ0EsY0FEQSx3QkFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsS0FOQSxFQWRBLEUiLCJmaWxlIjoiNzAuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8dGVtcGxhdGU+XHJcblx0PHZpZXcgY2xhc3M9XCJweS0xIHB4LTIgcm91bmRlZCBtci0yXCIgOmNsYXNzPVwiZGlzYWJsZWQgPyAnYmctbGlnaHQgYm9yZGVyJyA6ICdtYWluLWJnLWNvbG9yJ1wiIEBjbGljaz1cImNsaWNrRXZlbnRcIj5cclxuXHRcdDx0ZXh0IGNsYXNzPVwiZm9udFwiIDpjbGFzcz1cImRpc2FibGVkID8gJ3RleHQtbGlnaHQtbXV0ZWQnIDogJ3RleHQtd2hpdGUnXCI+e3tuYW1lfX08L3RleHQ+XHJcblx0PC92aWV3PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdD5cclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRwcm9wczoge1xyXG5cdFx0XHRuYW1lOiB7XHJcblx0XHRcdFx0dHlwZTogU3RyaW5nLFxyXG5cdFx0XHRcdGRlZmF1bHQ6IFwiXCJcclxuXHRcdFx0fSxcclxuXHRcdFx0ZGlzYWJsZWQ6IHtcdFx0Ly8g5piv5ZCm56aB55So5Y+R6YCB5oyJ6ZKuXHJcblx0XHRcdFx0dHlwZTogQm9vbGVhbixcclxuXHRcdFx0XHRkZWZhdWx0OiBmYWxzZVxyXG5cdFx0XHR9XHJcblx0XHR9LFxyXG5cdFx0ZGF0YSgpIHtcclxuXHRcdFx0cmV0dXJuIHt9XHJcblx0XHR9LFxyXG5cdFx0bWV0aG9kczoge1xyXG5cdFx0XHRjbGlja0V2ZW50KCkge1xyXG5cdFx0XHRcdC8vIOemgeeUqOeKtuaAgeS4umZhbHNl55qE5pe25YCZ5omN5Y+R6YCB54K55Ye75LqL5Lu257uZ54i257uE5Lu2XHJcblx0XHRcdFx0aWYoIXRoaXMuZGlzYWJsZWQpIHtcclxuXHRcdFx0XHRcdHRoaXMuJGVtaXQoJ2NsaWNrJylcclxuXHRcdFx0XHR9XHJcblx0XHRcdH1cclxuXHRcdH1cclxuXHR9XHJcbjwvc2NyaXB0PlxyXG5cclxuPHN0eWxlIHNjb3BlZD5cclxuXHJcbjwvc3R5bGU+Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///70\n");
 
 /***/ }),
 /* 71 */,
