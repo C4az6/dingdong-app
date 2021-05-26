@@ -13,7 +13,7 @@
 			}
 		},
 		data() {
-			
+			return {}
 		}
 	}
 </script>

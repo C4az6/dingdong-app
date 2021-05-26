@@ -27,7 +27,7 @@
 			<!-- 时间 | 操作按钮 -->
 			<view class="flex justify-between align-center">
 				<text class="text-light-muted font-sm">{{item.create_time | timeFormat}}</text>
-				<text class="text-hover-primary iconfont font p-1">{{'\ue6fd'}}</text>
+				<text class="text-hover-primary iconfont font p-1" @click="$emit('action', {item, index})">{{'\ue6fd'}}</text>
 			</view>
 			
 			<!-- 点赞 | 评论部分 -->

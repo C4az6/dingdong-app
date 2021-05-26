@@ -13,17 +13,33 @@
 			:key="index"
 			:item="item"
 			:index="index"
+			@action="openAction"
 		></free-moment-list>
+		
+		<!-- 操作菜单弹出层 -->
+		<free-popup ref="action" maskColor bottom transformOrigin="center bottom" >
+			<view class="bg-light border-top flex align-center px-3" style="height: 105rpx;">
+				<textarea ref="textareaRef" fixed class="bg-white rounded p-2 font-md" style="height: 75rpx;width: 520rpx;" v-model.trim="content" focus/>
+				<free-icon-button :iconValue="'\ue605'" />
+				<free-mail-button name="发送"></free-mail-button>
+			</view>
+		</free-popup>
 	</view>
 </template>
 
 <script>
 	import FreeTransparentBar from '@/components/free-ui/free-transparent-bar.vue'
 	import FreeMomentList from '@/components/free-ui/free-moment-list.vue'
+	import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+	import FreePopup from "@/components/free-ui/free-popup.vue"
+	import FreeMailButton from "@/components/free-ui/free-mail-button.vue"
 	export default {
 		components: {
 			FreeTransparentBar,
-			FreeMomentList
+			FreeMomentList,
+			FreeIconButton,
+			FreePopup,
+			FreeMailButton
 		},
 		data() {
 			return {
@@ -85,11 +101,47 @@
 					create_time:1567481668,
 					supports:[],
 					comments:[]
-				}]
+				}],
+				content: '',		// 评论输入框内容
+				isSupports: false		// 是否已点赞
 			}
 		},
 		methods: {
-			
+			// 点赞操作
+			doSupports(e) {
+				const {item, index} = e
+				this.isSupports = !this.isSupports
+				let msg = (this.isSupports ? '点赞' : '取消点赞') + '成功'
+				if(this.isSupports) {
+					item.supports.push({
+						id:666,
+						username:"波哥",
+						avatar:'/static/images/demo/demo6.jpg',
+						type: 'self'
+					})
+				}else {
+					let findIndex = item.supports.findIndex(item=>item.type==='self')
+					item.supports.splice(findIndex, 1)
+				}
+				uni.showToast({
+					title: msg
+				});
+			},
+			// 打开操作菜单
+			openAction(e) {
+				uni.showActionSheet({
+					itemList: ['点赞', '评论'],
+					success: res => {
+						if(res.tapIndex === 0) {
+							// 点赞操作
+							this.doSupports(e)
+						}else {
+							// 评论操作
+							this.$refs.action.show()
+						}
+					}
+				});
+			}
 		},
 		onPageScroll(e) {
 			this.scrollTop = e.scrollTop
