@@ -1,5 +1,5 @@
 <template>
-	<image :src="src" mode="widthFix" :style="getStyle" :class="type" @click="handleClickEvent"></image>
+	<image :src="src" mode="aspectFill" :style="getStyle" :class="type" @click="handleClickEvent"></image>
 </template>
 
 <script>

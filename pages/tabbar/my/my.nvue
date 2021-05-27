@@ -1,22 +1,22 @@
 <template>
-  <view class="page">
-		<free-nav-bar bgColor="bg-white" >
+	<view class="page">
+		<free-nav-bar bgColor="bg-white">
 			<free-icon-button slot="right" :iconValue="'\ue6ed'" />
 		</free-nav-bar>
-		
+
 		<free-list-item cover="/static/images/demo/demo6.jpg" coverSize="120" title="张波" rightIconShow>
 			<!-- 中间文本内容 -->
 			<view class="flex flex-column">
 				<text class="text-dark font-lg font-weight-bold">伤心的瘦子</text>
 				<text class="text-light-muted font mt-2">叮咚号: Alexander3714</text>
 			</view>
-			
+
 			<!-- 右侧图标 -->
 			<view slot="right">
 				<text class="iconfont font-md text-light-muted">&#xe614;</text>
 			</view>
 		</free-list-item>
-		
+
 		<free-divider></free-divider>
 		<free-list-item title="支付" rightIconShow>
 			<text slot="icon" class="iconfont font-lg py-1">&#xe66c;</text>
@@ -32,39 +32,43 @@
 			<text slot="icon" class="iconfont font-lg py-1">&#xe605;</text>
 		</free-list-item>
 		<free-divider></free-divider>
-		<free-list-item title="设置" rightIconShow>
+		<free-list-item title="设置" rightIconShow @click="navigate('my/userinfo/userinfo')">
 			<text slot="icon" class="iconfont font-lg py-1">&#xe612;</text>
 		</free-list-item>
 	</view>
 </template>
 
 <script>
-import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
-import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
-import FreeListItem from '@/components/free-ui/free-list-item.vue'
-import FreeDivider from '@/components/free-ui/free-divider.vue'
-export default {
-  name: 'MyIndex',
-  components: {
-		FreeNavBar,
-		FreeIconButton,
-		FreeListItem,
-		FreeDivider
-	},
-  props: {},
-  data () {
-    return {}
-  },
-	computed:{
-	},
-  watch: {},
-  created () {},
-  mounted () {},
-	onLoad() {
-	},
-  methods: {
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeIconButton from '@/components/free-ui/free-icon-button.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
+	import FreeDivider from '@/components/free-ui/free-divider.vue'
+	export default {
+		name: 'MyIndex',
+		components: {
+			FreeNavBar,
+			FreeIconButton,
+			FreeListItem,
+			FreeDivider
+		},
+		props: {},
+		data() {
+			return {}
+		},
+		computed: {},
+		watch: {},
+		created() {},
+		mounted() {},
+		onLoad() {},
+		methods: {
+			// 页面跳转
+			navigate(e){
+				uni.navigateTo({
+					url: `/pages/${e}`
+				})
+			}
+		}
 	}
-}
 </script>
 
 <style scoped lang="less"></style>

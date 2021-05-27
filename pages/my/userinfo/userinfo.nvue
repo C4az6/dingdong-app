@@ -1,0 +1,127 @@
+<template>
+	<view class="page">
+		<!-- 导航栏 -->
+		<free-nav-bar title titleValue="个人资料" showBack :showRight="false"></free-nav-bar>
+		
+		<free-list-item title="头像" rightIconShow :leftIconShow="false" @click="update('avatar')">
+			<free-avatar :src="user.avatar" slot="right"></free-avatar>
+		</free-list-item>
+		
+		<free-list-item title="昵称" rightIconShow :leftIconShow="false" @click="update('nickname')">
+			<text class="font text-muted" slot="right">{{user.nickname}}</text>
+		</free-list-item>
+		
+		<free-list-item title="账号" rightIconShow :leftIconShow="false" @click="update('username')">
+			<text class="font text-muted" slot="right">{{user.username}}</text>
+		</free-list-item>
+		
+		<free-list-item title="二维码名片" rightIconShow :leftIconShow="false" @click="update('code')">
+			<text slot="right" class="iconfont font-md text-light-muted">&#xe647;</text>
+		</free-list-item>
+		
+		<!-- 修改昵称确认框 -->
+		<free-confirm ref="nicknameConfirm" title="修改昵称">
+			<input type="text" placeholder="请输入新昵称" focus v-model.trim="newNickname" class="border-bottom font-md text-muted" style="height: 90rpx;">
+		</free-confirm>
+		
+		<!-- 修改账号确认框 -->
+		<free-confirm ref="usernameConfirm" title="修改账号">
+			<input type="text" placeholder="请输入新账号" focus v-model.trim="newUsername" class="border-bottom font-md text-muted" style="height: 90rpx;">
+		</free-confirm>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	import FreeConfirm from '@/components/free-ui/free-confirm.vue'
+	export default {
+		name: '',
+		components: {
+			FreeNavBar,
+			FreeListItem,
+			FreeAvatar,
+			FreeConfirm
+		},
+		props: {},
+		data() {
+			return {
+				// 用户信息数据
+				user: {
+					avatar: '/static/images/demo/demo6.jpg',
+					nickname: '张波2',
+					username: 'zhangbo3714'
+				},
+				// 修改昵称的内容
+				newNickname: "",
+				// 修改账号的内容
+				newUsername: ""
+			}
+		},
+		computed: {},
+		watch: {},
+		created() {},
+		mounted() {},
+		methods: {
+			// 更新用户信息
+			update(e) {
+				switch (e){
+					case 'avatar':
+						// 选择图片
+						uni.chooseImage({
+							count: 1,
+							sizeType: ['compressed'],
+							success: res=>{
+								this.user.avatar = res.tempFilePaths[0]
+							}
+						})
+						break;
+					case 'code':
+						// 跳转二维码名片页面
+						break;
+						
+					case 'nickname':
+						this.newNickname = this.user.nickname
+						this.$refs.nicknameConfirm.show(close=>{
+							if(!this.newNickname) {
+								return uni.showToast({
+									title: '昵称不能为空!',
+									icon: 'none'
+								})
+							}
+							this.user.nickname = this.newNickname
+							// 关闭弹出层
+							close()
+							uni.showToast({
+								title: '昵称更新成功'
+							})
+						})
+						break;
+					case 'username':
+						this.newUsername = this.user.username
+						this.$refs.usernameConfirm.show(close=>{
+							if(!this.newUsername) {
+								return uni.showToast({
+									title: '用户名不能为空!',
+									icon: 'none'
+								})
+							}
+							this.user.username = this.newUsername
+							// 关闭弹出层
+							close()
+							uni.showToast({
+								title: '用户名更新成功'
+							})
+						})
+					break;
+						break;
+					default:
+						break;
+				}
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less"></style>
