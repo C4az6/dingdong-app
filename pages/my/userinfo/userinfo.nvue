@@ -20,13 +20,8 @@
 		</free-list-item>
 		
 		<!-- 修改昵称确认框 -->
-		<free-confirm ref="nicknameConfirm" title="修改昵称">
-			<input type="text" placeholder="请输入新昵称" focus v-model.trim="newNickname" class="border-bottom font-md text-muted" style="height: 90rpx;">
-		</free-confirm>
-		
-		<!-- 修改账号确认框 -->
-		<free-confirm ref="usernameConfirm" title="修改账号">
-			<input type="text" placeholder="请输入新账号" focus v-model.trim="newUsername" class="border-bottom font-md text-muted" style="height: 90rpx;">
+		<free-confirm ref="confirm" :title="confirmTitle">
+			<input type="text" :placeholder="confirmPlaceholder" focus v-model.trim="confirmText" class="border-bottom font-md text-muted" style="height: 90rpx;">
 		</free-confirm>
 	</view>
 </template>
@@ -47,19 +42,26 @@
 		props: {},
 		data() {
 			return {
+				// 确认框标题
+				confirmType: '修改昵称',
+				// 确认框文本内容
+				confirmText: '',
 				// 用户信息数据
 				user: {
 					avatar: '/static/images/demo/demo6.jpg',
 					nickname: '张波2',
 					username: 'zhangbo3714'
-				},
-				// 修改昵称的内容
-				newNickname: "",
-				// 修改账号的内容
-				newUsername: ""
+				}
 			}
 		},
-		computed: {},
+		computed: {
+			confirmTitle() {
+				return this.confirmType === 'nickname' ? '修改昵称' : '修改用户名'
+			},
+			confirmPlaceholder() {
+				return this.confirmType === 'nickname' ? '请输入新昵称' : '请输入新用户名'
+			}
+		},
 		watch: {},
 		created() {},
 		mounted() {},
@@ -80,43 +82,29 @@
 					case 'code':
 						// 跳转二维码名片页面
 						break;
-						
-					case 'nickname':
-						this.newNickname = this.user.nickname
-						this.$refs.nicknameConfirm.show(close=>{
-							if(!this.newNickname) {
-								return uni.showToast({
-									title: '昵称不能为空!',
-									icon: 'none'
-								})
-							}
-							this.user.nickname = this.newNickname
-							// 关闭弹出层
-							close()
-							uni.showToast({
-								title: '昵称更新成功'
-							})
-						})
-						break;
-					case 'username':
-						this.newUsername = this.user.username
-						this.$refs.usernameConfirm.show(close=>{
-							if(!this.newUsername) {
-								return uni.showToast({
-									title: '用户名不能为空!',
-									icon: 'none'
-								})
-							}
-							this.user.username = this.newUsername
-							// 关闭弹出层
-							close()
-							uni.showToast({
-								title: '用户名更新成功'
-							})
-						})
-					break;
-						break;
 					default:
+						// 1.设置确认框的类型
+						this.confirmType = e
+						// 2.设置input的默认值
+						this.confirmText = this.user[e]
+						// 3.开启confirm确认框
+						this.$refs.confirm.show(close => {
+							// 4.判断输入框内容是否为空
+							if(!this.confirmText) {
+								return uni.showToast({
+									title: '内容不能为空!',
+									icon: 'none'
+								})
+							}
+							// 5.更新user用户数据
+							this.user[e] = this.confirmText
+							// 6.关闭弹出层
+							close()
+							let msg = this.confirmType === 'nickname' ? '修改昵称成功' : '修改用户名成功'
+							uni.showToast({
+								title: msg
+							})
+						})
 						break;
 				}
 			}
