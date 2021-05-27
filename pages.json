@@ -110,6 +110,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/my/fav/fav",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

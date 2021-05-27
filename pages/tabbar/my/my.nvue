@@ -22,10 +22,10 @@
 			<text slot="icon" class="iconfont font-lg py-1">&#xe66c;</text>
 		</free-list-item>
 		<free-divider></free-divider>
-		<free-list-item title="收藏" rightIconShow>
+		<free-list-item title="收藏" rightIconShow @click="navigate('my/fav/fav')">
 			<text slot="icon" class="iconfont font-lg py-1">&#xea2d;</text>
 		</free-list-item>
-		<free-list-item title="相册" rightIconShow>
+		<free-list-item title="相册" rightIconShow @click="navigate('find/moments/moments')">
 			<text slot="icon" class="iconfont font-lg py-1">&#xe608;</text>
 		</free-list-item>
 		<free-list-item title="表情" rightIconShow>

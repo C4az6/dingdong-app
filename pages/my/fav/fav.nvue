@@ -1,0 +1,36 @@
+<template>
+	<view class="page">
+		<free-nav-bar title titleValue="我的收藏" showBack :showRight="false"></free-nav-bar>
+		<view class="p-5">
+			<view class="bg-white p-3 rounded">
+				<text class="font-md">聊天记录</text>
+			</view>
+			<view class="bg-white p-3 rounded mt-4">
+				<free-image src="/static/images/demo/demo6.jpg"></free-image>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeImage from '@/components/free-ui/free-image.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeImage
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>
