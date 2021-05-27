@@ -101,6 +101,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/my/code/code",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

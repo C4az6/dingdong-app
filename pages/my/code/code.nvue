@@ -1,0 +1,44 @@
+<template>
+	<view class="page">
+		<!-- 导航栏 -->
+		<free-nav-bar title titleValue="二维码名片" showBack :showRight="false"></free-nav-bar>
+		<view class="p-5">
+			<view class="p-4 bg-white">
+				<view class="flex">
+					<free-avatar src="/static/images/demo/demo6.jpg"></free-avatar>
+					<view class="ml-2 justify-between">
+						<text class="font-md">张波</text>
+						<text class="font text-light-muted">地区</text>
+					</view>
+				</view>
+				<view class="flex flex-column justify-center align-center mt-3">
+					<image src="/static/images/demo/demo6.jpg" class="mb-3" mode="aspectFill" style="width: 550rpx;height: 550rpx;"></image>
+					<text class="text-light-muted font">扫一扫上边二维码图案，添加我的叮咚号</text>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeAvatar from '@/components/free-ui/free-avatar.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeAvatar
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

@@ -15,7 +15,7 @@
 			<text class="font text-muted" slot="right">{{user.username}}</text>
 		</free-list-item>
 		
-		<free-list-item title="二维码名片" rightIconShow :leftIconShow="false" @click="update('code')">
+		<free-list-item title="二维码名片" rightIconShow :leftIconShow="false" @click="openCode">
 			<text slot="right" class="iconfont font-md text-light-muted">&#xe647;</text>
 		</free-list-item>
 		
@@ -66,6 +66,13 @@
 		created() {},
 		mounted() {},
 		methods: {
+			// 跳转二维码名片页面
+			openCode() {
+				uni.navigateTo({
+					url: '/pages/my/code/code'
+				})
+			},
+			
 			// 更新用户信息
 			update(e) {
 				switch (e){
@@ -78,9 +85,6 @@
 								this.user.avatar = res.tempFilePaths[0]
 							}
 						})
-						break;
-					case 'code':
-						// 跳转二维码名片页面
 						break;
 					default:
 						// 1.设置确认框的类型
