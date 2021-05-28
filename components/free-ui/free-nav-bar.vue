@@ -11,13 +11,15 @@
 					<!-- 返回按钮 -->
 					<free-icon-button v-if="showBack" :iconValue="'\ue60d'" @click="back" />
 					<!-- 标题 -->
-					<text v-if="title" class="font-md ml-3">{{titleValue}}</text>
+					<slot>
+						<text v-if="title" class="font-md ml-3">{{titleValue}}</text>
+					</slot>
 				</view>
 				<!-- 右边图标部分 -->
 				<view class="flex align-center" v-if="showRight">
 					<slot name="right">
 						<!-- 下面的2个组件是 right 插槽默认的元素，如果其他组件手动设置slot=right则下面内容会被覆盖 -->
-						<free-icon-button :iconValue="'\ue6e3'" />
+						<free-icon-button :iconValue="'\ue6e3'" @click="search" />
 						<free-icon-button @click="openPopup" :iconValue="'\ue682'" />
 					</slot>
 				</view>
@@ -84,6 +86,11 @@
 			showRight: {
 				type: Boolean,
 				default: true
+			},
+			// 是否直接返回页面，true为直接返回，false为发射一个back事件，用户自己定制
+			backEvent: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
@@ -143,9 +150,21 @@
 			this.navBarHeight = this.statusBarHeight + uni.upx2px(90)
 		},
 		methods: {
+			// 搜索
+			search() {
+				uni.navigateTo({
+					url: '/pages/common/search/search'
+				})
+			},
+			
 			// 返回上一页
 			back() {
-				uni.navigateBack()
+				if(this.backEvent) {
+					return uni.navigateBack({
+						delta: 1
+					})
+				}
+				this.$emit('back')
 			},
 			
 			// 显示拓展菜单
