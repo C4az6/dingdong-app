@@ -1,0 +1,92 @@
+<template>
+	<view class="px-3 bg-white">
+		<!-- 导航栏部分 -->
+		<free-nav-bar showRight showBack bgColor="bg-white" >
+			<free-mail-button name="发表" slot="right" @click="submit"></free-mail-button>
+		</free-nav-bar>
+		
+		<!-- 文字部分 -->
+		<textarea placeholder="这一刻的想法..." class="font-md text-muted p-2" v-mode.trim="content" />
+		
+		<!-- 图片部分 -->
+		<free-upload-image v-if="type === 'image'"></free-upload-image>
+		<!-- 视频部分 -->
+		<view 
+			v-if="type === 'video' && !video" 
+			class="flex justify-center align-center bg-light" 
+			style="height: 350rpx;" 
+			hover-class="bg-hover-light"
+			@click="uploadVideo"
+		>
+			<text class="text-muted" style="font-size: 100rpx;">+</text>
+		</view>
+		
+		<video v-if="type === 'video' && video" :src="video" controls></video>
+		
+		<view 
+			v-if="type === 'video' && video" 
+			class="my-2 flex justify-center align-center bg-light" 
+			style="height: 100rpx;" 
+			hover-class="bg-hover-light"
+			@click="uploadVideo"
+		>
+			<text class="text-muted font-md">点击切换视频</text>
+		</view>
+		<!-- 选项部分 -->
+		<free-list-item title="所在位置" rightIconShow :leftIconShow="false">
+			<text class="font text-muted" slot="right">位置</text>
+		</free-list-item>
+		
+		<free-list-item title="提醒谁看" rightIconShow :leftIconShow="false">
+		</free-list-item>
+		
+		<free-list-item title="谁可以看" rightIconShow :leftIconShow="false">
+			<text class="font text-muted" slot="right">公开</text>
+		</free-list-item>
+	</view>
+</template>
+
+<script>
+	import FreeNavBar from '@/components/free-ui/free-nav-bar.vue'
+	import FreeMailButton from '@/components/free-ui/free-mail-button.vue'
+	import FreeListItem from '@/components/free-ui/free-list-item.vue'
+	import FreeUploadImage from '@/components/free-ui/free-upload-image.vue'
+	export default {
+		components: {
+			FreeNavBar,
+			FreeMailButton,
+			FreeListItem,
+			FreeUploadImage
+		},
+		data() {
+			return {
+				content: "",		// 用户输入的文本内容
+				type: "",		// 发布类型
+				video: ""		// 临时视频路径
+			}
+		},
+		methods: {
+			// 上传视频
+			uploadVideo() {
+				uni.chooseVideo({
+					maxDuration:10,
+					success: (res) => {
+						this.video = res.tempFilePath
+					}
+				})
+			},
+			
+			// 发布朋友圈
+			submit() {
+				console.log("发布朋友圈...")
+			}
+		},
+		onLoad(e) {
+			this.type = e.type
+		}
+	}
+</script>
+
+<style>
+
+</style>

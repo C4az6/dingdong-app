@@ -25,6 +25,7 @@
 							class="flex align-center justify-center" 
 							hover-class="bg-hover-light"
 							style="height: 90rpx;width: 90rpx;"
+							@click="$emit('click')"
 						>
 							<text class="iconfont font-lg" :style="buttonStyle">{{'\ue682'}}</text>
 						</view>

@@ -1,6 +1,6 @@
 <template>
 	<view class="bg-white">
-		<free-transparent-bar :scrollTop="scrollTop"/>
+		<free-transparent-bar :scrollTop="scrollTop" @click="pubMoment"/>
 		<view class="position-relative" style="height: 620rpx;">
 			<image src="/static/images/demo/1.jpg" mode="aspectFill" style="height: 590rpx;" class="bg-secondary"></image>
 			<image src="/static/images/demo/demo6.jpg" style="width: 120rpx;height: 120rpx;right: 30rpx;" class="bg-secondary rounded position-absolute bottom-0"></image>
@@ -118,6 +118,32 @@
 			}
 		},
 		methods: {
+			// 发布朋友圈
+			pubMoment() {
+				let list = [
+					{
+						name: '图文',
+						type: 'image'
+					},
+					{
+						name: '短视频',
+						type: 'video'
+					},
+					{
+						name: '文字',
+						type: 'text'
+					}
+				]
+				uni.showActionSheet({
+					itemList: list.map(item=>item.name),
+					success: (res) => {
+						uni.navigateTo({
+							url: `/pages/find/add-moments/add-moments?type=${list[res.tapIndex].type}`
+						})
+					}
+				})
+			},
+			
 			// 开启/关闭表情包面板
 			changeFaceModal() {
 				uni.hideKeyboard()
