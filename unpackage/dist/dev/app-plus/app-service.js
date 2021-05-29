@@ -1034,6 +1034,9 @@ module.exports = {
   "main-bg-color": {
     "backgroundColor": "#08c060"
   },
+  "main-bg-hover-color": {
+    "backgroundColor": "#08d869"
+  },
   "main-text-color": {
     "color": "#08C060"
   },

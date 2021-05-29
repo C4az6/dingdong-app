@@ -1,0 +1,75 @@
+<template>
+	<view class="page bg-white">
+		
+		<!-- 加载效果 -->
+		<view v-if="!show" class="bg-light position-fixed top-0 left-0 right-0 bottom-0 flex justify-center align-center">
+			<text class="text-muted font-md">加载中...</text>
+		</view>
+		
+		<!-- LOGO部分 -->
+		<view class="flex align-end justify-center" style="height: 350rpx;">
+			<image src="/static/images/demo/weixin.jpg" mode="widthFix" style="width: 200rpx;"></image>
+		</view>
+		
+		<!-- 用户名|密码部分 -->
+		<view class="px-3">
+			<input type="text" placeholder="请输入用户名" class="text-light-muted font p-3 bg-light mb-3" style="height: 100rpx;"/>
+			<input type="text" placeholder="请输入密码" class="text-light-muted font p-3 bg-light mb-3" style="height: 100rpx;"/>
+			<input v-if="type==='reg'" type="text" placeholder="请输入确认密码" class="text-light-muted font p-3 bg-light mb-3" style="height: 100rpx;"/>
+		</view>
+
+		<!-- 登录按钮部分 -->
+		<view class="flex justify-center align-center mx-3 main-bg-color rounded" hover-class="main-bg-hover-color" style="height: 100rpx;">
+			<text class="text-white font-md">登录</text>
+		</view>
+		
+		<!-- 注册账号|忘记密码部分 -->
+		<view class="flex justify-center align-center mt-1">
+			<text class="text-light-muted font p-3" @click="changeType">{{type==='login'?'注册账号':'马上登录'}}</text>
+			<text class="text-light-muted font-md">|</text>
+			<text class="text-light-muted font p-3" @click="forgotPwd">忘记密码</text>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: '',
+		components: {},
+		props: {},
+		data() {
+			return {
+				type: 'login',
+				show: false
+			}
+		},
+		computed: {},
+		watch: {},
+		created() {
+			// 模拟登录
+			setTimeout(_=>{
+				// 判断用户是否登录,如果没有登录停留该页面,否则跳转首页
+				this.show = true
+				// uni.switchTab({
+				// 	url: '/pages/tabbar/index/index'
+				// })
+			}, 1500)
+		},
+		mounted() {},
+		methods: {
+			// 改变页面的登录类型,登录还是注册
+			changeType() {
+				this.type = this.type === 'login' ? 'reg' : 'login'
+			},
+			// 忘记密码
+			forgotPwd() {
+				uni.showToast({
+					title: '请联系管理员',
+					icon: 'none'
+				})
+			}
+		}
+	}
+</script>
+
+<style scoped lang="less"></style>
